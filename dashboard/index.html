@@ -1,1 +1,38 @@
-$(cat /tmp/f_dash.html)
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TaxDome Marketing — Weekly Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+  :root {
+    --primary: #4C6EF5;
+    --success: #2F9E44;
+    --warning: #E8590C;
+    --danger:  #E03131;
+    --bg:      #F8F9FA;
+    --card:    #FFFFFF;
+    --text:    #212529;
+    --muted:   #6C757D;
+    --border:  #E9ECEF;
+    --shadow:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-hover: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.06);
+  }
+  [data-theme="dark"] {
+    --bg:     #1A1A2E;
+    --card:   #16213E;
+    --text:   #E0E0E0;
+    --muted:  #9AA0B4;
+    --border: #2A3358;
+    --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.25);
+    --shadow-hover: 0 4px 14px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.35);
+  }
+  [data-theme="dark"] header h1,
+  [data-theme="dark"] .kpi-value,
+  [data-theme="dark"] .card h2 { color: #FFFFFF; }
+
+ABBREVIATED_FOR_TEST
