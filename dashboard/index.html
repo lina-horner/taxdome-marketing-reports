@@ -35,4 +35,555 @@
   [data-theme="dark"] .kpi-value,
   [data-theme="dark"] .card h2 { color: #FFFFFF; }
 
-ABBREVIATED_FOR_TEST
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1600px; margin: 0 auto; padding: 28px 32px 60px; }
+
+  header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 24px; margin-bottom: 28px; flex-wrap: wrap;
+  }
+  header h1 {
+    margin: 0 0 6px;
+    font-size: 28px; font-weight: 700; letter-spacing: -0.02em;
+  }
+  header .subtitle { color: var(--muted); font-size: 14px; font-weight: 500; }
+
+  .theme-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 14px; border-radius: 8px;
+    font-family: inherit; font-size: 13px; font-weight: 500;
+    cursor: pointer; box-shadow: var(--shadow);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .theme-btn:hover { box-shadow: var(--shadow-hover); transform: translateY(-1px); }
+
+  .tab-bar { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .tab-btn { background: none; border: none; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--muted); padding: 12px 18px; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; transition: color 0.15s, border-color 0.15s; }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .q2-targets-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 6px; }
+  .q2-targets-table th, .q2-targets-table td { text-align: right; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .q2-targets-table th:first-child, .q2-targets-table td:first-child { text-align: left; font-weight: 600; }
+  .q2-targets-table thead th { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); border-bottom: 2px solid var(--border); }
+  .q2-targets-table tbody tr:hover { background: rgba(76,110,245,0.04); }
+  .q2-targets-table tfoot td { font-weight: 700; border-top: 2px solid var(--border); border-bottom: none; background: rgba(76,110,245,0.05); }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .kpi-card { position: relative; background: var(--card); border-radius: 12px; padding: 18px 18px 14px 22px; box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--border); transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; min-height: 220px; }
+  .kpi-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px; }
+  .kpi-card.green::before  { background: var(--success); }
+  .kpi-card.orange::before { background: var(--warning); }
+  .kpi-card.red::before    { background: var(--danger); }
+  .kpi-card.gray::before   { background: var(--muted); }
+  .kpi-card.info::before   { background: var(--primary); }
+  .kpi-card .kpi-spark { margin-top: auto; }
+
+  .badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 8px; line-height: 1.4; border: 1px solid transparent; }
+  .badge.review  { background: rgba(232,89,12,0.12); color: var(--warning); border-color: rgba(232,89,12,0.35); }
+  .badge.pending { background: rgba(108,117,125,0.14); color: var(--muted); border-color: rgba(108,117,125,0.35); }
+  .badge.live    { background: rgba(47,158,68,0.12); color: var(--success); border-color: rgba(47,158,68,0.35); }
+
+  .kpi-name { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px; }
+  .kpi-value { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 4px; }
+  .kpi-compare { font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 8px; }
+  .kpi-compare .pct { font-weight: 700; }
+  .kpi-compare.green  .pct { color: var(--success); }
+  .kpi-compare.orange .pct { color: var(--warning); }
+  .kpi-compare.red    .pct { color: var(--danger); }
+  .kpi-spark { width: 100%; height: 44px; }
+
+  .charts-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .charts-grid-full { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 24px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px; box-shadow: var(--shadow); }
+  .card h2 { margin: 0 0 4px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+  .card .chart-sub { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .chart-summary { font-size: 14px; font-weight: 600; padding: 10px 12px; margin-bottom: 14px; background: rgba(76,110,245,0.06); border-left: 3px solid var(--primary); border-radius: 4px; line-height: 1.5; }
+  .chart-summary .sep { color: var(--muted); font-weight: 400; margin: 0 10px; }
+  .chart-summary .delta { font-size: 12px; font-weight: 600; margin-left: 4px; }
+  .chart-summary .delta.up   { color: var(--success); }
+  .chart-summary .delta.down { color: var(--danger); }
+  .plot { width: 100%; }
+
+  .chart-overlay-wrap { position: relative; }
+  .chart-alignment-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(248, 249, 250, 0.68); border-radius: 8px; pointer-events: none; }
+  [data-theme="dark"] .chart-alignment-overlay { background: rgba(18, 22, 29, 0.72); }
+  .chart-alignment-overlay-inner { background: var(--card); border: 2px solid var(--warning); border-radius: 10px; padding: 18px 28px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 80%; }
+
+  .okr-legend { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .okr-legend-row { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 10px; }
+  .okr-dot { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 7px; vertical-align: -1px; }
+  .okr-dot.green  { background: var(--success); }
+  .okr-dot.orange { background: var(--warning); }
+  .okr-dot.red    { background: var(--danger); }
+  .okr-dot.gray   { background: rgba(108,117,125,0.45); }
+  .okr-legend-note { font-size: 11.5px; color: var(--muted); font-style: italic; line-height: 1.5; max-width: 900px; }
+  .okr-transition-note { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); font-size: 11.5px; color: var(--muted); font-style: italic; line-height: 1.5; max-width: 900px; }
+
+  .attention-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+  .attn-card { border-radius: 12px; padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start; border-left: 4px solid; background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow); }
+  .attn-card.green  { border-left: 4px solid var(--success); background: linear-gradient(90deg, rgba(47,158,68,0.08), transparent 60%), var(--card); }
+  .attn-card.orange { border-left: 4px solid var(--warning); background: linear-gradient(90deg, rgba(232,89,12,0.08), transparent 60%), var(--card); }
+  .attn-card.red    { border-left: 4px solid var(--danger);  background: linear-gradient(90deg, rgba(224,49,49,0.08), transparent 60%), var(--card); }
+  .attn-card.gray   { border-left: 4px solid var(--muted);   background: linear-gradient(90deg, rgba(108,117,125,0.08), transparent 60%), var(--card); }
+  .attn-card.info   { border-left: 4px solid var(--primary); background: linear-gradient(90deg, rgba(76,110,245,0.08), transparent 60%), var(--card); }
+  .attn-icon { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 14px; }
+  .attn-icon.green  { background: var(--success); }
+  .attn-icon.orange { background: var(--warning); }
+  .attn-icon.red    { background: var(--danger); }
+  .attn-icon.gray   { background: var(--muted); }
+  .attn-icon.info   { background: var(--primary); }
+  .attn-title { font-weight: 600; font-size: 13px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .attn-title.green  { color: var(--success); }
+  .attn-title.orange { color: var(--warning); }
+  .attn-title.red    { color: var(--danger); }
+  .attn-title.gray   { color: var(--muted); }
+  .attn-title.info   { color: var(--primary); }
+  .attn-body { font-size: 13.5px; line-height: 1.45; color: var(--text); }
+
+  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 8px 0 14px; }
+
+  @media (max-width: 1400px) { .attention-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 1100px) { .charts-grid { grid-template-columns: 1fr; } .kpi-row { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 720px) { .wrap { padding: 18px; } .kpi-row { grid-template-columns: 1fr; } .attention-grid { grid-template-columns: 1fr; } .kpi-card { min-height: 0; } header h1 { font-size: 22px; } }
+  @media print { body { background: #fff; } .theme-btn { display: none; } .kpi-card, .card, .attn-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; } .charts-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <h1>TaxDome Marketing — Weekly Overview</h1>
+    <div class="subtitle">Last updated: May 20, 2026 &nbsp;|&nbsp; Week of May 13-19 &nbsp;|&nbsp; All-market marketing leads (list 6894 · createdate)</div>
+  </div>
+  <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">Toggle light mode</button>
+</header>
+
+<nav class="tab-bar" role="tablist">
+  <button class="tab-btn active" data-tab="overview" role="tab" aria-selected="true">Overview</button>
+  <button class="tab-btn" data-tab="leads" role="tab" aria-selected="false">Leads</button>
+  <button class="tab-btn" data-tab="mqls" role="tab" aria-selected="false">MQLs</button>
+  <button class="tab-btn" data-tab="sqls" role="tab" aria-selected="false">SQLs</button>
+  <button class="tab-btn" data-tab="funnel" role="tab" aria-selected="false">Funnel</button>
+</nav>
+
+<section id="tab-overview" class="tab-content active" role="tabpanel">
+<div class="section-title">Key Performance Indicators</div>
+<div class="kpi-row" id="kpiRow"></div>
+<div class="section-title">Q2 OKR Progress</div>
+<div class="charts-grid-full">
+  <div class="card">
+    <h2>Q2 OKR Progress</h2>
+    <div class="chart-sub">Progress vs. key results — vertical line marks quarter-to-date pace (~21%)</div>
+    <div id="chartOKR" class="plot"></div>
+    <div class="okr-legend">
+      <div class="okr-legend-row">
+        <span><span class="okr-dot green"></span>On pace to meet target</span>
+        <span><span class="okr-dot orange"></span>At risk of missing target</span>
+        <span><span class="okr-dot red"></span>Not on pace to meet target</span>
+        <span><span class="okr-dot gray"></span>Pre-launch or data pending</span>
+      </div>
+      <div class="okr-legend-note">Color indicates whether current progress is on pace to meet the Q2 target. The vertical line marks linear quarter-to-date pace.</div>
+      <div class="okr-transition-note">Note: SAL is being retired in favor of SQL / high-intent MQL. Marketing is aligning with RevOps and Sales on updated funnel definitions. Q2 metrics will transition once alignment is complete.</div>
+    </div>
+  </div>
+</div>
+<div class="section-title">Attention Required</div>
+<div class="attention-grid" id="attentionRow"></div>
+</section>
+
+<section id="tab-leads" class="tab-content" role="tabpanel">
+  <div class="section-title">Leads Summary</div>
+  <div class="kpi-row" id="leadsKpiRow"></div>
+  <div class="section-title">Leads Volume</div>
+  <div class="charts-grid-full">
+    <div class="card">
+      <h2>Marketing Lead Volume by Week &nbsp;<span class="badge live">Live — HubSpot</span></h2>
+      <div class="chart-sub">All-market marketing leads (list 6894) · createdate · 3-segment: ICP / Non-ICP / No Value (unclassified)</div>
+      <div id="chartLeads" class="plot"></div>
+      <div style="font-size: 11px; color: var(--muted); font-style: italic; margin-top: 8px; line-height: 1.5;">April target: 288/wk (= 1,150/mo ÷ 4). Methodology: companies in HubSpot list 6894 where <code>createdate</code> falls in the week, classified by <code>marketing_icp__nonicp_enriched</code>. Includes ICP, Non-ICP, and No Value segments. Aligns with RevOps "Total Leads MoM" report. May/June targets TBD.</div>
+    </div>
+  </div>
+  <div class="section-title">Leads by Channel</div>
+  <div class="charts-grid-full">
+    <div class="card">
+      <h2>Leads by Channel — Week of May 13 &nbsp;<span class="badge live">Live</span></h2>
+      <div class="chart-sub">Marketing leads by channel (leadgen_channel_original2) · list 6894 · createdate · Total row = new methodology · Channel split from W20 (most recent available)</div>
+      <div id="chartChannels" class="plot"></div>
+    </div>
+  </div>
+</section>
+
+<section id="tab-funnel" class="tab-content" role="tabpanel">
+  <div class="section-title">Q2 Progress — Quarter to Date</div>
+  <div class="charts-grid-full">
+    <div class="card">
+      <div style="background: rgba(232,89,12,0.10); border-left: 3px solid var(--warning); padding: 12px 14px; border-radius: 4px; font-size: 13px; line-height: 1.55; margin-bottom: 14px;"><b style="color: var(--warning);">Note:</b> Q2 targets are intentionally back-loaded — April targets are 12–15% of Q2 total, with May and June carrying 85–88% of volume. Being below linear Q2 pace in April is expected by design.</div>
+      <h2>Q2 QTD vs Quarterly Targets &nbsp;<span class="badge live">Live — HubSpot</span></h2>
+      <div class="chart-sub">Stage-by-stage Q2 QTD progress · pace = 54% of Q2 elapsed (day 49 of 91)</div>
+      <table class="q2-targets-table">
+        <thead><tr><th>Stage</th><th>Q2 QTD</th><th>Q2 Target</th><th>% Achieved</th><th>Q2 Pace</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Leads</td><td>1,738</td><td>8,299</td><td>20.9%</td><td>54%</td><td><b style="color:var(--danger);">Behind</b></td></tr>
+          <tr><td>MQLs-low</td><td>~1,458</td><td>4,979</td><td>~29.3%</td><td>54%</td><td><b style="color:var(--danger);">Behind</b></td></tr>
+          <tr><td>MQLs</td><td>1,458</td><td>3,983</td><td>36.6%</td><td>54%</td><td><b style="color:var(--warning);">Behind</b></td></tr>
+          <tr><td>SQLs</td><td>957</td><td>2,390</td><td>40.0%</td><td>54%</td><td><b style="color:var(--warning);">Behind</b></td></tr>
+        </tbody>
+      </table>
+      <div style="font-size: 11.5px; color: var(--muted); font-style: italic; margin-top: 12px; line-height: 1.5;">* Monthly lead targets sum to 9,958 vs quarterly target of 8,299. MQLs sum to 4,780 vs 3,983. Discrepancy under review with RevOps. "Behind" status reflects linear-pace comparison only; back-loaded targets are expected to catch up in May–June.</div>
+    </div>
+  </div>
+  <div class="section-title">Monthly Progress — Current Month</div>
+  <div class="charts-grid-full">
+    <div class="card">
+      <h2>Monthly Funnel Tracker &nbsp;<span class="badge live">Live — HubSpot</span></h2>
+      <div class="chart-sub">May MTD (May 1-19, 19 of 31 days = 61% pace) · April locked final · June targets shown for reference</div>
+      <table class="q2-targets-table">
+        <thead><tr><th>Stage</th><th>Apr Final</th><th>May MTD</th><th>May Target</th><th>May %</th><th>Pace status</th><th>Jun Target</th></tr></thead>
+        <tbody>
+          <tr><td>Leads</td><td style="color:var(--muted);">1,248</td><td>592</td><td>3,979</td><td><b style="color:var(--danger);">14.9%</b></td><td><b style="color:var(--danger);">24% of pace</b></td><td style="color:var(--muted);">4,781</td></tr>
+          <tr><td>MQLs-low</td><td style="color:var(--muted);">820</td><td>~580</td><td>2,388</td><td><b style="color:var(--danger);">~24%</b></td><td><b style="color:var(--danger);">~40% of pace</b></td><td style="color:var(--muted);">2,869</td></tr>
+          <tr><td>MQLs</td><td style="color:var(--muted);">835</td><td>621</td><td>1,910</td><td><b style="color:var(--danger);">32.5%</b></td><td><b style="color:var(--danger);">53% of pace</b></td><td style="color:var(--muted);">2,295</td></tr>
+          <tr><td>SQLs</td><td style="color:var(--muted);">527</td><td>428</td><td>955</td><td><b style="color:var(--warning);">44.8%</b></td><td><b style="color:var(--warning);">73% of pace</b></td><td style="color:var(--muted);">1,148</td></tr>
+          <tr><td>Customers</td><td style="color:var(--muted);">—</td><td style="color:var(--muted);">—</td><td>382</td><td style="color:var(--muted);">—</td><td style="color:var(--muted);">—</td><td style="color:var(--muted);">459</td></tr>
+        </tbody>
+      </table>
+      <div style="font-size: 11.5px; color: var(--muted); font-style: italic; margin-top: 12px; line-height: 1.5;">May to-date reflects May 1-19 (W21 included). Pace projections assume linear distribution and will refresh weekly. Pace color: green ≥100% of pace, orange 80–99%, red &lt;80%. April locked final shown as reference (Apr beat all targets: Leads 104%, MQL-low 114%, MQL 145%, SQL 183%). MQLs-low May MTD is estimated.</div>
+    </div>
+  </div>
+  <div class="section-title">Conversion Rates</div>
+  <div class="charts-grid-full">
+    <div class="card">
+      <h2>Stage-to-Stage Conversion — April Final &nbsp;<span class="badge live">Live</span></h2>
+      <div class="chart-sub">Period-aggregate ratios (not cohort) · Q1 2026 averages shown for reference where available</div>
+      <table class="q2-targets-table">
+        <thead><tr><th>Transition</th><th>Numerator</th><th>Denominator</th><th>Apr QTD</th><th>Q1 2026 avg</th></tr></thead>
+        <tbody>
+          <tr><td>Lead → MQL-low</td><td>820</td><td>1,248</td><td><b>66%</b></td><td style="color:var(--muted);">TBD</td></tr>
+          <tr><td>MQL-low → MQL</td><td>835</td><td>820</td><td><b>102%*</b></td><td style="color:var(--muted);">TBD</td></tr>
+          <tr><td>MQL → SQL</td><td>527</td><td>835</td><td><b>63%</b></td><td style="color:var(--muted);">TBD</td></tr>
+        </tbody>
+      </table>
+      <div style="font-size: 11.5px; color: var(--muted); font-style: italic; margin-top: 12px; line-height: 1.5;">* MQL-low → MQL exceeds 100% because period-aggregate ratios mix in contacts that bypassed MQL-low (entered MQL directly) or carried over from earlier periods. True cohort conversion analysis (and Q1 averages) queued as a follow-up.</div>
+    </div>
+  </div>
+  <div class="section-title">Target Discrepancy</div>
+  <div class="charts-grid-full">
+    <div class="card">
+      <div style="background: rgba(232,89,12,0.10); border-left: 3px solid var(--warning); padding: 14px 16px; border-radius: 4px; font-size: 13.5px; line-height: 1.55;"><b style="color: var(--warning);">Target Discrepancy Note:</b> Monthly targets for Leads and MQLs sum to <b>~20% above</b> quarterly targets (Leads: <b>9,958 vs 8,299</b>; MQLs: <b>4,780 vs 3,983</b>). SQLs are aligned (<b>2,391 vs 2,390</b>). Discrepancy under review with RevOps.</div>
+    </div>
+  </div>
+</section>
+
+<section id="tab-mqls" class="tab-content" role="tabpanel">
+  <div class="section-title">MQL Summary</div>
+  <div class="kpi-row" id="mqlKpiRow"></div>
+  <div class="section-title">MQL Volume</div>
+  <div class="charts-grid-full">
+    <div class="card">
+      <h2>MQL Volume by Week &nbsp;<span class="badge live">Live — HubSpot</span></h2>
+      <div class="chart-sub">All-market companies entering MQL stage · list 6894 · 3-segment: ICP / Non-ICP / No Value</div>
+      <div id="chartMQLWeekly" class="plot"></div>
+      <div style="font-size: 11px; color: var(--muted); font-style: italic; margin-top: 8px; line-height: 1.5;">Methodology: companies in HubSpot list 6894 where <code>hs_v2_date_entered_marketingqualifiedlead</code> falls in the week + <code>lifecyclestage HAS_PROPERTY</code>, classified by <code>marketing_icp__nonicp_enriched</code>. Aligns with RevOps "High-Intent MQL" (replacing SAL).</div>
+    </div>
+  </div>
+  <div class="section-title">MQL by Channel</div>
+  <div class="charts-grid-full">
+    <div class="card">
+      <h2>MQL by Channel — Week of May 13 &nbsp;<span class="badge live">Live</span></h2>
+      <div class="chart-sub">Companies entering MQL by channel (leadgen_channel_original2) · list 6894 · Total row = new methodology · Channel split from W20 (most recent available)</div>
+      <div id="chartMQLChannels" class="plot"></div>
+    </div>
+  </div>
+</section>
+
+<section id="tab-sqls" class="tab-content" role="tabpanel">
+  <div class="section-title">SQL Summary</div>
+  <div class="kpi-row" id="sqlKpiRow"></div>
+  <div class="section-title">SQL Volume</div>
+  <div class="charts-grid-full">
+    <div class="card">
+      <h2>SQL Volume by Week &nbsp;<span class="badge live">Live — HubSpot</span></h2>
+      <div class="chart-sub">All-market companies entering SQL (Demo Booked) · list 6894 · 3-segment: ICP / Non-ICP / No Value</div>
+      <div id="chartSQLWeekly" class="plot"></div>
+      <div style="font-size: 11px; color: var(--muted); font-style: italic; margin-top: 8px; line-height: 1.5;">*Target predates methodology change — revision pending RevOps. Methodology: list 6894 + <code>hs_v2_date_entered_opportunity</code> in the week + <code>n1_1_demo_registered_date HAS_PROPERTY</code>. RevOps definition = "Companies Demo Booked". Pipeline filter (Sales Inbound + International) approximated — pipeline-level filtering on associated deals is not directly queryable via API.</div>
+    </div>
+  </div>
+  <div class="section-title">SQL by Channel</div>
+  <div class="charts-grid-full">
+    <div class="card">
+      <h2>SQL by Channel — Week of May 13 &nbsp;<span class="badge live">Live</span></h2>
+      <div class="chart-sub">Companies entering SQL by channel (leadgen_channel_original2) · list 6894 · Total row = new methodology · Channel split from W20 (most recent available)</div>
+      <div id="chartSQLChannels" class="plot"></div>
+    </div>
+  </div>
+</section>
+
+<div class="campaign-footer" style="margin-top: 48px; padding: 24px 28px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow);">
+  <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 14px;">Recent Campaign Reports</div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+    <a href="../campaigns/linkedin-brand-awareness/2026-W20.html" style="display: block; padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--text); transition: background 0.15s, transform 0.15s;">
+      <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">LinkedIn Brand Awareness &mdash; Week 20</div>
+      <div style="font-size: 12px; color: var(--muted);">May 6-12, 2026 &middot; 353K impressions, 292.8K views, 58% ICP match, +119% WoW</div>
+    </a>
+    <a href="../campaigns/linkedin-brand-awareness/2026-W19.html" style="display: block; padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--text); transition: background 0.15s, transform 0.15s;">
+      <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">LinkedIn Brand Awareness &mdash; Week 19</div>
+      <div style="font-size: 12px; color: var(--muted);">Apr 28 – May 4, 2026 &middot; 161K impressions, 128.9K views, 75% ICP match, +29% WoW</div>
+    </a>
+  </div>
+  <div style="margin-top: 14px; font-size: 12px;"><a href="../campaigns/" style="color: var(--primary); text-decoration: none; font-weight: 500;">All campaign reports &rarr;</a></div>
+</div>
+
+</div>
+
+<script>
+const COLORS = { primary: '#4C6EF5', success: '#2F9E44', warning: '#E8590C', danger: '#E03131', muted: '#6C757D', border: '#E9ECEF' };
+
+function statusClass(actual, target) { const pct = actual / target; if (pct >= 0.9) return 'green'; if (pct >= 0.7) return 'orange'; return 'red'; }
+function statusColor(cls) { switch (cls) { case 'green': return COLORS.success; case 'orange': return COLORS.warning; case 'red': return COLORS.danger; case 'gray': return COLORS.muted; case 'info': return COLORS.primary; default: return COLORS.muted; } }
+
+const kpis = [
+  { name: 'MARKETING LEADS', value: 240, target: 3979, suffix: '', trend: [272, 337, 305, 238, 286, 279, 265, 240], format: n => n.toLocaleString(),
+    compareOverride: 'W21: <b>240</b> &nbsp;·&nbsp; <span class="pct" style="color:var(--danger)">−9% WoW ↓</span> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">May MTD: 592 / 3,979 target &nbsp;·&nbsp; 14.9% achieved · pace 61% &nbsp;·&nbsp; <b style="color:var(--danger)">24% of pace</b> &nbsp;·&nbsp; List 6894 · createdate · Sparkline = weekly W14–W21.</div>',
+    forceStatus: 'red', badge: { type: 'live', text: 'Live — HubSpot' } },
+  { name: 'ICP Lead Share', value: 32, target: 35, suffix: '', trend: [21, 18, 23, 30, 30, 30, 35, 32], format: n => n + '%',
+    compareOverride: 'Target: 35% &nbsp;·&nbsp; <span class="pct" style="color:var(--warning)">91%</span> of goal &nbsp;·&nbsp; <b style="color:var(--danger)">−3 pp WoW ↓</b> (was 35% W20) &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">W21: 77 ICP / 240 total (32%) · Classified ICP%: 77/207 = 37% · W20: 94/265 = 35% · Apr final 24%</div>',
+    forceStatus: 'orange', badge: { type: 'live', text: 'Live — HubSpot' } },
+  { name: 'MQLs — This Week', value: 234, target: 1910, suffix: '', trend: [216, 150, 165, 220, 191, 237, 244, 234], format: n => n.toLocaleString(),
+    compareOverride: 'W21: <b>234</b> &nbsp;·&nbsp; <span class="pct" style="color:var(--danger)">−4% WoW ↓</span> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">May MTD: 621 / 1,910 target &nbsp;·&nbsp; 32.5% achieved · pace 61% &nbsp;·&nbsp; <b style="color:var(--danger)">53% of pace</b> &nbsp;·&nbsp; List 6894 · hs_v2_date_entered_marketingqualifiedlead</div>',
+    forceStatus: 'red', badge: { type: 'live', text: 'Live — HubSpot' } },
+  { name: 'SQLs — This Week', value: 176, target: 955, suffix: '', trend: [129, 85, 102, 132, 145, 148, 163, 176], format: n => n.toLocaleString(),
+    compareOverride: 'W21: <b>176</b> &nbsp;·&nbsp; <span class="pct" style="color:var(--success)">+8% WoW ↑</span> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">May MTD: 428 / 955 target &nbsp;·&nbsp; 44.8% achieved · pace 61% &nbsp;·&nbsp; <b style="color:var(--danger)">73% of pace</b> &nbsp;·&nbsp; Approx — pipeline filter pending</div>',
+    forceStatus: 'red', badge: { type: 'live', text: 'Live — HubSpot' } },
+  { name: 'Avg ACV', value: 2112, target: 3000, suffix: '', trend: [1762, 1593, 1938, 2064, 2112], trendLabels: ['Feb','Mar','Apr','W20 Q2','W21 Q2'], format: n => '$' + n.toLocaleString(),
+    compareOverride: 'Target: $3,000 &nbsp;·&nbsp; <span class="pct">70%</span> of goal &nbsp;·&nbsp; <b style="color:var(--success)">+2% WoW ↑</b> ($2,064 → $2,112 Q2 YTD) &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">295 won deals Apr 1 – May 19 · Sales Inbound + International · amount ≥ $10 · Q2 pace 131% — on track</div>',
+    forceStatus: 'green', badge: { type: 'live', text: 'Live — Won deals' } },
+  { name: 'TD Payments Activation', value: 33.5, target: 30, suffix: '', trend: [13.3, 13.3, 14.0, 14.0, 17.0, 17.0, 17.0, 33.5], format: n => n + '%',
+    compareOverride: 'OKR: 30% &nbsp;·&nbsp; <span class="pct" style="color:var(--success)">✓ Exceeded</span> &nbsp;·&nbsp; <b style="color:var(--success)">33.5%</b> &nbsp;·&nbsp; Stretch: 50% &nbsp;·&nbsp; <span style="color:var(--muted)">WoW: denom corrected</span><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">1,970 / 5,882 US paid accounts (excl legacy Stripe). Prior denom was CSAM-based ~10,782 — corrected W21. CPACharge eligible since May 11.</div>',
+    forceStatus: 'green', badge: { type: 'live', text: 'Live — HubSpot' } }
+];
+
+function renderKPIs() {
+  const row = document.getElementById('kpiRow'); row.innerHTML = '';
+  kpis.forEach((k, i) => {
+    const cls = k.forceStatus || statusClass(k.value, k.target);
+    const card = document.createElement('div'); card.className = `kpi-card ${cls}`;
+    const compareHtml = k.compareOverride || (k.target == null ? 'Live data' : `Target: ${k.format(k.target)}${k.suffix} &nbsp;·&nbsp; <span class="pct">${Math.round((k.value/k.target)*100)}%</span> of goal`);
+    const badgeHtml = k.badge ? `<div><span class="badge ${k.badge.type}">${k.badge.text}</span></div>` : '';
+    card.innerHTML = `<div class="kpi-name">${k.name}</div><div class="kpi-value">${k.format(k.value)}${k.suffix}</div><div class="kpi-compare ${cls}">${compareHtml}</div>${badgeHtml}<div class="kpi-spark" id="spark-${i}"></div>`;
+    row.appendChild(card);
+    const color = statusColor(cls);
+    Plotly.newPlot(`spark-${i}`, [{ y: k.trend, x: k.trend.map((_, idx) => idx), type: 'scatter', mode: 'lines', line: { color, width: 2.5, shape: 'spline', smoothing: 0.8 }, fill: 'tozeroy', fillcolor: hexToRgba(color, 0.12), hoverinfo: 'y' }], { margin: { l:0,r:0,t:4,b:0 }, height: 44, xaxis: { visible:false, fixedrange:true }, yaxis: { visible:false, fixedrange:true, range: [Math.min(...k.trend)*0.9, Math.max(...k.trend)*1.05] }, paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)', showlegend:false }, { displayModeBar:false, responsive:true });
+  });
+}
+
+function hexToRgba(hex, alpha) { const h=hex.replace('#',''); return `rgba(${parseInt(h.substring(0,2),16)},${parseInt(h.substring(2,4),16)},${parseInt(h.substring(4,6),16)},${alpha})`; }
+
+function renderLeadsChart() {
+  const weeks=['W10 Feb/Mar','W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May','W21 May'];
+  const icp=[91,112,104,100,98,56,62,70,71,86,94,77], nonIcp=[329,353,303,265,302,215,275,200,131,150,138,130], noValue=[0,0,0,0,3,1,0,35,36,50,33,33];
+  const total=icp.map((v,i)=>v+nonIcp[i]+noValue[i]), icpPct=total.map((t,i)=>t>0?Math.round(icp[i]/t*100):0), goal=288;
+  const ma=total.map((_,i)=>{const s=Math.max(0,i-3),sl=total.slice(s,i+1);return Math.round(sl.reduce((a,b)=>a+b,0)/sl.length);});
+  Plotly.newPlot('chartLeads',[
+    {type:'bar',name:'ICP',x:weeks,y:icp,marker:{color:COLORS.primary,line:{width:0}},text:icpPct.map(p=>`${p}%`),textposition:'inside',insidetextanchor:'middle',textfont:{size:10,color:'#FFFFFF',family:'Inter, sans-serif'},hovertemplate:'<b>%{x}</b><br>ICP: %{y}<extra></extra>'},
+    {type:'bar',name:'Non-ICP',x:weeks,y:nonIcp,marker:{color:'#ADB5BD',line:{width:0}},hovertemplate:'<b>%{x}</b><br>Non-ICP: %{y}<extra></extra>'},
+    {type:'bar',name:'No Value',x:weeks,y:noValue,marker:{color:'#DEE2E6',line:{width:0}},text:total.map(t=>t.toLocaleString()),textposition:'outside',textfont:{size:11,color:getComputedStyle(document.body).getPropertyValue('--text'),family:'Inter, sans-serif'},hovertemplate:'<b>%{x}</b><br>No Value: %{y}<extra></extra>'},
+    {type:'scatter',mode:'lines+markers',name:'4-wk Moving Avg',x:weeks,y:ma,line:{color:COLORS.primary,width:3,shape:'spline'},marker:{size:6,color:COLORS.primary},hovertemplate:'<b>%{x}</b><br>4wk MA: %{y}<extra></extra>'}
+  ],{height:380,margin:{l:50,r:20,t:10,b:50},paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{family:'Inter, sans-serif',color:getComputedStyle(document.body).getPropertyValue('--text')},barmode:'stack',xaxis:{tickfont:{size:11},showgrid:false},yaxis:{gridcolor:'rgba(128,128,128,0.15)',title:{text:'Marketing Leads',font:{size:12}},range:[0,560]},shapes:[{type:'line',xref:'paper',x0:0,x1:1,y0:goal,y1:goal,line:{color:COLORS.muted,width:2,dash:'dash'}}],annotations:[{xref:'paper',x:0.99,y:goal,yshift:10,text:`<b>April Target: ${goal}/wk</b>`,showarrow:false,xanchor:'right',font:{size:11,color:COLORS.muted}}],legend:{orientation:'h',y:-0.18,x:0.5,xanchor:'center'},bargap:0.35},{displayModeBar:false,responsive:true});
+}
+
+function renderChannelsChart() {
+  const channelData=[
+    {channel:'Organic Search',this:86,prior:88,yoy:0,yoyNoData:true},{channel:'Direct Traffic',this:49,prior:105,yoy:0,yoyNoData:true},
+    {channel:'Other',this:11,prior:4,yoy:0,yoyNoData:true},{channel:'Import',this:8,prior:14,yoy:0,yoyNoData:true},
+    {channel:'Paid Search',this:5,prior:2,yoy:0,yoyNoData:true},{channel:'LLM',this:2,prior:1,yoy:0,yoyNoData:true},
+    {channel:'Paid Social',this:2,prior:0,yoy:0,yoyNoData:true},{channel:'Referral_other',this:1,prior:2,yoy:0,yoyNoData:true}
+  ];
+  const totalRow={channel:'Total Leads',this:265,prior:279,yoy:0,yoyNoData:true,isTotal:true};
+  channelData.sort((a,b)=>a.this-b.this);
+  const data=[...channelData,totalRow];
+  const channels=data.map(d=>d.isTotal?'<b>Total Leads</b>':d.channel);
+  const thisVals=data.map(d=>d.this),priorVals=data.map(d=>d.prior),yoyVals=data.map(d=>d.yoy),totalIdx=data.length-1;
+  const fmtPct=(a,b)=>{if(b===0&&a===0)return'—';if(b===0)return'+new';const p=Math.round((a-b)/b*100);return(p>=0?'+':'')+p+'%';};
+  const pctColor=(a,b)=>{if(b===0&&a===0)return COLORS.muted;if(b===0)return COLORS.success;return a>=b?COLORS.success:COLORS.danger;};
+  const maxVal=Math.max(...thisVals,...priorVals,...yoyVals);
+  const annotations=[];
+  data.forEach((d,i)=>{const yCat=channels[i],wow=fmtPct(d.this,d.prior),wowCol=pctColor(d.this,d.prior),yoyTxt=d.yoyNoData?'YoY: no data':`${fmtPct(d.this,d.yoy)} YoY`,yoyCol=d.yoyNoData?COLORS.muted:pctColor(d.this,d.yoy);annotations.push({x:maxVal*1.04,y:yCat,xref:'x',yref:'y',xanchor:'left',yanchor:'middle',yshift:8,text:`<b>${wow} WoW</b>`,showarrow:false,font:{size:d.isTotal?13:12,family:'Inter, sans-serif',color:wowCol}});annotations.push({x:maxVal*1.04,y:yCat,xref:'x',yref:'y',xanchor:'left',yanchor:'middle',yshift:-8,text:yoyTxt,showarrow:false,font:{size:d.isTotal?11:10,family:'Inter, sans-serif',color:yoyCol}});});
+  const shapes=[{type:'rect',xref:'paper',x0:0,x1:1,yref:'y',y0:totalIdx-0.5,y1:totalIdx+0.5,fillcolor:'rgba(76,110,245,0.07)',line:{width:0},layer:'below'},{type:'line',xref:'paper',x0:0,x1:1,yref:'y',y0:totalIdx-0.5,y1:totalIdx-0.5,line:{color:'rgba(108,117,125,0.55)',width:2}}];
+  Plotly.newPlot('chartChannels',[{type:'bar',orientation:'h',name:'This week (W20)',x:thisVals,y:channels,marker:{color:'#1864AB',line:{width:0}},hovertemplate:'%{x} leads<extra></extra>'},{type:'bar',orientation:'h',name:'Prior week (W19)',x:priorVals,y:channels,marker:{color:'#74C0FC',line:{width:0}},hovertemplate:'%{x} leads<extra></extra>'},{type:'bar',orientation:'h',name:'Same week 2025',x:yoyVals,y:channels,marker:{color:'rgba(173,181,189,0.55)',line:{color:'#868E96',width:1}},hovertemplate:'%{x} leads<extra></extra>'}],{height:470,margin:{l:130,r:170,t:10,b:50},paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{family:'Inter, sans-serif',color:getComputedStyle(document.body).getPropertyValue('--text')},barmode:'group',hovermode:'y unified',hoverlabel:{bgcolor:'#1A1A2E',bordercolor:'transparent',font:{color:'#FFFFFF',size:13,family:'Inter, sans-serif'},align:'left'},xaxis:{gridcolor:'rgba(128,128,128,0.15)',title:{text:'Lead count',font:{size:12}},range:[0,maxVal*1.45]},yaxis:{tickfont:{size:12}},legend:{orientation:'h',y:-0.14,x:0.5,xanchor:'center',font:{size:11}},bargap:0.28,bargroupgap:0.05,shapes,annotations},{displayModeBar:false,responsive:true});
+}
+
+function renderOKRChart() {
+  // pace = 49/91 of Q2 (today is day 49 — May 20)
+  const paceFrac=49/91;
+  const krs=[
+    {name:'ICP % of classified leads',actual:32,target:35,label:'32% / 35% · W21: 77 ICP / 240 total · Q2 QTD: 1,738 classified leads (Apr final + May 1-19)',status:'live',forceColor:COLORS.success},
+    {name:'Classified leads (Q2 total)',actual:1738,target:8299,label:'1,738 / 8,299 · 20.9% Q2 vs 54% pace',status:'live',forceColor:COLORS.warning},
+    {name:'MQLs (Q2 total)',actual:1458,target:3983,label:'1,458 / 3,983 · 36.6% Q2 vs 54% pace',status:'live',forceColor:COLORS.warning},
+    {name:'SQLs (Q2 total)',actual:957,target:2390,label:'957 / 2,390 · 40.0% Q2 vs 54% pace',status:'live',forceColor:COLORS.warning},
+    {name:'Paid MQLs (Q2 total)',actual:15,target:450,label:'15 / 450 · Apr target: 54 · campaigns launched wk of Apr 20',status:'live',forceColor:COLORS.danger},
+    {name:'Paid SQLs (Q2 total)',actual:15,target:176,label:'15 / 176 · Apr target: 21 · derived from 39% paid MQL→SQL',status:'live',forceColor:COLORS.danger},
+    {name:'Avg ACV (Q2 QTD)',actual:2112,target:3000,label:'$2,112 / $3,000 · 295 won deals Apr 1–May 19 · 131% of pace',status:'live'},
+    {name:'TD Payments activation',actual:33.5,target:30,label:'33.5% / 30% · 1,970 of 5,882 US paid (excl legacy Stripe) · corrected methodology W21',status:'live',forceColor:COLORS.success},
+    {name:'Directory visitors',actual:0,target:1,label:'Not yet launched',status:'not-launched'},
+    {name:'Directory conversion',actual:0,target:1,label:'Not yet launched',status:'not-launched'}
+  ];
+  const reversed=[...krs].reverse(),names=reversed.map(k=>k.name);
+  const inactiveStatuses=new Set(['not-launched','pending','aligning']);
+  const rawProgress=reversed.map(k=>inactiveStatuses.has(k.status)?0:Math.round((k.actual/k.target)*100));
+  const progress=rawProgress.map(p=>Math.min(p,100));
+  const pacePct=Math.round(paceFrac*100);
+  const colors=reversed.map((k,i)=>{if(k.forceColor)return k.forceColor;if(inactiveStatuses.has(k.status))return'rgba(108,117,125,0.35)';const gap=rawProgress[i]-pacePct;if(gap>=0)return COLORS.success;if(gap>=-5)return COLORS.warning;return COLORS.danger;});
+  const labels=reversed.map((k,i)=>k.status==='not-launched'?'Not yet launched':(k.status==='pending'||k.status==='aligning'?k.label:`${progress[i]}%  ·  ${k.label}`));
+  Plotly.newPlot('chartOKR',[
+    {type:'bar',orientation:'h',x:names.map(_=>100),y:names,marker:{color:'rgba(128,128,128,0.08)',line:{width:0}},hoverinfo:'skip',showlegend:false,name:''},
+    {type:'bar',orientation:'h',x:progress,y:names,marker:{color:colors,line:{width:0}},text:labels,textposition:'outside',textfont:{size:11,color:getComputedStyle(document.body).getPropertyValue('--text')},hovertemplate:'<b>%{y}</b><br>%{x}% of target<extra></extra>',showlegend:false,name:''}
+  ],{height:420,margin:{l:260,r:120,t:20,b:40},paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{family:'Inter, sans-serif',color:getComputedStyle(document.body).getPropertyValue('--text')},barmode:'overlay',xaxis:{range:[0,115],showgrid:false,ticksuffix:'%',tickvals:[0,25,50,75,100],title:{text:'Progress to target',font:{size:12}}},yaxis:{tickfont:{size:12},automargin:false},shapes:[{type:'line',x0:Math.round(paceFrac*100),x1:Math.round(paceFrac*100),yref:'paper',y0:0,y1:1,line:{color:COLORS.primary,width:2,dash:'dot'}}],annotations:[{x:Math.round(paceFrac*100),y:1.04,yref:'paper',text:`<b>Q2 pace: ${Math.round(paceFrac*100)}%</b>`,showarrow:false,xanchor:'center',font:{size:11,color:COLORS.primary}}],bargap:0.35},{displayModeBar:false,responsive:true});
+}
+
+const attention=[
+  {status:'green',title:'TD Payments OKR Exceeded',icon:'✓',body:'TD Payments activation hit 33.5% (1,970 of 5,882 US paid accounts excl. legacy Stripe) — exceeding the 30% OKR. Methodology corrected this week: denominator now uses license_type=paid + country=USA + legacy_stripe_id NOT_HAS_PROPERTY. Stretch target remains 50%.'},
+  {status:'green',title:'SQLs Trending Up',icon:'✓',body:'SQLs grew +8% WoW (176 vs 163). May MTD at 428/955 = 44.8% achieved with 61% of the month elapsed — running at 73% of pace, the strongest funnel-stage ratio this month. ICP SQL share dipped to 30% (from 42%) — watch for one-week anomaly.'},
+  {status:'orange',title:'Top-of-Funnel Softness',icon:'!',body:'Leads down −9% WoW (240 vs 265) and MQLs down −4% WoW (234 vs 244). May MTD Leads at 14.9% of target with 61% of the month elapsed (24% of pace). ICP lead share fell to 32% from 35% last week. Paid campaign ramp-up should provide signal in W22.'},
+  {status:'orange',title:'ACV Gap Persists',icon:'!',body:'Q2 QTD ACV at $2,112 (295 won deals Apr 1–May 19) vs $3,000 target — 70% of goal. ACV improved +2% WoW. Q2 revenue pace is 131% (on track), driven by volume not ACV uplift. New ICP-focused campaigns need time to shift deal composition.'}
+];
+
+function renderAttention() {
+  const row=document.getElementById('attentionRow'); row.innerHTML='';
+  attention.forEach(a=>{const card=document.createElement('div');card.className=`attn-card ${a.status}`;card.innerHTML=`<div class="attn-icon ${a.status}">${a.icon}</div><div><div class="attn-title ${a.status}">${a.title}</div><div class="attn-body">${a.body}</div></div>`;row.appendChild(card);});
+}
+
+function renderMQLKPIs() {
+  const cards=[
+    {name:'Total MQL — This Week',value:234,suffix:'',compare:'Prior wk (W20): 244 &nbsp;·&nbsp; <b style="color:var(--warning)">−4% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>',foot:'List 6894 · hs_v2_date_entered_marketingqualifiedlead in W21 · ICP 84 / Non-ICP 134 / No Value 16',cls:'orange'},
+    {name:'ICP Share of MQL',value:36,suffix:'%',compare:'Prior wk: 41% &nbsp;·&nbsp; <b style="color:var(--warning)">−5 pp WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',foot:'84 ICP / 234 total this week · May MTD: 235/621 = 38% · target 35%',cls:'orange'},
+    {name:'May MTD MQL',value:621,suffix:'',compare:'May target: 1,910 &nbsp;·&nbsp; <span class="pct">32.5%</span> achieved · pace 61% &nbsp;·&nbsp; <b style="color:var(--danger)">53% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',foot:'List 6894 · entered MQL May 1-19 (19 of 31 days) · Apr final 835 / 575 = 145%',cls:'red'}
+  ];
+  const row=document.getElementById('mqlKpiRow'); row.innerHTML='';
+  cards.forEach(c=>{const el=document.createElement('div');el.className=`kpi-card ${c.cls}`;el.innerHTML=`<div class="kpi-name">${c.name}</div><div class="kpi-value">${c.value.toLocaleString()}${c.suffix}</div><div class="kpi-compare ${c.cls}">${c.compare}</div><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">${c.foot}</div><div><span class="badge live">Live — HubSpot</span></div>`;row.appendChild(el);});
+}
+
+function renderMQLWeeklyChart() {
+  const weeks=['W10 Feb/Mar','W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May','W21 May'];
+  const icp=[47,72,72,68,69,48,47,78,68,90,101,84],nonIcp=[141,151,148,135,146,101,118,134,115,140,128,134],noValue=[2,1,5,0,1,1,0,8,8,7,15,16];
+  const total=icp.map((v,i)=>v+nonIcp[i]+noValue[i]),icpPct=total.map((t,i)=>t>0?Math.round(icp[i]/t*100):0),goal=144;
+  const ma4=total.map((_,i)=>{const s=Math.max(0,i-3),sl=total.slice(s,i+1);return Math.round(sl.reduce((a,b)=>a+b,0)/sl.length);});
+  Plotly.newPlot('chartMQLWeekly',[{type:'bar',name:'ICP',x:weeks,y:icp,marker:{color:COLORS.primary,line:{width:0}},text:icpPct.map(p=>`${p}%`),textposition:'inside',insidetextanchor:'middle',textfont:{size:10,color:'#FFFFFF',family:'Inter, sans-serif'},hovertemplate:'<b>%{x}</b><br>ICP: %{y}<extra></extra>'},{type:'bar',name:'Non-ICP',x:weeks,y:nonIcp,marker:{color:'#ADB5BD',line:{width:0}},hovertemplate:'<b>%{x}</b><br>Non-ICP: %{y}<extra></extra>'},{type:'bar',name:'No Value',x:weeks,y:noValue,marker:{color:'#DEE2E6',line:{width:0}},text:total.map(t=>t.toLocaleString()),textposition:'outside',textfont:{size:11,color:getComputedStyle(document.body).getPropertyValue('--text'),family:'Inter, sans-serif'},hovertemplate:'<b>%{x}</b><br>No Value: %{y}<extra></extra>'},{type:'scatter',mode:'lines+markers',name:'4-wk Moving Avg',x:weeks,y:ma4,line:{color:COLORS.warning,width:3,shape:'spline'},marker:{size:6,color:COLORS.warning},hovertemplate:'<b>%{x}</b><br>4wk MA: %{y}<extra></extra>'}],{height:400,margin:{l:50,r:20,t:10,b:50},paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{family:'Inter, sans-serif',color:getComputedStyle(document.body).getPropertyValue('--text')},barmode:'stack',xaxis:{tickfont:{size:11},showgrid:false},yaxis:{gridcolor:'rgba(128,128,128,0.15)',title:{text:'MQL Volume',font:{size:12}},range:[0,290]},shapes:[{type:'line',xref:'paper',x0:0,x1:1,y0:goal,y1:goal,line:{color:COLORS.muted,width:2,dash:'dash'}}],annotations:[{xref:'paper',x:0.99,y:goal,yshift:10,text:`<b>April Target: ${goal}/wk*</b>`,showarrow:false,xanchor:'right',font:{size:11,color:COLORS.muted}}],legend:{orientation:'h',y:-0.18,x:0.5,xanchor:'center'},bargap:0.35},{displayModeBar:false,responsive:true});
+}
+
+function renderMQLChannelsChart() {
+  const channelData=[{channel:'Organic Search',this:94,prior:93,yoy:0,yoyNoData:true},{channel:'Direct Traffic',this:36,prior:54,yoy:0,yoyNoData:true},{channel:'Other',this:10,prior:1,yoy:0,yoyNoData:true},{channel:'Import',this:9,prior:16,yoy:0,yoyNoData:true},{channel:'Paid Search',this:5,prior:2,yoy:0,yoyNoData:true},{channel:'LLM',this:3,prior:3,yoy:0,yoyNoData:true}];
+  const totalRow={channel:'Total MQL',this:244,prior:235,yoy:0,yoyNoData:true,isTotal:true};
+  channelData.sort((a,b)=>a.this-b.this);
+  const data=[...channelData,totalRow],channels=data.map(d=>d.isTotal?'<b>Total MQL</b>':d.channel);
+  const thisVals=data.map(d=>d.this),priorVals=data.map(d=>d.prior),yoyVals=data.map(d=>d.yoy),totalIdx=data.length-1;
+  const fmtPct=(a,b)=>{if(b===0&&a===0)return'—';if(b===0)return'+new';const p=Math.round((a-b)/b*100);return(p>=0?'+':'')+p+'%';};
+  const pctColor=(a,b)=>{if(b===0&&a===0)return COLORS.muted;if(b===0)return COLORS.success;return a>=b?COLORS.success:COLORS.danger;};
+  const maxVal=Math.max(...thisVals,...priorVals,...yoyVals),annotations=[];
+  data.forEach((d,i)=>{const yCat=channels[i],wow=fmtPct(d.this,d.prior),wowCol=pctColor(d.this,d.prior),yoyTxt=d.yoyNoData?'YoY: no data':`${fmtPct(d.this,d.yoy)} YoY`,yoyCol=d.yoyNoData?COLORS.muted:pctColor(d.this,d.yoy);annotations.push({x:maxVal*1.04,y:yCat,xref:'x',yref:'y',xanchor:'left',yanchor:'middle',yshift:8,text:`<b>${wow} WoW</b>`,showarrow:false,font:{size:d.isTotal?13:12,family:'Inter, sans-serif',color:wowCol}});annotations.push({x:maxVal*1.04,y:yCat,xref:'x',yref:'y',xanchor:'left',yanchor:'middle',yshift:-8,text:yoyTxt,showarrow:false,font:{size:d.isTotal?11:10,family:'Inter, sans-serif',color:yoyCol}});});
+  const shapes=[{type:'rect',xref:'paper',x0:0,x1:1,yref:'y',y0:totalIdx-0.5,y1:totalIdx+0.5,fillcolor:'rgba(76,110,245,0.07)',line:{width:0},layer:'below'},{type:'line',xref:'paper',x0:0,x1:1,yref:'y',y0:totalIdx-0.5,y1:totalIdx-0.5,line:{color:'rgba(108,117,125,0.55)',width:2}}];
+  Plotly.newPlot('chartMQLChannels',[{type:'bar',orientation:'h',name:'This week (W20)',x:thisVals,y:channels,marker:{color:'#1864AB',line:{width:0}},hovertemplate:'%{x} MQLs<extra></extra>'},{type:'bar',orientation:'h',name:'Prior week (W19)',x:priorVals,y:channels,marker:{color:'#74C0FC',line:{width:0}},hovertemplate:'%{x} MQLs<extra></extra>'},{type:'bar',orientation:'h',name:'Same week 2025',x:yoyVals,y:channels,marker:{color:'rgba(173,181,189,0.55)',line:{color:'#868E96',width:1}},hovertemplate:'%{x} MQLs<extra></extra>'}],{height:440,margin:{l:130,r:170,t:10,b:50},paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{family:'Inter, sans-serif',color:getComputedStyle(document.body).getPropertyValue('--text')},barmode:'group',hovermode:'y unified',hoverlabel:{bgcolor:'#1A1A2E',bordercolor:'transparent',font:{color:'#FFFFFF',size:13,family:'Inter, sans-serif'},align:'left'},xaxis:{gridcolor:'rgba(128,128,128,0.15)',title:{text:'MQL count',font:{size:12}},range:[0,maxVal*1.45]},yaxis:{tickfont:{size:12}},legend:{orientation:'h',y:-0.14,x:0.5,xanchor:'center',font:{size:11}},bargap:0.28,bargroupgap:0.05,shapes,annotations},{displayModeBar:false,responsive:true});
+}
+
+function renderLeadsKPIs() {
+  const cards=[
+    {name:'MARKETING LEADS — This Week',value:240,suffix:'',compare:'Prior wk (W20): 265 &nbsp;·&nbsp; <b style="color:var(--danger)">−9% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>',foot:'List 6894 · createdate in W21 (May 13-19) · ICP 77 / Non-ICP 130 / No Value 33',cls:'red'},
+    {name:'ICP Share of Leads',value:32,suffix:'%',compare:'Prior wk: 35% &nbsp;·&nbsp; <b style="color:var(--warning)">−3 pp WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',foot:'77 ICP / 240 total this week · May MTD: 225/592 = 38% · target 35%',cls:'orange'},
+    {name:'May MTD Marketing Leads',value:592,suffix:'',compare:'May target: 3,979 &nbsp;·&nbsp; <span class="pct">14.9%</span> achieved · pace 61% &nbsp;·&nbsp; <b style="color:var(--danger)">24% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',foot:'List 6894 · createdate in May 1-19 (19 of 31 days) · Apr final 1,248 / 1,198 = 104%',cls:'red'}
+  ];
+  const row=document.getElementById('leadsKpiRow'); if(!row)return; row.innerHTML='';
+  cards.forEach(c=>{const el=document.createElement('div');el.className=`kpi-card ${c.cls}`;el.innerHTML=`<div class="kpi-name">${c.name}</div><div class="kpi-value">${typeof c.value==='number'?c.value.toLocaleString():c.value}${c.suffix}</div><div class="kpi-compare ${c.cls}">${c.compare}</div><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">${c.foot}</div><div><span class="badge live">Live — HubSpot</span></div>`;row.appendChild(el);});
+}
+
+function renderSQLKPIs() {
+  const cards=[
+    {name:'Weekly SQL — This Week',value:176,suffix:'',compare:'Prior wk (W20): 163 &nbsp;·&nbsp; <b style="color:var(--success)">+8% WoW ↑</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>',foot:'List 6894 · entered Opportunity W21 (May 13-19) + demo registered · ICP 53 / Non-ICP 112 / No Value 11',cls:'green'},
+    {name:'ICP Share of SQL',value:30,suffix:'%',compare:'Prior wk: 42% &nbsp;·&nbsp; <b style="color:var(--warning)">−12 pp WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',foot:'53 ICP / 176 total this week · May MTD: 57% ICP share · target 35%',cls:'orange'},
+    {name:'May MTD SQL',value:428,suffix:'',compare:'May target: 955 &nbsp;·&nbsp; <span class="pct">44.8%</span> achieved · pace 61% &nbsp;·&nbsp; <b style="color:var(--warning)">73% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',foot:'List 6894 · entered Opportunity May 1-19 (19 of 31 days) · Apr final 527 / 288 = 183%',cls:'orange'}
+  ];
+  const row=document.getElementById('sqlKpiRow'); if(!row)return; row.innerHTML='';
+  cards.forEach(c=>{const el=document.createElement('div');el.className=`kpi-card ${c.cls}`;el.innerHTML=`<div class="kpi-name">${c.name}</div><div class="kpi-value">${typeof c.value==='number'?c.value.toLocaleString():c.value}${c.suffix}</div><div class="kpi-compare ${c.cls}">${c.compare}</div><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">${c.foot}</div><div><span class="badge live">Live — HubSpot</span></div>`;row.appendChild(el);});
+}
+
+function renderSQLWeeklyChart() {
+  const weeks=['W10 Feb/Mar','W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May','W21 May'];
+  const icp=[21,34,38,35,43,23,30,51,50,55,68,53],nonIcp=[66,85,67,76,85,62,72,80,89,89,89,112],noValue=[0,0,0,0,1,0,0,1,6,4,6,11];
+  const total=icp.map((v,i)=>v+nonIcp[i]+noValue[i]),icpPct=total.map((t,i)=>t>0?Math.round(icp[i]/t*100):0),goal=72;
+  const ma4=total.map((_,i)=>{const s=Math.max(0,i-3),sl=total.slice(s,i+1);return Math.round(sl.reduce((a,b)=>a+b,0)/sl.length);});
+  Plotly.newPlot('chartSQLWeekly',[{type:'bar',name:'ICP',x:weeks,y:icp,marker:{color:COLORS.primary,line:{width:0}},text:icpPct.map(p=>`${p}%`),textposition:'inside',insidetextanchor:'middle',textfont:{size:10,color:'#FFFFFF',family:'Inter, sans-serif'},hovertemplate:'<b>%{x}</b><br>ICP: %{y}<extra></extra>'},{type:'bar',name:'Non-ICP',x:weeks,y:nonIcp,marker:{color:'#ADB5BD',line:{width:0}},hovertemplate:'<b>%{x}</b><br>Non-ICP: %{y}<extra></extra>'},{type:'bar',name:'No Value',x:weeks,y:noValue,marker:{color:'#DEE2E6',line:{width:0}},text:total.map(t=>t.toLocaleString()),textposition:'outside',textfont:{size:11,color:getComputedStyle(document.body).getPropertyValue('--text'),family:'Inter, sans-serif'},hovertemplate:'<b>%{x}</b><br>No Value: %{y}<extra></extra>'},{type:'scatter',mode:'lines+markers',name:'4-wk Moving Avg',x:weeks,y:ma4,line:{color:COLORS.warning,width:3,shape:'spline'},marker:{size:6,color:COLORS.warning},hovertemplate:'<b>%{x}</b><br>4wk MA: %{y}<extra></extra>'}],{height:400,margin:{l:50,r:20,t:10,b:50},paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{family:'Inter, sans-serif',color:getComputedStyle(document.body).getPropertyValue('--text')},barmode:'stack',xaxis:{tickfont:{size:11},showgrid:false},yaxis:{gridcolor:'rgba(128,128,128,0.15)',title:{text:'SQL (Demo Booked)',font:{size:12}},range:[0,175]},shapes:[{type:'line',xref:'paper',x0:0,x1:1,y0:goal,y1:goal,line:{color:COLORS.muted,width:2,dash:'dash'}}],annotations:[{xref:'paper',x:0.99,y:goal,yshift:10,text:`<b>April Target: ${goal}/wk*</b>`,showarrow:false,xanchor:'right',font:{size:11,color:COLORS.muted}}],legend:{orientation:'h',y:-0.18,x:0.5,xanchor:'center'},bargap:0.35},{displayModeBar:false,responsive:true});
+}
+
+function renderSQLChannelsChart() {
+  const channelData=[{channel:'Organic Search',this:79,prior:63,yoy:0,yoyNoData:true},{channel:'Direct Traffic',this:23,prior:26,yoy:0,yoyNoData:true},{channel:'Import',this:9,prior:7,yoy:0,yoyNoData:true},{channel:'Other',this:8,prior:8,yoy:0,yoyNoData:true},{channel:'Paid Search',this:4,prior:3,yoy:0,yoyNoData:true},{channel:'LLM',this:2,prior:2,yoy:0,yoyNoData:true},{channel:'Paid Social',this:0,prior:0,yoy:0,yoyNoData:true}];
+  const totalRow={channel:'Total SQL',this:163,prior:143,yoy:0,yoyNoData:true,isTotal:true};
+  channelData.sort((a,b)=>a.this-b.this);
+  const data=[...channelData,totalRow],channels=data.map(d=>d.isTotal?'<b>Total SQL</b>':d.channel);
+  const thisVals=data.map(d=>d.this),priorVals=data.map(d=>d.prior),yoyVals=data.map(d=>d.yoy),totalIdx=data.length-1;
+  const fmtPct=(a,b)=>{if(b===0&&a===0)return'—';if(b===0)return'+new';const p=Math.round((a-b)/b*100);return(p>=0?'+':'')+p+'%';};
+  const pctColor=(a,b)=>{if(b===0&&a===0)return COLORS.muted;if(b===0)return COLORS.success;return a>=b?COLORS.success:COLORS.danger;};
+  const maxVal=Math.max(...thisVals,...priorVals,...yoyVals),annotations=[];
+  data.forEach((d,i)=>{const yCat=channels[i],wow=fmtPct(d.this,d.prior),wowCol=pctColor(d.this,d.prior),yoyTxt=d.yoyNoData?'YoY: no data':`${fmtPct(d.this,d.yoy)} YoY`,yoyCol=d.yoyNoData?COLORS.muted:pctColor(d.this,d.yoy);annotations.push({x:maxVal*1.04,y:yCat,xref:'x',yref:'y',xanchor:'left',yanchor:'middle',yshift:8,text:`<b>${wow} WoW</b>`,showarrow:false,font:{size:d.isTotal?13:12,family:'Inter, sans-serif',color:wowCol}});annotations.push({x:maxVal*1.04,y:yCat,xref:'x',yref:'y',xanchor:'left',yanchor:'middle',yshift:-8,text:yoyTxt,showarrow:false,font:{size:d.isTotal?11:10,family:'Inter, sans-serif',color:yoyCol}});});
+  const shapes=[{type:'rect',xref:'paper',x0:0,x1:1,yref:'y',y0:totalIdx-0.5,y1:totalIdx+0.5,fillcolor:'rgba(76,110,245,0.07)',line:{width:0},layer:'below'},{type:'line',xref:'paper',x0:0,x1:1,yref:'y',y0:totalIdx-0.5,y1:totalIdx-0.5,line:{color:'rgba(108,117,125,0.55)',width:2}}];
+  Plotly.newPlot('chartSQLChannels',[{type:'bar',orientation:'h',name:'This week (W20)',x:thisVals,y:channels,marker:{color:'#1864AB',line:{width:0}},hovertemplate:'%{x} SQLs<extra></extra>'},{type:'bar',orientation:'h',name:'Prior week (W19)',x:priorVals,y:channels,marker:{color:'#74C0FC',line:{width:0}},hovertemplate:'%{x} SQLs<extra></extra>'},{type:'bar',orientation:'h',name:'Same week 2025',x:yoyVals,y:channels,marker:{color:'rgba(173,181,189,0.55)',line:{color:'#868E96',width:1}},hovertemplate:'%{x} SQLs<extra></extra>'}],{height:460,margin:{l:130,r:170,t:10,b:50},paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{family:'Inter, sans-serif',color:getComputedStyle(document.body).getPropertyValue('--text')},barmode:'group',hovermode:'y unified',hoverlabel:{bgcolor:'#1A1A2E',bordercolor:'transparent',font:{color:'#FFFFFF',size:13,family:'Inter, sans-serif'},align:'left'},xaxis:{gridcolor:'rgba(128,128,128,0.15)',title:{text:'SQL count',font:{size:12}},range:[0,maxVal*1.45]},yaxis:{tickfont:{size:12}},legend:{orientation:'h',y:-0.14,x:0.5,xanchor:'center',font:{size:11}},bargap:0.28,bargroupgap:0.05,shapes,annotations},{displayModeBar:false,responsive:true});
+}
+
+let leadsTabInitialized=false,mqlsTabInitialized=false,sqlsTabInitialized=false;
+function initTabs() {
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const tab=btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b=>{const isActive=b.dataset.tab===tab;b.classList.toggle('active',isActive);b.setAttribute('aria-selected',isActive?'true':'false');});
+      document.querySelectorAll('.tab-content').forEach(s=>{s.classList.toggle('active',s.id===`tab-${tab}`);});
+      if(tab==='leads'&&!leadsTabInitialized){renderLeadsKPIs();renderLeadsChart();renderChannelsChart();leadsTabInitialized=true;}
+      else if(tab==='leads'){['chartLeads','chartChannels'].forEach(id=>{const el=document.getElementById(id);if(el)Plotly.Plots.resize(el);});}
+      else if(tab==='mqls'&&!mqlsTabInitialized){renderMQLKPIs();renderMQLWeeklyChart();renderMQLChannelsChart();mqlsTabInitialized=true;}
+      else if(tab==='mqls'){['chartMQLWeekly','chartMQLChannels'].forEach(id=>{const el=document.getElementById(id);if(el)Plotly.Plots.resize(el);});}
+      else if(tab==='sqls'&&!sqlsTabInitialized){renderSQLKPIs();renderSQLWeeklyChart();renderSQLChannelsChart();sqlsTabInitialized=true;}
+      else if(tab==='sqls'){['chartSQLWeekly','chartSQLChannels'].forEach(id=>{const el=document.getElementById(id);if(el)Plotly.Plots.resize(el);});}
+      else if(tab==='overview'){const okr=document.getElementById('chartOKR');if(okr)Plotly.Plots.resize(okr);}
+    });
+  });
+}
+
+function initTheme() {
+  const btn=document.getElementById('themeBtn');
+  const updateLabel=()=>{const isDark=document.documentElement.getAttribute('data-theme')==='dark';btn.textContent=isDark?'Toggle light mode':'Toggle dark mode';};
+  updateLabel();
+  btn.addEventListener('click',()=>{const current=document.documentElement.getAttribute('data-theme');const next=current==='dark'?null:'dark';if(next)document.documentElement.setAttribute('data-theme',next);else document.documentElement.removeAttribute('data-theme');updateLabel();renderAll();});
+}
+
+function renderAll() {
+  renderKPIs();renderOKRChart();renderAttention();
+  if(leadsTabInitialized){renderLeadsKPIs();renderLeadsChart();renderChannelsChart();}
+  if(mqlsTabInitialized){renderMQLKPIs();renderMQLWeeklyChart();renderMQLChannelsChart();}
+  if(sqlsTabInitialized){renderSQLKPIs();renderSQLWeeklyChart();renderSQLChannelsChart();}
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  initTheme();initTabs();renderAll();
+  window.addEventListener('resize',()=>{
+    ['chartOKR','chartLeads','chartChannels','chartMQLWeekly','chartMQLChannels','chartSQLWeekly','chartSQLChannels'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el&&el.offsetParent!==null)Plotly.Plots.resize(el);
+    });
+  });
+});
+</script>
+</body>
+</html>
