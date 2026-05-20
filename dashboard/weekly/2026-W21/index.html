@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TaxDome Marketing — Weekly Overview — Week 21 (May 13-19, 2026)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+  :root {
+    --primary: #4C6EF5;
+    --success: #2F9E44;
+    --warning: #E8590C;
+    --danger:  #E03131;
+    --bg:      #F8F9FA;
+    --card:    #FFFFFF;
+    --text:    #212529;
+    --muted:   #6C757D;
+    --border:  #E9ECEF;
+    --shadow:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-hover: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.06);
+  }
+  [data-theme="dark"] {
+    --bg:     #1A1A2E;
+    --card:   #16213E;
+    --text:   #E0E0E0;
+    --muted:  #9AA0B4;
+    --border: #2A3358;
+    --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.25);
+    --shadow-hover: 0 4px 14px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.35);
+  }
+  [data-theme="dark"] header h1,
+  [data-theme="dark"] .kpi-value,
+  [data-theme="dark"] .card h2 { color: #FFFFFF; }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1600px; margin: 0 auto; padding: 28px 32px 60px; }
+
+  header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 24px; margin-bottom: 28px; flex-wrap: wrap;
+  }
+  header h1 {
+    margin: 0 0 6px;
+    font-size: 28px; font-weight: 700; letter-spacing: -0.02em;
+  }
+  header .subtitle { color: var(--muted); font-size: 14px; font-weight: 500; }
+
+  .theme-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 14px; border-radius: 8px;
+    font-family: inherit; font-size: 13px; font-weight: 500;
+    cursor: pointer; box-shadow: var(--shadow);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .theme-btn:hover { box-shadow: var(--shadow-hover); transform: translateY(-1px); }
+
+  /* Tab navigation */
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    padding: 12px 18px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Q2 targets table */
+  .q2-targets-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  .q2-targets-table th,
+  .q2-targets-table td {
+    text-align: right;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .q2-targets-table th:first-child,
+  .q2-targets-table td:first-child {
+    text-align: left;
+    font-weight: 600;
+  }
+  .q2-targets-table thead th {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    border-bottom: 2px solid var(--border);
+  }
+  .q2-targets-table tbody tr:hover { background: rgba(76,110,245,0.04); }
+  .q2-targets-table tfoot td {
+    font-weight: 700;
+    border-top: 2px solid var(--border);
+    border-bottom: none;
+    background: rgba(76,110,245,0.05);
+  }
+
+  /* KPI Cards */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .kpi-card {
+    position: relative;
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px 18px 14px 22px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+  }
+  .kpi-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .kpi-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 5px;
+  }
+  .kpi-card.green::before  { background: var(--success); }
+  .kpi-card.orange::before { background: var(--warning); }
+  .kpi-card.red::before    { background: var(--danger); }
+  .kpi-card.gray::before   { background: var(--muted); }
+  .kpi-card.info::before   { background: var(--primary); }
+  .kpi-card .kpi-spark { margin-top: auto; }
+
+  /* Status badges */
+  .badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+    line-height: 1.4;
+    border: 1px solid transparent;
+  }
+  .badge.review  { background: rgba(232,89,12,0.12); color: var(--warning); border-color: rgba(232,89,12,0.35); }
+  .badge.pending { background: rgba(108,117,125,0.14); color: var(--muted); border-color: rgba(108,117,125,0.35); }
+  .badge.live    { background: rgba(47,158,68,0.12); color: var(--success); border-color: rgba(47,158,68,0.35); }
+
+  .kpi-name {
+    font-size: 12px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-size: 30px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .kpi-compare {
+    font-size: 12px; font-weight: 500; color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .kpi-compare .pct { font-weight: 700; }
+  .kpi-compare.green  .pct { color: var(--success); }
+  .kpi-compare.orange .pct { color: var(--warning); }
+  .kpi-compare.red    .pct { color: var(--danger); }
+  .kpi-spark { width: 100%; height: 44px; }
+
+  /* Charts row */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .charts-grid-full {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+  }
+  .card h2 {
+    margin: 0 0 4px;
+    font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .card .chart-sub {
+    font-size: 12px; color: var(--muted); margin-bottom: 10px;
+  }
+  .chart-summary {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    background: rgba(76,110,245,0.06);
+    border-left: 3px solid var(--primary);
+    border-radius: 4px;
+    line-height: 1.5;
+  }
+  .chart-summary .sep { color: var(--muted); font-weight: 400; margin: 0 10px; }
+  .chart-summary .delta { font-size: 12px; font-weight: 600; margin-left: 4px; }
+  .chart-summary .delta.up   { color: var(--success); }
+  .chart-summary .delta.down { color: var(--danger); }
+  .plot { width: 100%; }
+
+  /* Chart alignment overlay — used when a chart's data is under review */
+  .chart-overlay-wrap { position: relative; }
+  .chart-alignment-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(248, 249, 250, 0.68);
+    border-radius: 8px;
+    pointer-events: none;
+  }
+  [data-theme="dark"] .chart-alignment-overlay {
+    background: rgba(18, 22, 29, 0.72);
+  }
+  .chart-alignment-overlay-inner {
+    background: var(--card);
+    border: 2px solid var(--warning);
+    border-radius: 10px;
+    padding: 18px 28px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    max-width: 80%;
+  }
+
+  /* OKR chart legend */
+  .okr-legend {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .okr-legend-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .okr-dot {
+    display: inline-block;
+    width: 11px; height: 11px;
+    border-radius: 3px;
+    margin-right: 7px;
+    vertical-align: -1px;
+  }
+  .okr-dot.green  { background: var(--success); }
+  .okr-dot.orange { background: var(--warning); }
+  .okr-dot.red    { background: var(--danger); }
+  .okr-dot.gray   { background: rgba(108,117,125,0.45); }
+  .okr-legend-note {
+    font-size: 11.5px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 900px;
+  }
+  .okr-transition-note {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+    font-size: 11.5px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 900px;
+  }
+
+  /* Attention section */
+  .attention-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .attn-card {
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex; gap: 14px; align-items: flex-start;
+    border-left: 4px solid;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .attn-card.green  { border-left: 4px solid var(--success); background: linear-gradient(90deg, rgba(47,158,68,0.08), transparent 60%), var(--card); }
+  .attn-card.orange { border-left: 4px solid var(--warning); background: linear-gradient(90deg, rgba(232,89,12,0.08), transparent 60%), var(--card); }
+  .attn-card.red    { border-left: 4px solid var(--danger);  background: linear-gradient(90deg, rgba(224,49,49,0.08), transparent 60%), var(--card); }
+  .attn-card.gray   { border-left: 4px solid var(--muted);   background: linear-gradient(90deg, rgba(108,117,125,0.08), transparent 60%), var(--card); }
+  .attn-card.info   { border-left: 4px solid var(--primary); background: linear-gradient(90deg, rgba(76,110,245,0.08), transparent 60%), var(--card); }
+  .attn-icon {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: #fff; font-size: 14px;
+  }
+  .attn-icon.green  { background: var(--success); }
+  .attn-icon.orange { background: var(--warning); }
+  .attn-icon.red    { background: var(--danger); }
+  .attn-icon.gray   { background: var(--muted); }
+  .attn-icon.info   { background: var(--primary); }
+  .attn-title {
+    font-weight: 600; font-size: 13px; margin-bottom: 4px;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .attn-title.green  { color: var(--success); }
+  .attn-title.orange { color: var(--warning); }
+  .attn-title.red    { color: var(--danger); }
+  .attn-title.gray   { color: var(--muted); }
+  .attn-title.info   { color: var(--primary); }
+  .attn-body { font-size: 13.5px; line-height: 1.45; color: var(--text); }
+
+  .section-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--muted); margin: 8px 0 14px;
+  }
+
+  @media (max-width: 1400px) {
+    .attention-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 1100px) {
+    .charts-grid { grid-template-columns: 1fr; }
+    .kpi-row { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 720px) {
+    .wrap { padding: 18px; }
+    .kpi-row { grid-template-columns: 1fr; }
+    .attention-grid { grid-template-columns: 1fr; }
+    .kpi-card { min-height: 0; }
+    header h1 { font-size: 22px; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    .theme-btn { display: none; }
+    .kpi-card, .card, .attn-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+    .charts-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <h1>TaxDome Marketing — Week 21 (May 13-19, 2026)</h1>
+    <div class="subtitle">Snapshot frozen: May 20, 2026 &nbsp;|&nbsp; Week of May 13-19 &nbsp;|&nbsp; All-market marketing leads (list 6894 · createdate)</div>
+  </div>
+  <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">Toggle light mode</button>
+</header>
+
+<nav class="tab-bar" role="tablist">
+  <button class="tab-btn active" data-tab="overview" role="tab" aria-selected="true">Overview</button>
+</nav>
+
+<section id="tab-overview" class="tab-content active" role="tabpanel">
+
+<div class="section-title">Key Performance Indicators</div>
+<div class="kpi-row" id="kpiRow"></div>
+
+<div class="section-title">Q2 OKR Progress</div>
+<div class="charts-grid-full">
+  <div class="card">
+    <h2>Q2 OKR Progress</h2>
+    <div class="chart-sub">Progress vs. key results — vertical line marks quarter-to-date pace (~21%)</div>
+    <div id="chartOKR" class="plot"></div>
+    <div class="okr-legend">
+      <div class="okr-legend-row">
+        <span><span class="okr-dot green"></span>On pace to meet target</span>
+        <span><span class="okr-dot orange"></span>At risk of missing target</span>
+        <span><span class="okr-dot red"></span>Not on pace to meet target</span>
+        <span><span class="okr-dot gray"></span>Pre-launch or data pending</span>
+      </div>
+      <div class="okr-legend-note">
+        Color indicates whether current progress is on pace to meet the Q2 target. The vertical line marks linear quarter-to-date pace.
+      </div>
+      <div class="okr-transition-note">
+        Note: SAL is being retired in favor of SQL / high-intent MQL. Marketing is aligning with RevOps and Sales on updated funnel definitions. Q2 metrics will transition once alignment is complete.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-title">Attention Required</div>
+<div class="attention-grid" id="attentionRow"></div>
+
+</section>
+
+<div class="campaign-footer" style="margin-top: 48px; padding: 24px 28px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow);">
+  <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 14px;">Recent Campaign Reports</div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+    <a href="../../../campaigns/linkedin-brand-awareness/2026-W20.html" style="display: block; padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--text); transition: background 0.15s, transform 0.15s;">
+      <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">LinkedIn Brand Awareness &mdash; Week 20</div>
+      <div style="font-size: 12px; color: var(--muted);">May 6-12, 2026 &middot; 353K impressions, 292.8K views, 58% ICP match, +119% WoW (most recent available)</div>
+    </a>
+    <a href="../../../campaigns/linkedin-brand-awareness/2026-W19.html" style="display: block; padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--text); transition: background 0.15s, transform 0.15s;">
+      <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">LinkedIn Brand Awareness &mdash; Week 19</div>
+      <div style="font-size: 12px; color: var(--muted);">Apr 28 &ndash; May 4, 2026 &middot; 161K impressions, 128.9K views, 75% ICP match, +29% WoW</div>
+    </a>
+  </div>
+  <div style="margin-top: 14px; font-size: 12px;">
+    <a href="../../../campaigns/" style="color: var(--primary); text-decoration: none; font-weight: 500;">All campaign reports &rarr;</a>
+  </div>
+</div>
+
+</div>
+
+<script>
+/* =====================================================================
+   TaxDome VP Marketing Dashboard — placeholder data
+   ===================================================================== */
+
+const COLORS = {
+  primary: '#4C6EF5',
+  success: '#2F9E44',
+  warning: '#E8590C',
+  danger:  '#E03131',
+  muted:   '#6C757D',
+  border:  '#E9ECEF'
+};
+
+function statusClass(actual, target) {
+  const pct = actual / target;
+  if (pct >= 0.9) return 'green';
+  if (pct >= 0.7) return 'orange';
+  return 'red';
+}
+function statusColor(cls) {
+  switch (cls) {
+    case 'green':  return COLORS.success;
+    case 'orange': return COLORS.warning;
+    case 'red':    return COLORS.danger;
+    case 'gray':   return COLORS.muted;
+    case 'info':   return COLORS.primary;
+    default:       return COLORS.muted;
+  }
+}
+
+/* ---------- KPI CARDS ----------
+   status meaning:
+   - live:    real HubSpot data, use green/orange/red based on target
+   - review:  placeholder data; flagged "Under review"
+   - pending: pre-launch or pending denominator decision
+*/
+const kpis = [
+  {
+    name: 'MARKETING LEADS', value: 240, target: 3979, suffix: '',
+    trend: [272, 337, 305, 238, 286, 279, 265, 240],
+    format: n => n.toLocaleString(),
+    compareOverride:
+      'W21: <b>240</b> &nbsp;·&nbsp; <span class="pct" style="color:var(--danger)">−9% WoW ↓</span> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>' +
+      '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
+        'May MTD: 592 / 3,979 target &nbsp;·&nbsp; 14.9% achieved · pace 61% &nbsp;·&nbsp; <b style="color:var(--danger)">24% of pace</b> &nbsp;·&nbsp; List 6894 · createdate · Sparkline = weekly W14–W21.' +
+      '</div>',
+    forceStatus: 'red',
+    badge: { type: 'live', text: 'Live — HubSpot' }
+  },
+  {
+    name: 'ICP Lead Share', value: 32, target: 35, suffix: '',
+    trend: [21, 18, 23, 30, 30, 30, 35, 32],
+    format: n => n + '%',
+    compareOverride:
+      'Target: 35% &nbsp;·&nbsp; <span class="pct" style="color:var(--warning)">91%</span> of goal &nbsp;·&nbsp; <b style="color:var(--danger)">−3 pp WoW ↓</b> (was 35% W20) &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>' +
+      '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
+        'W21: 77 ICP / 240 total (32%) · Classified ICP%: 77/207 = 37% · W20: 94/265 = 35% · Apr final 24%' +
+      '</div>',
+    forceStatus: 'orange',
+    badge: { type: 'live', text: 'Live — HubSpot' }
+  },
+  {
+    name: 'MQLs — This Week', value: 234, target: 1910, suffix: '',
+    trend: [216, 150, 165, 220, 191, 237, 244, 234],
+    format: n => n.toLocaleString(),
+    compareOverride:
+      'W21: <b>234</b> &nbsp;·&nbsp; <span class="pct" style="color:var(--danger)">−4% WoW ↓</span> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>' +
+      '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
+        'May MTD: 621 / 1,910 target &nbsp;·&nbsp; 32.5% achieved · pace 61% &nbsp;·&nbsp; <b style="color:var(--danger)">53% of pace</b> &nbsp;·&nbsp; List 6894 · hs_v2_date_entered_marketingqualifiedlead' +
+      '</div>',
+    forceStatus: 'red',
+    badge: { type: 'live', text: 'Live — HubSpot' }
+  },
+  {
+    name: 'SQLs — This Week', value: 176, target: 955, suffix: '',
+    trend: [129, 85, 102, 132, 145, 148, 163, 176],
+    format: n => n.toLocaleString(),
+    compareOverride:
+      'W21: <b>176</b> &nbsp;·&nbsp; <span class="pct" style="color:var(--success)">+8% WoW ↑</span> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>' +
+      '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
+        'May MTD: 428 / 955 target &nbsp;·&nbsp; 44.8% achieved · pace 61% &nbsp;·&nbsp; <b style="color:var(--danger)">73% of pace</b> &nbsp;·&nbsp; Approx — pipeline filter pending' +
+      '</div>',
+    forceStatus: 'red',
+    badge: { type: 'live', text: 'Live — HubSpot' }
+  },
+  {
+    name: 'Avg ACV', value: 2112, target: 3000, suffix: '',
+    trend: [1762, 1593, 1938, 2064, 2112],
+    trendLabels: ['Feb','Mar','Apr','W20 Q2','W21 Q2'],
+    format: n => '$' + n.toLocaleString(),
+    compareOverride:
+      'Target: $3,000 &nbsp;·&nbsp; <span class="pct">70%</span> of goal &nbsp;·&nbsp; <b style="color:var(--success)">+2% WoW ↑</b> ($2,064 → $2,112 Q2 YTD) &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>' +
+      '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
+        '295 won deals Apr 1 – May 19 · Sales Inbound + International · amount ≥ $10 · Q2 pace 131% — on track' +
+      '</div>',
+    forceStatus: 'green',
+    badge: { type: 'live', text: 'Live — Won deals' }
+  },
+  {
+    name: 'TD Payments Activation', value: 33.5, target: 30, suffix: '',
+    trend: [13.3, 13.3, 14.0, 14.0, 17.0, 17.0, 17.0, 33.5],
+    format: n => n + '%',
+    compareOverride:
+      'OKR: 30% &nbsp;·&nbsp; <span class="pct" style="color:var(--success)">✓ Exceeded</span> &nbsp;·&nbsp; <b style="color:var(--success)">33.5%</b> &nbsp;·&nbsp; Stretch: 50% &nbsp;·&nbsp; <span style="color:var(--muted)">WoW: denom corrected</span>' +
+      '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
+        '1,970 / 5,882 US paid accounts (excl legacy Stripe). Prior denom was CSAM-based ~10,782 — corrected W21. CPACharge eligible since May 11.' +
+      '</div>',
+    forceStatus: 'green',
+    badge: { type: 'live', text: 'Live — HubSpot' }
+  }
+];
+
+function renderKPIs() {
+  const row = document.getElementById('kpiRow');
+  row.innerHTML = '';
+  kpis.forEach((k, i) => {
+    const cls = k.forceStatus || statusClass(k.value, k.target);
+    const card = document.createElement('div');
+    card.className = `kpi-card ${cls}`;
+    let compareHtml;
+    if (k.compareOverride) {
+      compareHtml = k.compareOverride;
+    } else if (k.target == null) {
+      compareHtml = 'Live data';
+    } else {
+      const pct = Math.round((k.value / k.target) * 100);
+      compareHtml = `Target: ${k.format(k.target)}${k.suffix} &nbsp;·&nbsp; <span class="pct">${pct}%</span> of goal`;
+    }
+    const badgeHtml = k.badge
+      ? `<div><span class="badge ${k.badge.type}">${k.badge.text}</span></div>`
+      : '';
+    card.innerHTML = `
+      <div class="kpi-name">${k.name}</div>
+      <div class="kpi-value">${k.format(k.value)}${k.suffix}</div>
+      <div class="kpi-compare ${cls}">${compareHtml}</div>
+      ${badgeHtml}
+      <div class="kpi-spark" id="spark-${i}"></div>
+    `;
+    row.appendChild(card);
+
+    const color = statusColor(cls);
+    Plotly.newPlot(`spark-${i}`, [{
+      y: k.trend,
+      x: k.trend.map((_, idx) => idx),
+      type: 'scatter',
+      mode: 'lines',
+      line: { color: color, width: 2.5, shape: 'spline', smoothing: 0.8 },
+      fill: 'tozeroy',
+      fillcolor: hexToRgba(color, 0.12),
+      hoverinfo: 'y'
+    }], {
+      margin: { l: 0, r: 0, t: 4, b: 0 },
+      height: 44,
+      xaxis: { visible: false, fixedrange: true },
+      yaxis: { visible: false, fixedrange: true, range: [Math.min(...k.trend) * 0.9, Math.max(...k.trend) * 1.05] },
+      paper_bgcolor: 'rgba(0,0,0,0)',
+      plot_bgcolor: 'rgba(0,0,0,0)',
+      showlegend: false
+    }, { displayModeBar: false, responsive: true });
+  });
+}
+
+function hexToRgba(hex, alpha) {
+  const h = hex.replace('#', '');
+  const r = parseInt(h.substring(0, 2), 16);
+  const g = parseInt(h.substring(2, 4), 16);
+  const b = parseInt(h.substring(4, 6), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+/* ---------- CHART 1: Marketing Lead Volume by Week ---------- */
+function renderOKRChart() {
+  // pace = 49/91 of Q2 (today is day 49 — May 20)
+  const paceFrac = 49 / 91;
+  const krs = [
+    { name: 'ICP % of classified leads', actual: 32, target: 35,    label: '32% / 35% · W21: 77 ICP / 240 total · Q2 QTD: 1,738 classified leads (Apr final + May 1-19)', status: 'live', forceColor: COLORS.success },
+    { name: 'Classified leads (Q2 total)', actual: 1738, target: 8299, label: '1,738 / 8,299 · 20.9% Q2 vs 54% pace', status: 'live', forceColor: COLORS.warning },
+    { name: 'MQLs (Q2 total)',             actual: 1458, target: 3983, label: '1,458 / 3,983 · 36.6% Q2 vs 54% pace',  status: 'live', forceColor: COLORS.warning },
+    { name: 'SQLs (Q2 total)',             actual: 957, target: 2390, label: '957 / 2,390 · 40.0% Q2 vs 54% pace',    status: 'live', forceColor: COLORS.warning },
+    { name: 'Paid MQLs (Q2 total)', actual: 15, target: 450, label: '15 / 450 · Apr target: 54 · campaigns launched wk of Apr 20',  status: 'live', forceColor: COLORS.danger },
+    { name: 'Paid SQLs (Q2 total)', actual: 15, target: 176, label: '15 / 176 · Apr target: 21 · derived from 39% paid MQL→SQL',    status: 'live', forceColor: COLORS.danger },
+    { name: 'Avg ACV (Q2 QTD)',             actual: 2112, target: 3000, label: '$2,112 / $3,000 · 295 won deals Apr 1–May 19 · 131% of pace',  status: 'live' },
+    { name: 'TD Payments activation',       actual: 33.5, target: 30,   label: '33.5% / 30% · 1,970 of 5,882 US paid (excl legacy Stripe) · corrected methodology W21', status: 'live', forceColor: COLORS.success },
+    { name: 'Directory visitors',           actual: 0,    target: 1,    label: 'Not yet launched',                      status: 'not-launched' },
+    { name: 'Directory conversion',         actual: 0,    target: 1,    label: 'Not yet launched',                      status: 'not-launched' }
+  ];
+
+  // Render from top of chart to bottom in the same order given
+  const reversed = [...krs].reverse();
+  const names    = reversed.map(k => k.name);
+  // Raw progress used for pace/color decisions (can exceed 100% when target met).
+  // Statuses that don't have meaningful progress yet render at 0.
+  const inactiveStatuses = new Set(['not-launched', 'pending', 'aligning']);
+  const rawProgress = reversed.map(k => {
+    if (inactiveStatuses.has(k.status)) return 0;
+    return Math.round((k.actual / k.target) * 100);
+  });
+  // Displayed progress is capped at 100% so the bar doesn't overflow the chart.
+  const progress = rawProgress.map(p => Math.min(p, 100));
+  // Pace-based color: green if on or ahead of pace, orange if within 5pp,
+  // red if more than 5pp below pace. Gray for inactive statuses.
+  // `forceColor` on a KR overrides the pace calculation (e.g. back-loaded targets).
+  const pacePct = Math.round(paceFrac * 100);
+  const colors  = reversed.map((k, i) => {
+    if (k.forceColor) return k.forceColor;
+    if (inactiveStatuses.has(k.status)) return 'rgba(108,117,125,0.35)';
+    const gap = rawProgress[i] - pacePct;
+    if (gap >= 0)   return COLORS.success;
+    if (gap >= -5)  return COLORS.warning;
+    return COLORS.danger;
+  });
+  const labels   = reversed.map((k, i) => {
+    if (k.status === 'not-launched') return 'Not yet launched';
+    if (k.status === 'pending')      return k.label;
+    if (k.status === 'aligning')     return k.label;
+    return `${progress[i]}%  ·  ${k.label}`;
+  });
+
+  // Background "100%" bars
+  const bgTrace = {
+    type: 'bar', orientation: 'h',
+    x: names.map(_ => 100),
+    y: names,
+    marker: { color: 'rgba(128,128,128,0.08)', line: { width: 0 } },
+    hoverinfo: 'skip',
+    showlegend: false,
+    name: ''
+  };
+  // Actual progress bars
+  const fgTrace = {
+    type: 'bar', orientation: 'h',
+    x: progress, y: names,
+    marker: { color: colors, line: { width: 0 } },
+    text: labels, textposition: 'outside',
+    textfont: { size: 11, color: getComputedStyle(document.body).getPropertyValue('--text') },
+    hovertemplate: '<b>%{y}</b><br>%{x}% of target<extra></extra>',
+    showlegend: false,
+    name: ''
+  };
+
+  const layout = {
+    height: 420,
+    margin: { l: 260, r: 120, t: 20, b: 40 },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') },
+    barmode: 'overlay',
+    xaxis: {
+      range: [0, 115],
+      showgrid: false,
+      ticksuffix: '%',
+      tickvals: [0, 25, 50, 75, 100],
+      title: { text: 'Progress to target', font: { size: 12 } }
+    },
+    yaxis: { tickfont: { size: 12 }, automargin: false },
+    shapes: [{
+      type: 'line',
+      x0: Math.round(paceFrac * 100), x1: Math.round(paceFrac * 100),
+      yref: 'paper', y0: 0, y1: 1,
+      line: { color: COLORS.primary, width: 2, dash: 'dot' }
+    }],
+    annotations: [{
+      x: Math.round(paceFrac * 100), y: 1.04, yref: 'paper',
+      text: `<b>Q2 pace: ${Math.round(paceFrac * 100)}%</b>`,
+      showarrow: false, xanchor: 'center',
+      font: { size: 11, color: COLORS.primary }
+    }],
+    bargap: 0.35
+  };
+
+  Plotly.newPlot('chartOKR', [bgTrace, fgTrace], layout, { displayModeBar: false, responsive: true });
+}
+
+/* ---------- ATTENTION CARDS ---------- */
+const attention = [
+  {
+    status: 'green',
+    title: 'TD Payments OKR Exceeded',
+    icon: '✓',
+    body: 'TD Payments activation hit 33.5% (1,970 of 5,882 US paid accounts excl. legacy Stripe) — exceeding the 30% OKR. Methodology corrected this week: denominator now uses license_type=paid + country=USA + legacy_stripe_id NOT_HAS_PROPERTY. Stretch target remains 50%.'
+  },
+  {
+    status: 'green',
+    title: 'SQLs Trending Up',
+    icon: '✓',
+    body: 'SQLs grew +8% WoW (176 vs 163). May MTD at 428/955 = 44.8% achieved with 61% of the month elapsed — running at 73% of pace, the strongest funnel-stage ratio this month. ICP SQL share dipped to 30% (from 42%) — watch for one-week anomaly.'
+  },
+  {
+    status: 'orange',
+    title: 'Top-of-Funnel Softness',
+    icon: '!',
+    body: 'Leads down −9% WoW (240 vs 265) and MQLs down −4% WoW (234 vs 244). May MTD Leads at 14.9% of target with 61% of the month elapsed (24% of pace). ICP lead share fell to 32% from 35% last week. Paid campaign ramp-up should provide signal in W22.'
+  },
+  {
+    status: 'orange',
+    title: 'ACV Gap Persists',
+    icon: '!',
+    body: 'Q2 QTD ACV at $2,112 (295 won deals Apr 1–May 19) vs $3,000 target — 70% of goal. ACV improved +2% WoW. Q2 revenue pace is 131% (on track), driven by volume not ACV uplift. New ICP-focused campaigns need time to shift deal composition.'
+  }
+];
+
+function renderAttention() {
+  const row = document.getElementById('attentionRow');
+  row.innerHTML = '';
+  attention.forEach(a => {
+    const card = document.createElement('div');
+    card.className = `attn-card ${a.status}`;
+    card.innerHTML = `
+      <div class="attn-icon ${a.status}">${a.icon}</div>
+      <div>
+        <div class="attn-title ${a.status}">${a.title}</div>
+        <div class="attn-body">${a.body}</div>
+      </div>
+    `;
+    row.appendChild(card);
+  });
+}
+
+/* ---------- THEME TOGGLE ---------- */
+function initTheme() {
+  const btn = document.getElementById('themeBtn');
+  const updateLabel = () => { const isDark = document.documentElement.getAttribute('data-theme') === 'dark'; btn.textContent = isDark ? 'Toggle light mode' : 'Toggle dark mode'; };
+  updateLabel();
+  btn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? null : 'dark';
+    if (next) document.documentElement.setAttribute('data-theme', next);
+    else document.documentElement.removeAttribute('data-theme');
+    updateLabel();
+    renderAll();
+  });
+}
+
+/* ---------- INIT ---------- */
+function renderAll() {
+  renderKPIs();
+  renderOKRChart();
+  renderAttention();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  renderAll();
+  window.addEventListener('resize', () => {
+    const okr = document.getElementById('chartOKR');
+    if (okr && okr.offsetParent !== null) Plotly.Plots.resize(okr);
+  });
+});
+</script>
+</body>
+</html>
