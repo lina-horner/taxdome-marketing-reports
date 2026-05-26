@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaxDome Marketing W22 | May 19-25, 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f1923;color:#e0e0e0;padding:24px;max-width:1200px;margin:0 auto}
+h1{font-size:20px;font-weight:500;margin-bottom:4px}
+.sub{font-size:12px;color:#8892a0;margin-bottom:24px}
+.note{font-size:11px;color:#6c757d;background:#1a2332;padding:8px 12px;border-radius:6px;margin-bottom:20px;border-left:3px solid #4C6EF5}
+.section{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;color:#8892a0;margin:28px 0 12px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.kpi{background:#16213e;border:1px solid #2a3a5c;border-radius:10px;padding:14px}
+.kpi-label{font-size:11px;color:#8892a0;margin-bottom:6px}
+.kpi-val{font-size:26px;font-weight:600}
+.kpi-detail{font-size:12px;color:#8892a0;margin-top:4px}
+.kpi-delta{display:inline-block;font-size:12px;font-weight:500;padding:2px 8px;border-radius:4px;margin-top:6px}
+.up{color:#2F9E44;background:rgba(47,158,68,0.12)}
+.down{color:#E03131;background:rgba(224,49,49,0.12)}
+.neutral{color:#8892a0;background:rgba(136,146,160,0.12)}
+.pace-grid{display:grid;gap:10px;margin-top:4px}
+.pace-row{background:#16213e;border:1px solid #2a3a5c;border-radius:10px;padding:14px}
+.pace-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.pace-name{font-size:14px;font-weight:500}
+.pace-badge{font-size:12px;font-weight:600;padding:3px 10px;border-radius:6px}
+.pace-red{color:#E03131;background:rgba(224,49,49,0.12)}
+.pace-orange{color:#E8590C;background:rgba(232,89,12,0.12)}
+.pace-green{color:#2F9E44;background:rgba(47,158,68,0.12)}
+.pace-bar-bg{height:8px;background:#1a2332;border-radius:4px;position:relative;overflow:hidden;margin-top:4px}
+.pace-bar{height:100%;border-radius:4px;transition:width 0.5s}
+.pace-marker{position:absolute;top:-2px;height:12px;width:2px;background:#e0e0e0}
+.pace-meta{display:flex;gap:16px;margin-top:8px;font-size:12px;color:#8892a0}
+.pace-meta b{color:#e0e0e0}
+.pace-sub{font-size:12px;color:#6c757d;margin-top:4px}
+.attn{background:#1a1a2e;border:1px solid #E03131;border-radius:10px;padding:14px;margin-top:10px}
+.attn-title{font-size:13px;font-weight:600;color:#E03131;margin-bottom:8px}
+.attn-item{font-size:13px;color:#e0e0e0;margin-bottom:6px;padding-left:12px;position:relative}
+.attn-item::before{content:'';position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:#E03131}
+.attn-ok{background:#0f2318;border:1px solid #2F9E44;border-radius:10px;padding:14px;margin-top:10px}
+.attn-ok-title{font-size:13px;font-weight:600;color:#2F9E44;margin-bottom:8px}
+.attn-ok-item{font-size:13px;color:#e0e0e0;margin-bottom:6px;padding-left:12px;position:relative}
+.attn-ok-item::before{content:'';position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:#2F9E44}
+.tdp{background:#16213e;border:1px solid #2a3a5c;border-radius:10px;padding:14px;margin-top:10px}
+.tdp-gauge{height:12px;background:#1a2332;border-radius:6px;position:relative;overflow:visible;margin:12px 0}
+.tdp-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#2F9E44,#4C6EF5)}
+.tdp-target{position:absolute;top:-4px;height:20px;width:2px;background:#E8590C}
+.tdp-stretch{position:absolute;top:-4px;height:20px;width:2px;background:#8892a0}
+.tdp-labels{display:flex;justify-content:space-between;font-size:11px;color:#8892a0}
+.okr-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.okr-table th{text-align:left;padding:8px 12px;border-bottom:2px solid #2a3a5c;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#8892a0}
+.okr-table td{padding:8px 12px;border-bottom:1px solid #1a2332}
+.okr-table td:not(:first-child){text-align:right}
+.ok{color:#2F9E44;font-weight:600}
+.at-risk{color:#E8590C;font-weight:600}
+.off{color:#E03131;font-weight:600}
+</style>
+</head>
+<body>
+<h1>TaxDome Marketing Weekly Overview</h1>
+<div class="sub">Week 22 &nbsp;|&nbsp; Tue May 19 &ndash; Mon May 25, 2026 &nbsp;|&nbsp; Generated May 26, 2026</div>
+<div class="note">Data pulled directly from HubSpot. List 6894 marketing-source filter applied. All-market methodology (createdate for leads, hs_v2_date_entered_* for MQL/SQL, n1_1_demo_registered_date filter for SQLs). YoY comparisons not shown — methodology change in Apr 2026 (list 6894, new field names).</div>
+
+<div class="section">Weekly KPIs (Tue May 19 – Mon May 25)</div>
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-label">Classified Leads</div>
+    <div class="kpi-val">168</div>
+    <div class="kpi-detail">ICP: 59 &nbsp;|&nbsp; Non-ICP: 109</div>
+    <div class="kpi-delta down">&minus;22.9% WoW</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">MQLs</div>
+    <div class="kpi-val">194</div>
+    <div class="kpi-detail">ICP: 69 &nbsp;|&nbsp; Non-ICP: 104 &nbsp;|&nbsp; No Value: 21</div>
+    <div class="kpi-delta down">&minus;22.1% WoW</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">SQLs (Demo Booked)</div>
+    <div class="kpi-val">137</div>
+    <div class="kpi-detail">ICP: 44 &nbsp;|&nbsp; Non-ICP: 83 &nbsp;|&nbsp; No Value: 10</div>
+    <div class="kpi-delta down">&minus;25.5% WoW</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">ICP Lead Share</div>
+    <div class="kpi-val">35.1%</div>
+    <div class="kpi-detail">59 ICP / 168 classified</div>
+    <div class="kpi-delta down">&minus;2.0 pp WoW</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">MQL&rarr;SQL Conversion</div>
+    <div class="kpi-val">70.6%</div>
+    <div class="kpi-detail">ICP: 63.8% &nbsp;|&nbsp; Non-ICP: 79.8%</div>
+    <div class="kpi-delta neutral">period-aggregate</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">TD Payments</div>
+    <div class="kpi-val">35.6%</div>
+    <div class="kpi-detail">2,101 / 5,908 eligible US</div>
+    <div class="kpi-delta up">+2.1 pp WoW &nbsp;|&nbsp; Above 30% OKR</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Q2 ACV (cumulative)</div>
+    <div class="kpi-val">$2,172</div>
+    <div class="kpi-detail">330 won deals &nbsp;|&nbsp; $716,720 Q2 total</div>
+    <div class="kpi-delta up">+1.4% WoW</div>
+  </div>
+</div>
+
+<div class="section">May 2026 Monthly Pace &mdash; Day 25 of 31 (80.6% elapsed)</div>
+<div class="pace-grid">
+  <div class="pace-row">
+    <div class="pace-header">
+      <div class="pace-name">Classified Leads</div>
+      <span class="pace-badge pace-red">23% of pace</span>
+    </div>
+    <div class="pace-bar-bg">
+      <div class="pace-bar" style="width:18.2%;background:#E03131"></div>
+      <div class="pace-marker" style="left:80.6%"></div>
+    </div>
+    <div class="pace-meta">
+      <span>MTD: <b>726</b></span>
+      <span>Target: <b>3,979</b></span>
+      <span>18.2% of target</span>
+    </div>
+    <div class="pace-sub">ICP: 270 / 1,194 (22.6%) &nbsp;|&nbsp; Non-ICP: 456 / 2,785 (16.4%)</div>
+  </div>
+
+  <div class="pace-row">
+    <div class="pace-header">
+      <div class="pace-name">MQLs</div>
+      <span class="pace-badge pace-red">50% of pace</span>
+    </div>
+    <div class="pace-bar-bg">
+      <div class="pace-bar" style="width:40.4%;background:#E03131"></div>
+      <div class="pace-marker" style="left:80.6%"></div>
+    </div>
+    <div class="pace-meta">
+      <span>MTD: <b>771</b></span>
+      <span>Target: <b>1,910</b></span>
+      <span>40.4% of target</span>
+    </div>
+  </div>
+
+  <div class="pace-row">
+    <div class="pace-header">
+      <div class="pace-name">SQLs (Demo Booked)</div>
+      <span class="pace-badge pace-red">69% of pace</span>
+    </div>
+    <div class="pace-bar-bg">
+      <div class="pace-bar" style="width:55.7%;background:#E03131"></div>
+      <div class="pace-marker" style="left:80.6%"></div>
+    </div>
+    <div class="pace-meta">
+      <span>MTD: <b>532</b></span>
+      <span>Target: <b>955</b></span>
+      <span>55.7% of target</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">Q2 OKR Progress &mdash; Day 55 of 91 (60.4% elapsed)</div>
+<table class="okr-table">
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Q2 QTD</th>
+      <th>Q2 Target</th>
+      <th>% of Target</th>
+      <th>Pace</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Classified Leads</td><td>1,870</td><td>8,299</td><td>22.5%</td><td>60.4%</td><td class="off">37% of pace</td></tr>
+    <tr><td>MQLs</td><td>1,606</td><td>3,983</td><td>40.3%</td><td>60.4%</td><td class="off">67% of pace</td></tr>
+    <tr><td>SQLs</td><td>1,061</td><td>2,390</td><td>44.4%</td><td>60.4%</td><td class="off">73% of pace</td></tr>
+    <tr><td>Avg ACV</td><td>$2,172</td><td>$3,000</td><td>72.4%</td><td>60.4%</td><td class="ok">120% of pace</td></tr>
+    <tr><td>TD Payments</td><td>35.6%</td><td>30% OKR / 50% stretch</td><td>118.5%</td><td>&mdash;</td><td class="ok">Above OKR</td></tr>
+  </tbody>
+</table>
+
+<div class="section">TD Payments Activation</div>
+<div class="tdp">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <div style="font-size:28px;font-weight:600;color:#2F9E44">35.6%</div>
+    <div style="font-size:12px;color:#8892a0">2,101 activated / 5,908 eligible US accounts (excl. legacy Stripe)</div>
+  </div>
+  <div class="tdp-gauge">
+    <div class="tdp-fill" style="width:35.6%"></div>
+    <div class="tdp-target" style="left:30%" title="OKR: 30%"></div>
+    <div class="tdp-stretch" style="left:50%" title="Stretch: 50%"></div>
+  </div>
+  <div class="tdp-labels">
+    <span>0%</span>
+    <span style="color:#E8590C">OKR 30%</span>
+    <span>Stretch 50%</span>
+    <span>100%</span>
+  </div>
+  <div style="font-size:11px;color:#6c757d;margin-top:8px">Denominator: US paid accounts excluding legacy Stripe (corrected May 17, 2026). CPACharge restriction lifted May 11 — eligible accounts included. +2.1 pp vs W21.</div>
+</div>
+
+<div class="section">Attention Required</div>
+<div class="attn">
+  <div class="attn-title">Metrics Below Pace — May MTD</div>
+  <div class="attn-item">Classified Leads: 726 of 3,979 target with 6 days remaining. At 23% of pace — gap is structural, not reclaimable this month. Q2 QTD 1,870/8,299 = 37% of pace.</div>
+  <div class="attn-item">MQLs: 771 of 1,910 target. At 50% of pace. Need ~92/day for remaining 6 days to reach target (well above current ~31/day run rate).</div>
+  <div class="attn-item">SQLs: 532 of 955 target. At 69% of pace — closest to on-track. Need ~71/day for remaining 6 days (vs current ~21/day run rate).</div>
+  <div class="attn-item">W22 volume down across all metrics: Leads &minus;22.9% WoW, MQLs &minus;22.1% WoW, SQLs &minus;25.5% WoW. Memorial Day week effect may be a factor.</div>
+</div>
+<div class="attn-ok">
+  <div class="attn-ok-title">On Track</div>
+  <div class="attn-ok-item">TD Payments at 35.6% &mdash; above 30% OKR target (119% of goal). +2.1 pp WoW. Halfway to 50% stretch target.</div>
+  <div class="attn-ok-item">Q2 ACV at $2,172 &mdash; 120% of Q2 linear pace vs $3,000 target. 330 won deals in Q2.</div>
+</div>
+
+<div style="margin-top:32px;padding-top:16px;border-top:1px solid #2a3a5c;font-size:11px;color:#6c757d">
+  <p>W22 = Tue May 19 &ndash; Mon May 25. WoW comparison vs W21 (Tue May 12 &ndash; Mon May 18). May MTD = May 1&ndash;25 (25 days, 80.6% elapsed).</p>
+  <p style="margin-top:4px">TD Payments denominator: US paid accounts excluding legacy Stripe (~5,908 eligible). CPACharge restriction lifted May 11, 2026.</p>
+  <p style="margin-top:4px">ACV: Q2 cumulative (Apr 1 &ndash; May 25) · Sales Inbound (135241873) + Sales International (134917174) pipelines · amount &ge; $10.</p>
+  <p style="margin-top:4px">SQL pipeline filter (Sales Inbound + International) is approximate — pipeline-level filtering on associated deals not directly queryable via API.</p>
+  <p style="margin-top:4px">No Value leads (unclassified) not separately queried for W21&ndash;W22 weekly windows; classified totals = ICP + Non-ICP only.</p>
+  <p style="margin-top:4px">YoY comparisons: methodology change (list 6894 filter, new field names) since Apr 2026 — comparisons would be misleading.</p>
+  <p style="margin-top:4px">Live dashboard: <a href="../../../" style="color:#4C6EF5">TaxDome Marketing Weekly Overview</a> &nbsp;|&nbsp; <a href="../../../campaigns/" style="color:#4C6EF5">Campaign reports</a></p>
+</div>
+</body>
+</html>
