@@ -386,7 +386,7 @@
 <header>
   <div>
     <h1>TaxDome Marketing — Weekly Overview</h1>
-    <div class="subtitle">Last updated: May 13, 2026 &nbsp;|&nbsp; Week of May 6-12 &nbsp;|&nbsp; All-market marketing leads (list 6894 · createdate)</div>
+    <div class="subtitle">Last updated: May 26, 2026 &nbsp;|&nbsp; Week of May 19-25 &nbsp;|&nbsp; All-market marketing leads (list 6894 · createdate)</div>
   </div>
   <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">Toggle light mode</button>
 </header>
@@ -408,7 +408,7 @@
 <div class="charts-grid-full">
   <div class="card">
     <h2>Q2 OKR Progress</h2>
-    <div class="chart-sub">Progress vs. key results — vertical line marks quarter-to-date pace (~21%)</div>
+    <div class="chart-sub">Progress vs. key results — vertical line marks quarter-to-date pace (~60%)</div>
     <div id="chartOKR" class="plot"></div>
     <div class="okr-legend">
       <div class="okr-legend-row">
@@ -441,7 +441,7 @@
   <div class="charts-grid-full">
     <div class="card">
       <h2>Marketing Lead Volume by Week &nbsp;<span class="badge live">Live — HubSpot</span></h2>
-      <div class="chart-sub">All-market marketing leads (list 6894) · createdate · 3-segment: ICP / Non-ICP / No Value (unclassified)</div>
+      <div class="chart-sub">All-market marketing leads (list 6894) · createdate · 3-segment: ICP / Non-ICP / No Value (unclassified) · W22 = May 19-25</div>
       <div id="chartLeads" class="plot"></div>
       <div style="font-size: 11px; color: var(--muted); font-style: italic; margin-top: 8px; line-height: 1.5;">
         April target: 288/wk (= 1,150/mo ÷ 4). Methodology: companies in HubSpot list 6894 where <code>createdate</code> falls in the week, classified by <code>marketing_icp__nonicp_enriched</code>. Includes ICP, Non-ICP, and No Value segments. Aligns with RevOps "Total Leads MoM" report. May/June targets TBD.
@@ -452,8 +452,8 @@
   <div class="section-title">Leads by Channel</div>
   <div class="charts-grid-full">
     <div class="card">
-      <h2>Leads by Channel — Week of May 6 &nbsp;<span class="badge live">Live</span></h2>
-      <div class="chart-sub">Marketing leads by channel (leadgen_channel_original2) · list 6894 · createdate · Total row = new methodology</div>
+      <h2>Leads by Channel — Week of May 19 &nbsp;<span class="badge review">Data pending W22</span></h2>
+      <div class="chart-sub">Marketing leads by channel (leadgen_channel_original2) · list 6894 · createdate · Total row = new methodology · W22 channel breakdown not yet queried</div>
       <div id="chartChannels" class="plot"></div>
     </div>
   </div>
@@ -469,7 +469,7 @@
         <b style="color: var(--warning);">Note:</b> Q2 targets are intentionally back-loaded — April targets are 12–15% of Q2 total, with May and June carrying 85–88% of volume. Being below linear Q2 pace in April is expected by design.
       </div>
       <h2>Q2 QTD vs Quarterly Targets &nbsp;<span class="badge live">Live — HubSpot</span></h2>
-      <div class="chart-sub">Stage-by-stage Q2 QTD progress · pace = 47% of Q2 elapsed (day 43 of 91)</div>
+      <div class="chart-sub">Stage-by-stage Q2 QTD progress · pace = 60.4% of Q2 elapsed (day 55 of 91)</div>
       <table class="q2-targets-table">
         <thead>
           <tr>
@@ -482,14 +482,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Leads</td>      <td>1,689</td> <td>9,958*</td> <td>17.0%</td> <td>47%</td> <td><b style="color:var(--danger);">Behind</b></td></tr>
-          <tr><td>MQLs-low</td>   <td>1,184</td> <td>5,976</td>  <td>19.8%</td> <td>47%</td> <td><b style="color:var(--danger);">Behind</b></td></tr>
-          <tr><td>MQLs</td>       <td>1,223</td> <td>4,780*</td> <td>25.6%</td> <td>47%</td> <td><b style="color:var(--warning);">Behind</b></td></tr>
-          <tr><td>SQLs</td>       <td>780</td>   <td>2,391</td>  <td>32.6%</td> <td>47%</td> <td><b style="color:var(--warning);">Near pace</b></td></tr>
+          <tr><td>Leads</td>      <td>1,870</td>  <td>8,299</td>   <td>22.5%</td> <td>60.4%</td> <td><b style="color:var(--danger);">37% of pace</b></td></tr>
+          <tr><td>MQLs</td>       <td>1,606</td>  <td>3,983</td>   <td>40.3%</td> <td>60.4%</td> <td><b style="color:var(--danger);">67% of pace</b></td></tr>
+          <tr><td>SQLs</td>       <td>1,061</td>  <td>2,390</td>   <td>44.4%</td> <td>60.4%</td> <td><b style="color:var(--warning);">73% of pace</b></td></tr>
+          <tr><td>Avg ACV</td>    <td>$2,172</td> <td>$3,000</td>  <td>72.4%</td> <td>60.4%</td> <td><b style="color:var(--success);">120% of pace</b></td></tr>
+          <tr><td>TD Payments</td><td>35.6%</td>  <td>30% OKR</td> <td>118.5%</td><td>&mdash;</td><td><b style="color:var(--success);">Above OKR</b></td></tr>
         </tbody>
       </table>
       <div style="font-size: 11.5px; color: var(--muted); font-style: italic; margin-top: 12px; line-height: 1.5;">
-        * Monthly lead targets sum to 9,958 vs quarterly target of 8,299. MQLs sum to 4,780 vs 3,983. Discrepancy under review with RevOps. "Behind" status reflects linear-pace comparison only; back-loaded targets are expected to catch up in May–June.
+        Q2 targets from quarterly-plan.csv. QTD = Apr (list 6894 filtered) + May 1–25. ACV = 330 won deals Apr 1–May 25 · Sales Inbound + International · amount ≥ $10. TD Payments = 2,101/5,908 eligible US (excl. legacy Stripe). Back-loaded Q2 design: April carries ~12% of Q2 volume; May–June carry ~88%.
       </div>
     </div>
   </div>
@@ -498,7 +499,7 @@
   <div class="charts-grid-full">
     <div class="card">
       <h2>Monthly Funnel Tracker &nbsp;<span class="badge live">Live — HubSpot</span></h2>
-      <div class="chart-sub">May MTD (May 1-12, 12 of 31 days = 39% pace) · April locked final · June targets shown for reference</div>
+      <div class="chart-sub">May MTD (May 1-25, 25 of 31 days = 80.6% elapsed) · April locked final (list 6894 filtered) · June targets shown for reference</div>
       <table class="q2-targets-table">
         <thead>
           <tr>
@@ -512,15 +513,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Leads</td>     <td style="color:var(--muted);">1,248</td> <td>441</td> <td>3,979</td> <td><b style="color:var(--danger);">11%</b></td>   <td><b style="color:var(--danger);">28% of pace</b></td> <td style="color:var(--muted);">4,781</td></tr>
-          <tr><td>MQLs-low</td>  <td style="color:var(--muted);">820</td>   <td>364</td> <td>2,388</td> <td><b style="color:var(--danger);">15%</b></td>   <td><b style="color:var(--danger);">39% of pace</b></td> <td style="color:var(--muted);">2,869</td></tr>
-          <tr><td>MQLs</td>      <td style="color:var(--muted);">835</td>   <td>388</td> <td>1,910</td> <td><b style="color:var(--danger);">20%</b></td>   <td><b style="color:var(--danger);">52% of pace</b></td> <td style="color:var(--muted);">2,295</td></tr>
-          <tr><td>SQLs</td>      <td style="color:var(--muted);">527</td>   <td>253</td> <td>955</td>   <td><b style="color:var(--warning);">26%</b></td>  <td><b style="color:var(--danger);">68% of pace</b></td> <td style="color:var(--muted);">1,148</td></tr>
+          <tr><td>Leads</td>     <td style="color:var(--muted);">1,144</td> <td>726</td> <td>3,979</td> <td><b style="color:var(--danger);">18.2%</b></td>  <td><b style="color:var(--danger);">23% of pace</b></td> <td style="color:var(--muted);">4,781</td></tr>
+          <tr><td>MQLs</td>      <td style="color:var(--muted);">835</td>   <td>771</td> <td>1,910</td> <td><b style="color:var(--danger);">40.4%</b></td>  <td><b style="color:var(--danger);">50% of pace</b></td> <td style="color:var(--muted);">2,295</td></tr>
+          <tr><td>SQLs</td>      <td style="color:var(--muted);">529</td>   <td>532</td> <td>955</td>   <td><b style="color:var(--danger);">55.7%</b></td>  <td><b style="color:var(--danger);">69% of pace</b></td> <td style="color:var(--muted);">1,148</td></tr>
           <tr><td>Customers</td> <td style="color:var(--muted);">—</td>     <td style="color:var(--muted);">—</td> <td>382</td> <td style="color:var(--muted);">—</td>           <td style="color:var(--muted);">—</td>                <td style="color:var(--muted);">459</td></tr>
         </tbody>
       </table>
       <div style="font-size: 11.5px; color: var(--muted); font-style: italic; margin-top: 12px; line-height: 1.5;">
-        May to-date reflects May 1-12 only. Pace projections assume linear distribution and will refresh weekly. Pace color: green ≥100% of pace, orange 80–99%, red &lt;80%. April locked final shown as reference (Apr beat all targets: Leads 104%, MQL-low 114%, MQL 145%, SQL 183%).
+        May to-date reflects May 1–25 (25 of 31 days). Pace projections assume linear distribution. Pace color: green ≥100%, orange 80–99%, red &lt;80%. April finals are Q2 QTD minus May MTD (all list 6894 filtered — W22 methodology). 6 days remain in May.
       </div>
     </div>
   </div>
@@ -583,7 +583,7 @@
   <div class="section-title">MQL by Channel</div>
   <div class="charts-grid-full">
     <div class="card">
-      <h2>MQL by Channel — Week of May 6 &nbsp;<span class="badge live">Live</span></h2>
+      <h2>MQL by Channel — Week of May 19 &nbsp;<span class="badge review">Data pending W22</span></h2>
       <div class="chart-sub">Companies entering MQL by channel (leadgen_channel_original2) · list 6894 · Total row = new methodology</div>
       <div id="chartMQLChannels" class="plot"></div>
     </div>
@@ -611,7 +611,7 @@
   <div class="section-title">SQL by Channel</div>
   <div class="charts-grid-full">
     <div class="card">
-      <h2>SQL by Channel — Week of May 6 &nbsp;<span class="badge live">Live</span></h2>
+      <h2>SQL by Channel — Week of May 19 &nbsp;<span class="badge review">Data pending W22</span></h2>
       <div class="chart-sub">Companies entering SQL by channel (leadgen_channel_original2) · list 6894 · Total row = new methodology</div>
       <div id="chartSQLChannels" class="plot"></div>
     </div>
@@ -677,74 +677,74 @@ function statusColor(cls) {
 */
 const kpis = [
   {
-    name: 'MARKETING LEADS', value: 441, target: 3979, suffix: '',
-    trend: [403, 272, 337, 305, 238, 286, 279, 265],
+    name: 'MARKETING LEADS', value: 168, target: 3979, suffix: '',
+    trend: [305, 238, 286, 279, 265, 218, 168],
     format: n => n.toLocaleString(),
     compareOverride:
-      'May MTD: 441 / 3,979 target &nbsp;·&nbsp; <span class="pct">11%</span> achieved · pace 39% &nbsp;·&nbsp; <b style="color:var(--danger)">28% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>' +
+      'W22: 168 (ICP 59 / Non-ICP 109) &nbsp;·&nbsp; <b style="color:var(--danger)">&minus;22.9% WoW</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>' +
       '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
-        'May 1-12 (12 of 31 days). Apr final 1,248 / 1,198 = 104%. Sparkline = weekly volume W13–W20. May to-date reflects May 1-12 only.' +
+        'May MTD 726 / 3,979 = 18.2% achieved · 80.6% elapsed · 23% of pace → RED. List 6894 · createdate · ICP share 35.1% (&minus;2.0 pp WoW).' +
       '</div>',
     forceStatus: 'red',
     badge: { type: 'live', text: 'Live — HubSpot' }
   },
   {
-    name: 'ICP Lead Share', value: 34, target: 35, suffix: '',
-    trend: [24, 21, 18, 23, 30, 30, 30, 35],
-    format: n => n + '%',
+    name: 'ICP Lead Share', value: 35, target: 35, suffix: '',
+    trend: [23, 30, 30, 30, 35, 37, 35],
+    format: n => n.toFixed(1) + '%',
     compareOverride:
-      'Target: 35% &nbsp;·&nbsp; <span class="pct">97%</span> of goal &nbsp;·&nbsp; May MTD: 148 ICP / 441 total (34%) &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>' +
+      'W22: 35.1% &nbsp;·&nbsp; <b style="color:var(--danger)">&minus;2.0 pp WoW</b> (W21: 37.2%) &nbsp;·&nbsp; May MTD: 270 ICP / 726 total = 37.2%' +
       '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
-        'List 6894 · createdate · W20 hit 35% (94 ICP / 265 total) · Apr final 24% · May MTD 34% — strong ICP mix shift' +
+        'List 6894 · createdate · classified leads only (ICP + Non-ICP). Target: 35%. Slight dip this week but near target.' +
       '</div>',
     forceStatus: 'green',
     badge: { type: 'live', text: 'Live — HubSpot' }
   },
   {
-    name: 'Paid MQL', value: 15, target: 54, suffix: '',
-    trend: [3, 2, 4, 1, 3, 2, 1, 5],
+    name: 'MQLs', value: 194, target: 1910, suffix: '',
+    trend: [305, 243, 290, 265, 244, 249, 194],
     format: n => n.toLocaleString(),
     compareOverride:
-      'April target: 54 &nbsp;·&nbsp; <span class="pct">28%</span> achieved &nbsp;·&nbsp; <b style="color:var(--success)">+150% WoW ↑</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>' +
+      'W22: 194 (ICP 69 / Non-ICP 104 / No Value 21) &nbsp;·&nbsp; <b style="color:var(--danger)">&minus;22.1% WoW</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>' +
       '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
-        'Apr 54 · May 180 · Jun 216 · Q2 total: 450 · Paid Search + Paid Social via leadgen_channel_original2' +
+        'May MTD 771 / 1,910 = 40.4% achieved · 80.6% elapsed · 50% of pace → RED. List 6894 · hs_v2_date_entered_marketingqualifiedlead.' +
       '</div>',
-    forceStatus: 'orange',
+    forceStatus: 'red',
     badge: { type: 'live', text: 'Live — HubSpot' }
   },
   {
-    name: 'Paid SQL', value: 15, target: 21, suffix: '',
-    trend: [4, 3, 5, 2, 3, 4, 3, 5],
+    name: 'SQLs (Demo Booked)', value: 137, target: 955, suffix: '',
+    trend: [130, 102, 163, 160, 163, 184, 137],
     format: n => n.toLocaleString(),
     compareOverride:
-      'April target: 21 &nbsp;·&nbsp; <span class="pct">71%</span> achieved &nbsp;·&nbsp; <span style="color:var(--muted)">WoW: pending data</span> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>' +
+      'W22: 137 (ICP 44 / Non-ICP 83 / No Value 10) &nbsp;·&nbsp; <b style="color:var(--danger)">&minus;25.5% WoW</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>' +
       '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
-        'Q2 target 176 (derived from Q1 39% paid MQL→SQL conversion) · Apr 21 · May 70 · Jun 85' +
+        'May MTD 532 / 955 = 55.7% achieved · 80.6% elapsed · 69% of pace → RED. Pipeline filter (Sales Inbound + Intl) approximate.' +
       '</div>',
-    forceStatus: 'orange',
+    forceStatus: 'red',
     badge: { type: 'live', text: 'Live — HubSpot' }
   },
   {
-    name: 'Avg ACV', value: 2064, target: 3000, suffix: '',
-    trend: [1762, 1593, 1938, 2270],
-    trendLabels: ['Feb','Mar','Apr','May MTD'],
+    name: 'Avg ACV', value: 2172, target: 3000, suffix: '',
+    trend: [1762, 1593, 1938, 2064, 2142, 2172],
+    trendLabels: ['Feb','Mar','Apr','May-12','May-18','May-25'],
     format: n => '$' + n.toLocaleString(),
     compareOverride:
-      'Target: $3,000 &nbsp;·&nbsp; <span class="pct">69%</span> of goal &nbsp;·&nbsp; <b style="color:var(--success)">+17% MoM ↑</b> (Apr $1,938 → May 1-12 $2,270) &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>' +
+      'Q2 QTD: $2,172 &nbsp;·&nbsp; <b style="color:var(--success)">+1.4% WoW</b> (thru May 18: $2,142) &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>' +
       '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
-        '236 won deals Apr 1 – May 12 (Sales Inbound + International, amount ≥ $10) · combined avg shown · Q2 cumulative view (does not switch monthly)' +
+        '330 won deals Apr 1–May 25 · $716,720 total · Sales Inbound + International · amount ≥ $10 · Q2 pace: 120% (ahead).' +
       '</div>',
-    forceStatus: 'orange',
+    forceStatus: 'green',
     badge: { type: 'live', text: 'Live — Won deals' }
   },
   {
-    name: 'TD Payments Activation', value: 17.0, target: 30, suffix: '',
-    trend: [13.2, 13.2, 13.2, 13.3, 13.3, 14.0, 14.0, 17.0],
-    format: n => n + '%',
+    name: 'TD Payments Activation', value: 35.6, target: 30, suffix: '',
+    trend: [13.2, 13.3, 14.0, 17.0, 33.5, 35.6],
+    format: n => n.toFixed(1) + '%',
     compareOverride:
-      'Target: 30% &nbsp;·&nbsp; <span class="pct">57%</span> of goal &nbsp;·&nbsp; <b style="color:var(--success)">+3.0 pp WoW ↑</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>' +
+      'W22: 35.6% (2,101/5,908) &nbsp;·&nbsp; <b style="color:var(--success)">+2.1 pp WoW</b> (W21: 33.5%) &nbsp;·&nbsp; OKR 30%: <b style="color:var(--success)">✓ Above</b> &nbsp;·&nbsp; Stretch 50%: in progress' +
       '<div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">' +
-        '1,835 of 10,782 paid firms with CSAM · denominator: license_type=paid AND csam HAS_PROPERTY · Q2 cumulative view' +
+        'Denominator: US paid accounts excluding legacy Stripe (~5,908). CPACharge restriction lifted May 11. 119% of OKR target.' +
       '</div>',
     forceStatus: 'green',
     badge: { type: 'live', text: 'Live — HubSpot' }
@@ -814,13 +814,13 @@ function renderLeadsChart() {
   // Live HubSpot data — companies in list 6894 (Total leads: marketing source company new)
   // where createdate falls in the week, classified by marketing_icp__nonicp_enriched.
   // 7-day Tue–Mon buckets, most recent week = Apr 21-27. Aligns with RevOps "Total Leads MoM".
-  const weeks   = ['W9 Feb','W10 Feb/Mar','W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May'];
-  const icp     = [  79,    91,    112,    104,     100,      98,      56,     62,      70,       71,       86,       94    ];
-  const nonIcp  = [ 308,   329,    353,    303,     265,     302,     215,    275,     200,      131,      150,      138    ];
-  const noValue = [   2,     0,      0,      0,       0,       3,       1,      0,      35,       36,       50,       33    ];
+  const weeks   = ['W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May','W21 May','W22 May'];
+  const icp     = [ 112,    104,     100,      98,      56,     62,      70,       71,       86,       94,       81,       59   ];
+  const nonIcp  = [ 353,    303,     265,     302,     215,    275,     200,      131,      150,      138,      137,      109   ];
+  const noValue = [   0,      0,       0,       3,       1,      0,      35,       36,       50,       33,        0,        0   ];
   const total   = icp.map((v, i) => v + nonIcp[i] + noValue[i]);
   const icpPct  = total.map((t, i) => t > 0 ? Math.round(icp[i] / t * 100) : 0);
-  const goal    = 288; // April weekly target = 1,150 / 4
+  const goal    = 288; // April weekly target = 1,150 / 4 (May target ~500/wk = 1,990/4)
 
   // 4-week moving average over total
   const ma = total.map((_, i) => {
@@ -1040,17 +1040,17 @@ function renderChannelsChart() {
 
 /* ---------- CHART 3: OKR Progress ---------- */
 function renderOKRChart() {
-  // pace = 43/91 of Q2 (today is day 43 — May 13)
-  const paceFrac = 43 / 91;
+  // pace = 55/91 of Q2 (data through May 25 = day 55 of Q2)
+  const paceFrac = 55 / 91;
   const krs = [
-    { name: 'ICP % of classified leads', actual: 32, target: 35,    label: '32% / 35% · 446 ICP / 1,689 total (Q2 QTD: Apr final + May 1-12)', status: 'live', forceColor: COLORS.success },
-    { name: 'Classified leads (Q2 total)', actual: 1689, target: 8299, label: '1,689 / 8,299 · Apr 1,248 + May MTD 441 · 20% Q2 vs 47% pace', status: 'live', forceColor: COLORS.warning },
-    { name: 'MQLs (Q2 total)',             actual: 1223, target: 3983, label: '1,223 / 3,983 · Apr 835 + May MTD 388 · 31% Q2 vs 47% pace',  status: 'live', forceColor: COLORS.warning },
-    { name: 'SQLs (Q2 total)',             actual: 780, target: 2391, label: '780 / 2,391 · Apr 527 + May MTD 253 · 33% Q2 vs 47% pace',    status: 'live', forceColor: COLORS.warning },
-    { name: 'Paid MQLs (Q2 total)', actual: 15, target: 450, label: '15 / 450 · Apr target: 54 · campaigns launched wk of Apr 20',  status: 'live', forceColor: COLORS.danger },
-    { name: 'Paid SQLs (Q2 total)', actual: 15, target: 176, label: '15 / 176 · Apr target: 21 · derived from 39% paid MQL→SQL',    status: 'live', forceColor: COLORS.danger },
-    { name: 'Avg ACV (Q2 QTD)',             actual: 2064, target: 3000, label: '$2,064 / $3,000 · 236 won deals Apr 1 – May 12 · Apr $1,938 → May 1-12 $2,270',  status: 'live' },
-    { name: 'TD Payments activation',       actual: 17.0, target: 30,   label: '17.0% / 30% · 1,835 of 10,782 paid w/ CSAM', status: 'live' },
+    { name: 'ICP % of classified leads', actual: 35.1, target: 35,   label: '35.1% / 35% · 270 ICP / 726 May MTD · W22: 59/168 = 35.1% · At target', status: 'live', forceColor: COLORS.success },
+    { name: 'Classified leads (Q2 total)', actual: 1870, target: 8299, label: '1,870 / 8,299 · Apr ~1,144 + May MTD 726 · 22.5% Q2 vs 60.4% pace · 37% of pace', status: 'live', forceColor: COLORS.danger },
+    { name: 'MQLs (Q2 total)',             actual: 1606, target: 3983, label: '1,606 / 3,983 · Apr ~835 + May MTD 771 · 40.3% Q2 vs 60.4% pace · 67% of pace', status: 'live', forceColor: COLORS.warning },
+    { name: 'SQLs (Q2 total)',             actual: 1061, target: 2390, label: '1,061 / 2,390 · Apr ~529 + May MTD 532 · 44.4% Q2 vs 60.4% pace · 73% of pace', status: 'live', forceColor: COLORS.warning },
+    { name: 'Paid MQLs (Q2 total)', actual: 15, target: 450, label: '15 / 450 · campaigns launched wk of Apr 20 · W22 channel data pending', status: 'live', forceColor: COLORS.danger },
+    { name: 'Paid SQLs (Q2 total)', actual: 15, target: 176, label: '15 / 176 · derived from paid MQL pool · Apr 20 launch',                status: 'live', forceColor: COLORS.danger },
+    { name: 'Avg ACV (Q2 QTD)',             actual: 2172, target: 3000, label: '$2,172 / $3,000 · 330 won deals Apr 1–May 25 · 72.4% Q2 → 120% of linear pace', status: 'live' },
+    { name: 'TD Payments activation',       actual: 35.6, target: 30,   label: '35.6% / 30% · 2,101 of 5,908 eligible US (excl. legacy Stripe) · 119% of OKR', status: 'live' },
     { name: 'Directory visitors',           actual: 0,    target: 1,    label: 'Not yet launched',                      status: 'not-launched' },
     { name: 'Directory conversion',         actual: 0,    target: 1,    label: 'Not yet launched',                      status: 'not-launched' }
   ];
@@ -1144,28 +1144,28 @@ function renderOKRChart() {
 /* ---------- ATTENTION CARDS ---------- */
 const attention = [
   {
-    status: 'info',
-    title: 'Paid Budget Step-Up',
-    icon: 'i',
-    body: 'Paid spend scaling ~4x over the next 2 weeks. Four social campaigns launching with W1 light-test ($350 to $700) before scaling W2 to W4. Two strategic launches tomorrow: Key Drivers Campaign and Onvio Sunset Campaign. Plus Google search ramp.'
+    status: 'red',
+    title: 'Lead Volume Structural Gap',
+    icon: '!',
+    body: 'Classified leads at 23% of May pace (726 / 3,979 with 80.6% elapsed). W22 down −22.9% WoW — Memorial Day week likely a factor. Q2 QTD 1,870 / 8,299 = 22.5% vs 60.4% Q2 pace (37% of pace). Gap is structural — requires significant acceleration in June.'
+  },
+  {
+    status: 'red',
+    title: 'MQLs Below Pace',
+    icon: '!',
+    body: 'MQLs at 50% of May pace (771 / 1,910). W22 down −22.1% WoW. Q2 QTD 1,606 / 3,983 = 40.3% vs 60.4% pace (67% of pace). Need ~92/day for the remaining 6 May days vs ~31/day current run rate. June volume critical to Q2 target.'
+  },
+  {
+    status: 'orange',
+    title: 'SQLs Nearest to On-Track',
+    icon: '!',
+    body: 'SQLs at 69% of May pace (532 / 955). W22 down −25.5% WoW. Q2 QTD 1,061 / 2,390 = 44.4% vs 60.4% pace (73% of pace). Closest funnel stage to target. Need ~71/day for remaining 6 May days vs ~21/day run rate.'
   },
   {
     status: 'green',
-    title: 'Targeting Locked',
+    title: 'TD Payments & ACV On Track',
     icon: '✓',
-    body: 'LinkedIn brand awareness audience locked, ICP composition consistent. Lead gen retargeting now live. Demographics shared with Sales. Foundation in place to absorb the budget step-up.'
-  },
-  {
-    status: 'orange',
-    title: 'Volume Ramping',
-    icon: '!',
-    body: 'W19 partial: paid social pacing ahead of W18 (6 leads in 5 days vs 7 full week). Paid search behind, ramping with Google budget this week. Real read on the 4x window starts W21 once W1 tests close.'
-  },
-  {
-    status: 'orange',
-    title: 'ACV Pace Holding',
-    icon: '!',
-    body: 'April closed at ~$2,100 ACV, consistent with W17/W18. Gap to $3,000 target unchanged. New campaigns built around higher-fit firms. First composition signal mid-May after W1 tests close.'
+    body: 'TD Payments at 35.6% (2,101 / 5,908) — above 30% OKR (119% of goal), +2.1 pp WoW. ACV at $2,172 = 120% of Q2 linear pace vs $3,000 target (330 won deals). Both metrics ahead of targets despite volume headwinds.'
   }
 ];
 
@@ -1282,25 +1282,25 @@ function renderLeadsTrendChart() {
 /* ---------- MQL TAB ---------- */
 function renderMQLKPIs() {
   // Live HubSpot — list 6894 + hs_v2_date_entered_marketingqualifiedlead + lifecyclestage HAS_PROPERTY.
-  // W20 (May 6-12): 244 total (101 ICP / 128 Non-ICP / 15 No Value). W19 prior: 235.
-  // May MTD (May 1-12): 388 total (151 ICP). ICP% = 39%.
+  // W22 (May 19-25): 194 total (69 ICP / 104 Non-ICP / 21 No Value). W21 prior: 249.
+  // May MTD (May 1-25): 771 total. ICP MTD: ~263 (est. 34.1%).
   const cards = [
     {
-      name: 'Total MQL — This Week', value: 244, suffix: '',
-      compare: 'Prior wk (W19): 235 &nbsp;·&nbsp; <b style="color:var(--success)">+4% WoW ↑</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>',
-      foot: 'List 6894 · hs_v2_date_entered_marketingqualifiedlead in W20 · ICP 101 / Non-ICP 128 / No Value 15',
+      name: 'Total MQL — This Week', value: 194, suffix: '',
+      compare: 'Prior wk (W21): 249 &nbsp;·&nbsp; <b style="color:var(--danger)">&minus;22.1% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>',
+      foot: 'List 6894 · hs_v2_date_entered_marketingqualifiedlead in W22 · ICP 69 / Non-ICP 104 / No Value 21',
+      cls: 'red'
+    },
+    {
+      name: 'ICP Share of MQL', value: 36, suffix: '%',
+      compare: 'Prior wk: ~37% &nbsp;·&nbsp; <b style="color:var(--danger)">&minus;1 pp WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
+      foot: '69 ICP / 194 total this week = 35.6% · May MTD ICP share ~34% · target 35%',
       cls: 'green'
     },
     {
-      name: 'ICP Share of MQL', value: 41, suffix: '%',
-      compare: 'Prior wk: 38% &nbsp;·&nbsp; <b style="color:var(--success)">+3 pp WoW ↑</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
-      foot: '101 ICP / 244 total this week · May MTD: 151/388 = 39% · target 35%',
-      cls: 'green'
-    },
-    {
-      name: 'May MTD MQL', value: 388, suffix: '',
-      compare: 'May target: 1,910 &nbsp;·&nbsp; <span class="pct">20%</span> achieved · pace 39% &nbsp;·&nbsp; <b style="color:var(--danger)">52% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
-      foot: 'List 6894 · entered MQL May 1-12 (12 of 31 days) · Apr final 835 / 575 = 145%',
+      name: 'May MTD MQL', value: 771, suffix: '',
+      compare: 'May target: 1,910 &nbsp;·&nbsp; <span class="pct">40.4%</span> achieved · pace 80.6% &nbsp;·&nbsp; <b style="color:var(--danger)">50% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
+      foot: 'List 6894 · entered MQL May 1-25 (25 of 31 days) · Apr final ~835 (list 6894 filtered)',
       cls: 'red'
     }
   ];
@@ -1322,13 +1322,13 @@ function renderMQLKPIs() {
 
 function renderMQLWeeklyChart() {
   // Live data — list 6894 + hs_v2_date_entered_marketingqualifiedlead + lifecyclestage HAS_PROPERTY.
-  const weeks   = ['W9 Feb','W10 Feb/Mar','W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May'];
-  const icp     = [  71,    47,     72,     72,     68,      69,      48,      47,      78,       68,       90,      101    ];
-  const nonIcp  = [ 172,   141,    151,    148,    135,     146,     101,     118,     134,      115,      140,      128    ];
-  const noValue = [   0,     2,      1,      5,      0,       1,       1,       0,       8,        8,        7,       15    ];
+  const weeks   = ['W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May','W21 May','W22 May'];
+  const icp     = [  72,     72,     68,      69,      48,      47,      78,       68,       90,      101,       91,       69   ];
+  const nonIcp  = [ 151,    148,    135,     146,     101,     118,     134,      115,      140,      128,      142,      104   ];
+  const noValue = [   1,      5,      0,       1,       1,       0,       8,        8,        7,       15,       16,       21   ];
   const total   = icp.map((v, i) => v + nonIcp[i] + noValue[i]);
   const icpPct  = total.map((t, i) => t > 0 ? Math.round(icp[i] / t * 100) : 0);
-  const goal    = 144; // April weekly target = 575 / 4 (under review)
+  const goal    = 144; // April weekly target = 575 / 4 (May target ~478/wk = 1,910/4)
   const ma4 = total.map((_, i) => {
     const s = Math.max(0, i - 3);
     const slice = total.slice(s, i + 1);
@@ -1491,27 +1491,27 @@ function renderMQLChannelsChart() {
 
 /* ---------- LEADS TAB ---------- */
 function renderLeadsKPIs() {
-  // W20 (May 6-12): list 6894 + createdate = 265 total.
-  // ICP 94 / Non-ICP 138 / No Value 33. ICP% = 94/265 = 35%.
-  // W19 (Apr 29 - May 5): 279 total. ICP 84.
-  // May MTD (May 1-12): 441 total (148 ICP / ~248 Non-ICP / ~45 No Value). ICP% = 34%.
+  // W22 (May 19-25): list 6894 + createdate = 168 total.
+  // ICP 59 / Non-ICP 109. ICP% = 35.1%.
+  // W21 (May 12-18): 218 total. ICP 81.
+  // May MTD (May 1-25): 726 total (270 ICP / 456 Non-ICP). ICP% = 37.2%.
   const cards = [
     {
-      name: 'MARKETING LEADS — This Week', value: 265, suffix: '',
-      compare: 'Prior wk (W19): 279 &nbsp;·&nbsp; <b style="color:var(--danger)">−5% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>',
-      foot: 'List 6894 · createdate in W20 (May 6-12) · ICP 94 / Non-ICP 138 / No Value 33',
-      cls: 'orange'
+      name: 'MARKETING LEADS — This Week', value: 168, suffix: '',
+      compare: 'Prior wk (W21): 218 &nbsp;·&nbsp; <b style="color:var(--danger)">&minus;22.9% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>',
+      foot: 'List 6894 · createdate in W22 (May 19-25) · ICP 59 / Non-ICP 109. Memorial Day week.',
+      cls: 'red'
     },
     {
-      name: 'ICP Share of Leads', value: 35, suffix: '%',
-      compare: 'Prior wk: 30% &nbsp;·&nbsp; <b style="color:var(--success)">+5 pp WoW ↑</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
-      foot: '94 ICP / 265 total this week · May MTD: 148/441 = 34% · target 35%',
+      name: 'ICP Share of Leads', value: 35.1, suffix: '%',
+      compare: 'Prior wk: 37.2% &nbsp;·&nbsp; <b style="color:var(--danger)">&minus;2.0 pp WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
+      foot: '59 ICP / 168 total this week · May MTD: 270/726 = 37.2% · target 35% (above target)',
       cls: 'green'
     },
     {
-      name: 'May MTD Marketing Leads', value: 441, suffix: '',
-      compare: 'May target: 3,979 &nbsp;·&nbsp; <span class="pct">11%</span> achieved · pace 39% &nbsp;·&nbsp; <b style="color:var(--danger)">28% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
-      foot: 'List 6894 · createdate in May 1-12 (12 of 31 days) · Apr final 1,248 / 1,198 = 104%',
+      name: 'May MTD Marketing Leads', value: 726, suffix: '',
+      compare: 'May target: 3,979 &nbsp;·&nbsp; <span class="pct">18.2%</span> achieved · pace 80.6% &nbsp;·&nbsp; <b style="color:var(--danger)">23% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
+      foot: 'List 6894 · createdate in May 1-25 (25 of 31 days) · Apr final ~1,144 (list 6894 filtered)',
       cls: 'red'
     }
   ];
@@ -1537,26 +1537,26 @@ function renderSQLKPIs() {
   // Live HubSpot — list 6894 + hs_v2_date_entered_opportunity + n1_1_demo_registered_date HAS_PROPERTY.
   // RevOps definition = "Companies Demo Booked". Pipeline filter (Sales Inbound + Sales International)
   // is approximated — pipeline-level filtering on associated deals is not directly queryable via API.
-  // W20 (May 6-12): 163 total (68 ICP / 89 Non-ICP / 6 No Value). W19 prior: 143.
-  // May MTD (May 1-12): 253 total.
+  // W22 (May 19-25): 137 total (44 ICP / 83 Non-ICP / 10 No Value). W21 prior: 184.
+  // May MTD (May 1-25): 532 total.
   const cards = [
     {
-      name: 'Weekly SQL — This Week', value: 163, suffix: '',
-      compare: 'Prior wk (W19): 143 &nbsp;·&nbsp; <b style="color:var(--success)">+14% WoW ↑</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>',
-      foot: 'List 6894 · entered Opportunity W20 (May 6-12) + demo registered · ICP 68 / Non-ICP 89 / No Value 6',
-      cls: 'green'
+      name: 'Weekly SQL — This Week', value: 137, suffix: '',
+      compare: 'Prior wk (W21): 184 &nbsp;·&nbsp; <b style="color:var(--danger)">&minus;25.5% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: methodology change</span>',
+      foot: 'List 6894 · entered Opportunity W22 (May 19-25) + demo registered · ICP 44 / Non-ICP 83 / No Value 10',
+      cls: 'red'
     },
     {
-      name: 'ICP Share of SQL', value: 42, suffix: '%',
-      compare: 'Prior wk: 37% &nbsp;·&nbsp; <b style="color:var(--success)">+5 pp WoW ↑</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
-      foot: '68 ICP / 163 total this week · target 35% (above target)',
-      cls: 'green'
-    },
-    {
-      name: 'May MTD SQL', value: 253, suffix: '',
-      compare: 'May target: 955 &nbsp;·&nbsp; <span class="pct">26%</span> achieved · pace 39% &nbsp;·&nbsp; <b style="color:var(--danger)">68% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
-      foot: 'List 6894 · entered Opportunity May 1-12 (12 of 31 days) · Apr final 527 / 288 = 183%',
+      name: 'ICP Share of SQL', value: 32, suffix: '%',
+      compare: 'Prior wk: ~32% &nbsp;·&nbsp; <b style="color:var(--muted)">flat WoW</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
+      foot: '44 ICP / 137 total this week = 32.1% · target 35% (slightly below)',
       cls: 'orange'
+    },
+    {
+      name: 'May MTD SQL', value: 532, suffix: '',
+      compare: 'May target: 955 &nbsp;·&nbsp; <span class="pct">55.7%</span> achieved · pace 80.6% &nbsp;·&nbsp; <b style="color:var(--danger)">69% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
+      foot: 'List 6894 · entered Opportunity May 1-25 (25 of 31 days) · Apr final ~529 (list 6894 filtered)',
+      cls: 'red'
     }
   ];
   const row = document.getElementById('sqlKpiRow');
@@ -1579,13 +1579,13 @@ function renderSQLKPIs() {
 function renderSQLWeeklyChart() {
   // Live data — list 6894 + hs_v2_date_entered_opportunity + n1_1_demo_registered_date HAS_PROPERTY.
   // RevOps "Companies Demo Booked" definition. Pipeline filter (Sales Inbound + International) approximated.
-  const weeks   = ['W9 Feb','W10 Feb/Mar','W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May'];
-  const icp     = [  34,    21,     34,     38,     35,      43,      23,      30,      51,       50,       55,       68    ];
-  const nonIcp  = [  95,    66,     85,     67,     76,      85,      62,      72,      80,       89,       89,       89    ];
-  const noValue = [   0,     0,      0,      0,      0,       1,       0,       0,       1,        6,        4,        6    ];
+  const weeks   = ['W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May','W21 May','W22 May'];
+  const icp     = [  34,     38,     35,      43,      23,      30,      51,       50,       55,       68,       58,       44   ];
+  const nonIcp  = [  85,     67,     76,      85,      62,      72,      80,       89,       89,       89,      117,       83   ];
+  const noValue = [   0,      0,      0,       1,       0,       0,       1,        6,        4,        6,        9,       10   ];
   const total   = icp.map((v, i) => v + nonIcp[i] + noValue[i]);
   const icpPct  = total.map((t, i) => t > 0 ? Math.round(icp[i] / t * 100) : 0);
-  const goal    = 72; // April weekly target = 288 / 4 (under review with new methodology)
+  const goal    = 72; // April weekly target = 288 / 4 (May target ~239/wk = 955/4)
   const ma4 = total.map((_, i) => {
     const s = Math.max(0, i - 3);
     const slice = total.slice(s, i + 1);
