@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaxDome Marketing — Weekly Overview — Week 23 (May 26 – Jun 1, 2026)</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f1923;color:#e0e0e0;padding:24px;max-width:1200px;margin:0 auto}
+h1{font-size:20px;font-weight:500;margin-bottom:4px}
+.sub{font-size:12px;color:#8892a0;margin-bottom:24px}
+.note{font-size:11px;color:#6c757d;background:#1a2332;padding:8px 12px;border-radius:6px;margin-bottom:20px;border-left:3px solid #4C6EF5}
+.section{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;color:#8892a0;margin:28px 0 12px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.kpi{background:#16213e;border:1px solid #2a3a5c;border-radius:10px;padding:14px}
+.kpi-label{font-size:11px;color:#8892a0;margin-bottom:6px}
+.kpi-val{font-size:26px;font-weight:600}
+.kpi-detail{font-size:12px;color:#8892a0;margin-top:4px}
+.kpi-delta{display:inline-block;font-size:12px;font-weight:500;padding:2px 8px;border-radius:4px;margin-top:6px}
+.up{color:#2F9E44;background:rgba(47,158,68,0.12)}
+.down{color:#E03131;background:rgba(224,49,49,0.12)}
+.flat{color:#8892a0;background:rgba(136,146,160,0.12)}
+table{width:100%;border-collapse:collapse;background:#16213e;border:1px solid #2a3a5c;border-radius:10px;overflow:hidden;font-size:13px}
+th{text-align:left;background:rgba(255,255,255,0.03);color:#8892a0;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;padding:11px 14px;border-bottom:1px solid #2a3a5c}
+td{padding:11px 14px;border-bottom:1px solid #1f2a3d}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;font-weight:500}
+.tot-row td{background:rgba(76,110,245,0.07);font-weight:600;border-top:1px solid #4C6EF5}
+.pace-grid{display:grid;gap:10px;margin-top:4px}
+.pace-row{background:#16213e;border:1px solid #2a3a5c;border-radius:10px;padding:14px}
+.pace-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.pace-name{font-size:14px;font-weight:500}
+.pace-badge{font-size:12px;font-weight:600;padding:3px 10px;border-radius:6px}
+.pace-red{color:#E03131;background:rgba(224,49,49,0.12)}
+.pace-orange{color:#E8590C;background:rgba(232,89,12,0.12)}
+.pace-green{color:#2F9E44;background:rgba(47,158,68,0.12)}
+.pace-bar-bg{height:8px;background:#1a2332;border-radius:4px;position:relative;overflow:hidden;margin-top:4px}
+.pace-bar{height:100%;border-radius:4px}
+.pace-marker{position:absolute;top:-2px;height:12px;width:2px;background:#e0e0e0}
+.pace-meta{display:flex;gap:16px;margin-top:8px;font-size:12px;color:#8892a0}
+.pace-meta b{color:#e0e0e0}
+.attn{background:#1a1a2e;border:1px solid #E03131;border-radius:10px;padding:14px;margin-top:10px}
+.attn-title{font-size:13px;font-weight:600;color:#E03131;margin-bottom:8px}
+.attn-item{font-size:13px;color:#e0e0e0;margin-bottom:6px;padding-left:12px;position:relative}
+.attn-item::before{content:'';position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:#E03131}
+.attn-bright{background:#1a2e1a;border:1px solid #2F9E44;border-radius:10px;padding:14px;margin-top:10px}
+.attn-bright-title{font-size:13px;font-weight:600;color:#2F9E44;margin-bottom:8px}
+.tdp{background:#16213e;border:1px solid #2a3a5c;border-radius:10px;padding:14px;margin-top:10px}
+.tdp-gauge{height:12px;background:#1a2332;border-radius:6px;position:relative;overflow:visible;margin:12px 0}
+.tdp-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#2F9E44,#4C6EF5)}
+.tdp-target{position:absolute;top:-4px;height:20px;width:2px;background:#E8590C}
+.tdp-stretch{position:absolute;top:-4px;height:20px;width:2px;background:#8892a0}
+.tdp-labels{display:flex;justify-content:space-between;font-size:11px;color:#8892a0}
+.tbl-note{font-size:11px;color:#6c757d;margin-top:8px;line-height:1.5}
+</style>
+</head>
+<body>
+<h1>TaxDome Marketing Weekly Overview</h1>
+<div class="sub">Week 23 | Tue May 26 &#8211; Mon Jun 1, 2026 | Generated June 2, 2026</div>
+<div class="note">Funnel methodology: list 6894 (marketing-source, all-market) &middot; <code>createdate</code> for leads &middot; <code>hs_v2_date_entered_marketingqualifiedlead</code> for MQLs &middot; <code>hs_v2_date_entered_opportunity</code> + <code>n1_1_demo_registered_date HAS_PROPERTY</code> for SQLs &middot; classified by <code>marketing_icp__nonicp_enriched</code>. ACV: Sales Inbound (135241873) + Sales International (134917174), amount &ge; $10, closedate in window. TD Payments: US paid excl. legacy Stripe. Pipeline filter (Sales pipelines) on SQLs is approximated &mdash; flag as noted in methodology spec.</div>
+
+<div class="section">Weekly KPIs &mdash; Marketing-source baseline (Tue May 26 &ndash; Mon Jun 1)</div>
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-label">Classified Leads</div>
+    <div class="kpi-val">250</div>
+    <div class="kpi-detail">ICP: 87 (34.8%) | Non-ICP: 163</div>
+    <div class="kpi-delta up">+51.5% WoW</div>
+    <div class="kpi-delta up">+38.9% YoY*</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">MQLs</div>
+    <div class="kpi-val">320</div>
+    <div class="kpi-detail">ICP: 109 (34.1%) | Non-ICP: 174 | No Value: 37</div>
+    <div class="kpi-delta up">+67.5% WoW</div>
+    <div class="kpi-delta up">+93.9% YoY*</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">SQLs (Demo Booked)</div>
+    <div class="kpi-val">129</div>
+    <div class="kpi-detail">ICP: 48 (37.2%) | Non-ICP: 81</div>
+    <div class="kpi-delta down">&minus;5.1% WoW</div>
+    <div class="kpi-delta up">+0.8% YoY*</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Avg ACV (week)</div>
+    <div class="kpi-val">$1,919</div>
+    <div class="kpi-detail">72 won deals &middot; Sales pipelines</div>
+    <div class="kpi-delta down">&minus;37.7% WoW</div>
+    <div class="kpi-delta down">&minus;22.4% YoY</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">TD Payments</div>
+    <div class="kpi-val" style="color:#2F9E44">36.1%</div>
+    <div class="kpi-detail">2,150 / 5,959 eligible US</div>
+    <div class="kpi-delta up">+0.5 pp WoW</div>
+    <div class="kpi-delta flat">Above 30% OKR &#10003;</div>
+  </div>
+</div>
+<div class="tbl-note">WoW compares W23 (May 26&ndash;Jun 1) vs W22-prior (May 19&ndash;25): Leads 165, MQLs 191, SQLs 136, ACV $3,081. *YoY vs same-week 2025 (Jun 3&ndash;9, 2025): Leads 180, MQLs 165, SQLs 128, ACV $2,473. YoY comparisons carry a methodology-change caveat &mdash; list 6894 was adopted April 2026; prior-year data includes companies now in that list but the list composition differs from 2025. ACV combined Apr 1&ndash;Jun 1: ~$2,195 (415 deals); W22 prior-week ACV was unusually elevated by 4 large outlier deals (Sankey Wolf $19.8K, Agar Schneider &amp; Lett $10.4K, Bonneau Accounting $9.6K, MYSMSF Expert $8.6K). TD Payments YoY n/a &mdash; metric denominator definition introduced 2026.</div>
+
+<div class="section">June 2026 Monthly Pace &mdash; Day 1 of 30 (3.3% elapsed)</div>
+<div class="pace-grid">
+  <div class="pace-row">
+    <div class="pace-header">
+      <div class="pace-name">Classified Leads</div>
+      <span class="pace-badge pace-red">34% of pace</span>
+    </div>
+    <div class="pace-bar-bg">
+      <div class="pace-bar" style="width:1.1%;background:#E03131"></div>
+      <div class="pace-marker" style="left:3.3%"></div>
+    </div>
+    <div class="pace-meta"><span>MTD: <b>54</b></span><span>Target: <b>4,781</b></span><span>1.1% of target (Day 1 only)</span></div>
+  </div>
+  <div class="pace-row">
+    <div class="pace-header">
+      <div class="pace-name">MQLs</div>
+      <span class="pace-badge pace-green">155% of pace</span>
+    </div>
+    <div class="pace-bar-bg">
+      <div class="pace-bar" style="width:5.1%;background:#2F9E44"></div>
+      <div class="pace-marker" style="left:3.3%"></div>
+    </div>
+    <div class="pace-meta"><span>MTD: <b>117</b></span><span>Target: <b>2,295</b></span><span>5.1% of target (Day 1 only)</span></div>
+  </div>
+  <div class="pace-row">
+    <div class="pace-header">
+      <div class="pace-name">SQLs (Demo Booked)</div>
+      <span class="pace-badge pace-red">63% of pace</span>
+    </div>
+    <div class="pace-bar-bg">
+      <div class="pace-bar" style="width:2.1%;background:#E03131"></div>
+      <div class="pace-marker" style="left:3.3%"></div>
+    </div>
+    <div class="pace-meta"><span>MTD: <b>24</b></span><span>Target: <b>1,148</b></span><span>2.1% of target (Day 1 only)</span></div>
+  </div>
+</div>
+<div class="tbl-note">June MTD = Jun 1 only. Day 1 pace is highly noisy &mdash; avoid strong conclusions. May closed approx: Leads ~1,027 (26% of 3,979 target), MQLs ~963 (50% of 1,910 target), SQLs ~632 (66% of 955 target). May significantly missed all lead/MQL/SQL volume targets; SQL conversion ratio held up relatively well.</div>
+
+<div class="section">Q2 Cumulative Pace &mdash; Day 62 of 91 (68.1% elapsed)</div>
+<div class="pace-grid">
+  <div class="pace-row">
+    <div class="pace-header">
+      <div class="pace-name">Classified Leads</div>
+      <span class="pace-badge pace-red">38% of pace</span>
+    </div>
+    <div class="pace-bar-bg">
+      <div class="pace-bar" style="width:26.1%;background:#E03131"></div>
+      <div class="pace-marker" style="left:68.1%"></div>
+    </div>
+    <div class="pace-meta"><span>Q2 QTD: <b>2,169</b></span><span>Target: <b>8,299</b></span><span>26.1% of target</span></div>
+  </div>
+  <div class="pace-row">
+    <div class="pace-header">
+      <div class="pace-name">MQLs</div>
+      <span class="pace-badge pace-red">72% of pace</span>
+    </div>
+    <div class="pace-bar-bg">
+      <div class="pace-bar" style="width:48.9%;background:#E03131"></div>
+      <div class="pace-marker" style="left:68.1%"></div>
+    </div>
+    <div class="pace-meta"><span>Q2 QTD: <b>1,948</b></span><span>Target: <b>3,983</b></span><span>48.9% of target</span></div>
+  </div>
+  <div class="pace-row">
+    <div class="pace-header">
+      <div class="pace-name">SQLs (Demo Booked)</div>
+      <span class="pace-badge pace-red">75% of pace</span>
+    </div>
+    <div class="pace-bar-bg">
+      <div class="pace-bar" style="width:51.1%;background:#E03131"></div>
+      <div class="pace-marker" style="left:68.1%"></div>
+    </div>
+    <div class="pace-meta"><span>Q2 QTD: <b>1,221</b></span><span>Target: <b>2,390</b></span><span>51.1% of target</span></div>
+  </div>
+  <div class="pace-row">
+    <div class="pace-header">
+      <div class="pace-name">Avg ACV (Q2 cumulative)</div>
+      <span class="pace-badge pace-red">73% of target</span>
+    </div>
+    <div class="pace-bar-bg">
+      <div class="pace-bar" style="width:73.2%;background:#E03131"></div>
+      <div class="pace-marker" style="left:100%"></div>
+    </div>
+    <div class="pace-meta"><span>Q2 avg: <b>~$2,195</b></span><span>Target: <b>$3,000</b></span><span>~415 deals, Apr 1&ndash;Jun 1</span></div>
+  </div>
+</div>
+<div class="tbl-note">Q2 QTD = Apr 1 &ndash; Jun 1, 2026 (62 days). ACV Q2 cumulative is an estimate: W22 reported $2,248 for 348 deals (Apr 1&ndash;May 26); current week adds 72 deals at $1,919 avg; new Apr-to-date total &asymp; $2,195. Leads and SQLs well behind Q2 linear pace; MQL recovery needed in June to close the gap.</div>
+
+<div class="section">TD Payments Activation</div>
+<div class="tdp">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <div style="font-size:28px;font-weight:600;color:#2F9E44">36.1%</div>
+    <div style="font-size:12px;color:#8892a0">2,150 activated / 5,959 eligible US accounts (excl. legacy Stripe)</div>
+  </div>
+  <div class="tdp-gauge">
+    <div class="tdp-fill" style="width:36.1%"></div>
+    <div class="tdp-target" style="left:30%" title="OKR: 30%"></div>
+    <div class="tdp-stretch" style="left:50%" title="Stretch: 50%"></div>
+  </div>
+  <div class="tdp-labels"><span>0%</span><span style="color:#E8590C">OKR 30%</span><span>Stretch 50%</span><span>100%</span></div>
+  <div class="tbl-note">+0.5 pp WoW (was 35.6% / 2,108 / 5,916 as of W22). Above the 30% OKR line; 13.9 pp below the 50% stretch. CPACharge restriction lifted May 11 &mdash; those accounts now in denominator. Denominator: US paid accounts excluding legacy Stripe (corrected methodology May 17, 2026).</div>
+</div>
+
+<div class="section">Attention Required</div>
+<div class="attn">
+  <div class="attn-title">Q2 funnel well behind pace &mdash; June is critical</div>
+  <div class="attn-item">Leads at 26.1% of Q2 target (2,169/8,299) with 68.1% of the quarter elapsed &mdash; 38% of linear pace. To hit Q2 target would require ~6,130 leads in June (June target is 4,781). Mathematically, Q2 lead target is out of reach; focus on SQL and revenue quality.</div>
+  <div class="attn-item">MQLs at 48.9% of Q2 target (1,948/3,983) &mdash; 72% of pace. June target 2,295 MQLs would bring Q2 to 4,243 vs 3,983 target (+6.5% cushion) if fully hit. Achievable if the strong Jun 1 signal (117 MQLs on Day 1) holds.</div>
+  <div class="attn-item">SQLs at 51.1% of Q2 target (1,221/2,390) &mdash; 75% of pace. June target 1,148 SQLs would put Q2 at 2,369 (99% of target) &mdash; essentially on Q2 target. SQL pipeline health is the strongest lever.</div>
+  <div class="attn-item">ACV dropped &minus;37.7% WoW ($1,919 vs $3,081). Prior week was materially inflated by 4 large outlier deals ($48K combined). Current week&rsquo;s 72-deal mix skews toward $800&ndash;$1,000 range; Q2 cumulative ACV ~$2,195 remains below the $3,000 operational target.</div>
+</div>
+<div class="attn-bright">
+  <div class="attn-bright-title">Bright spot: volume bounce + TD Payments above OKR</div>
+  <div class="attn-item" style="padding-left:12px;position:relative;">Leads +51.5% WoW and MQLs +67.5% WoW &mdash; Memorial Day week (W22) was soft; W23 bounced back strongly. Jun 1 alone showed 117 MQLs, suggesting strong start to June.</div>
+  <div class="attn-item" style="padding-left:12px;position:relative;">TD Payments at 36.1% is 6.1 pp above the 30% OKR target. Activation rate continues to grow (+0.5 pp WoW). Still 13.9 pp below the 50% stretch goal.</div>
+</div>
+
+<div style="margin-top:32px;padding-top:16px;border-top:1px solid #2a3a5c;font-size:11px;color:#6c757d">
+  <p>W23 = Tue May 26 &ndash; Mon Jun 1. WoW vs prior-week window May 19&ndash;25 (not W22&rsquo;s May 20&ndash;26). YoY vs ISO W23 2025 (Jun 3&ndash;9, 2025). Pace marker = white line on bars. Q2 = Apr 1&ndash;Jun 30, 91 days total.</p>
+  <p style="margin-top:4px">Funnel: list 6894 + <code>marketing_icp__nonicp_enriched</code> + hs_v2 stage dates; SQL requires <code>n1_1_demo_registered_date HAS_PROPERTY</code>. Pipeline filter (Sales Inbound + International) on SQLs is approximate &mdash; not directly queryable via search API.</p>
+  <p style="margin-top:4px">ACV: Sales Inbound (135241873) + Sales International (134917174), <code>amount &ge; $10</code>, <code>closedate</code> in window. Q2 cumulative ACV is estimated. Pipeline ARR: data methodology pending &mdash; contact attribution filter TBD.</p>
+  <p style="margin-top:4px">Snapshot links: <a href="../../" style="color:#4C6EF5">Live Dashboard</a> &nbsp;|&nbsp; <a href="../" style="color:#4C6EF5">All Snapshots</a></p>
+  <p style="margin-top:4px">Confluence page: create manually under Marketing Weekly Summary (Cloud: 39336249-9666-44dc-aa6f-abfd48a357ce, Space: 1298661388, Parent: 2697592850)</p>
+</div>
+</body>
+</html>
