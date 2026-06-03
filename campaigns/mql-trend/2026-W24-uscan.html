@@ -68,7 +68,7 @@
 <div class="container">
   <div class="header">
     <div class="title">US/CAN MQL Growth — W17 to W24</div>
-    <div class="subtitle">Total marketing-qualified leads per week. Number on each bar shows how many came from paid.</div>
+    <div class="subtitle">Total marketing-qualified leads per week (list 6894 baseline). Number on each bar shows how many came from paid (Paid Search + Paid Social).</div>
   </div>
   <div id="chart" class="chart"></div>
 </div>
@@ -76,8 +76,8 @@
 <script>
   const weeks = ['W17', 'W18', 'W19', 'W20', 'W21', 'W22', 'W23', 'W24'];
   const dates = ['Apr 8-14', 'Apr 15-21', 'Apr 22-28', 'Apr 29-May 5', 'May 6-12', 'May 13-19', 'May 20-26', 'May 27-Jun 2'];
-  const inbound = [131, 204, 165, 187, 186, 171, 134, 159];
-  const paid = [0, 3, 4, 7, 9, 11, 14, 46];
+  const inbound = [155, 235, 190, 224, 229, 213, 182, 230];
+  const paid = [1, 5, 6, 8, 12, 19, 16, 104];
   const total = inbound.map((v, i) => v + paid[i]);
 
   const labels = weeks.map((w, i) => w + '<br><span style="font-size:10px;color:#6b7280">' + dates[i] + '</span>');
@@ -133,7 +133,7 @@
       title: { text: 'Total MQLs', font: { color: '#6b7280', size: 12 }, standoff: 12 },
       showline: false,
       zeroline: false,
-      range: [0, 240]
+      range: [0, 380]
     },
     legend: {
       orientation: 'h',
