@@ -68,19 +68,19 @@
 <div class="container">
   <div class="header">
     <div class="title">US/CAN MQL Growth — W17 to W24</div>
-    <div class="subtitle">Total marketing-qualified leads per week (list 6894 baseline). Number on each bar shows how many came from paid (Paid Search + Paid Social).</div>
+    <div class="subtitle">Marketing-qualified leads per week, US/CAN companies only (list 6894 + country IN US/Canada). Number on each bar shows how many came from paid (Paid Search + Paid Social).</div>
   </div>
   <div id="chart" class="chart"></div>
   <div class="legend-note" style="font-family:'Inter',sans-serif;font-size:12px;color:#9ca3af;margin-top:8px;line-height:1.5">
-    <b style="color:#fbbf24">W24 paid spike (104 vs ~16 prior week):</b> paid budget was doubled and several new campaigns launched in W24 (May 27 - Jun 2). Not an attribution backfill — the lift is real.
+    <b style="color:#fbbf24">W24 paid spike (34 vs ~13 prior week, ~2.6x):</b> paid budget was doubled and several new campaigns launched in W24 (May 27 - Jun 2). Not an attribution backfill — the lift is real. Note: chart is US/CAN-scoped; global paid MQLs for W24 = 104, global total = 334 (per the W23 weekly dashboard).
   </div>
 </div>
 
 <script>
   const weeks = ['W17', 'W18', 'W19', 'W20', 'W21', 'W22', 'W23', 'W24'];
   const dates = ['Apr 8-14', 'Apr 15-21', 'Apr 22-28', 'Apr 29-May 5', 'May 6-12', 'May 13-19', 'May 20-26', 'May 27-Jun 2'];
-  const inbound = [155, 235, 190, 224, 229, 213, 182, 230];
-  const paid = [1, 5, 6, 8, 12, 19, 16, 104];
+  const inbound = [131, 204, 165, 187, 185, 171, 135, 171];
+  const paid = [0, 3, 4, 7, 10, 11, 13, 34];
   const total = inbound.map((v, i) => v + paid[i]);
 
   const labels = weeks.map((w, i) => w + '<br><span style="font-size:10px;color:#6b7280">' + dates[i] + '</span>');
@@ -136,7 +136,7 @@
       title: { text: 'Total MQLs', font: { color: '#6b7280', size: 12 }, standoff: 12 },
       showline: false,
       zeroline: false,
-      range: [0, 380]
+      range: [0, 240]
     },
     legend: {
       orientation: 'h',
