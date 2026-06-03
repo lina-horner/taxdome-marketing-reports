@@ -44,6 +44,18 @@ h1{font-size:20px;font-weight:500;margin-bottom:4px}
 .tdp-stretch{position:absolute;top:-4px;height:20px;width:2px;background:#8892a0}
 .tdp-labels{display:flex;justify-content:space-between;font-size:11px;color:#8892a0}
 .tbl-note{font-size:11px;color:#6c757d;margin-top:8px;line-height:1.5}
+table{width:100%;border-collapse:collapse;background:#16213e;border:1px solid #2a3a5c;border-radius:10px;overflow:hidden;font-size:13px;margin-top:4px}
+th{text-align:left;background:rgba(255,255,255,0.03);color:#8892a0;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;padding:11px 14px;border-bottom:1px solid #2a3a5c}
+td{padding:11px 14px;border-bottom:1px solid #1f2a3d}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;font-weight:500}
+.src-mkt{color:#7B95F5}
+.src-evt{color:#E8590C}
+.src-plg{color:#2F9E44}
+.dlt{font-size:11px;font-weight:500;margin-left:4px}
+.dlt-up{color:#2F9E44}
+.dlt-dn{color:#E03131}
+.dlt-fl{color:#8892a0}
 </style>
 </head>
 <body>
@@ -90,6 +102,43 @@ h1{font-size:20px;font-weight:500;margin-bottom:4px}
   </div>
 </div>
 <div class="tbl-note">WoW vs W22 (May 20-26); YoY vs same week 2025 (May 27-Jun 2): Leads 232, MQLs 180, SQLs 125, ACV $3,106 (78 deals). Marketing-source baseline (list 6894). Strong WoW rebound from W22's Memorial Day dip — but the W22→W23 lift partly reflects deferred activity catching up. ICP lead share jumped to 36.8%, the highest in 8 weeks.</div>
+
+<div class="section">Funnel by Source — Marketing / Event / Product-led</div>
+<table>
+  <thead>
+    <tr>
+      <th>Stage</th>
+      <th><span class="src-mkt">Marketing</span></th>
+      <th><span class="src-evt">Event</span></th>
+      <th><span class="src-plg">Product-led (net)</span></th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Classified Leads</td>
+      <td class="num">266 <span class="dlt dlt-up">+31%</span></td>
+      <td class="num">81 <span class="dlt dlt-up">vs 1</span></td>
+      <td class="num">4 <span class="dlt dlt-dn">−20%</span></td>
+      <td class="num">351 <span class="dlt dlt-up">+68%</span></td>
+    </tr>
+    <tr>
+      <td>MQLs</td>
+      <td class="num">334 <span class="dlt dlt-up">+67%</span></td>
+      <td class="num">4 <span class="dlt dlt-dn">−43%</span></td>
+      <td class="num">3 <span class="dlt dlt-up">vs 1</span></td>
+      <td class="num">341 <span class="dlt dlt-up">+64%</span></td>
+    </tr>
+    <tr>
+      <td>SQLs (Demo Booked)</td>
+      <td class="num">148 <span class="dlt dlt-up">+14%</span></td>
+      <td class="num">4 <span class="dlt dlt-up">+33%</span></td>
+      <td class="num">1 <span class="dlt dlt-fl">new</span></td>
+      <td class="num">153 <span class="dlt dlt-up">+15%</span></td>
+    </tr>
+  </tbody>
+</table>
+<div class="tbl-note">WoW shown vs W22 source numbers (Marketing 203/200/130 · Event 1/7/3 · PLG net 5/1/0). <b>Event leads jumped 1 → 81</b> — a single weeklong event syncing into HubSpot — making the total-lead WoW (+68%) noticeably larger than the marketing-baseline WoW (+31%). Methodology: <b>Marketing</b> = list 6894 baseline (the headline KPI cards above). <b>Event</b> = leadgen_channel_group_original = "Event", 0 overlap with list 6894. <b>Product-led (net)</b> = leadgen_channel_group_original = "Product-led" minus any contacts already in list 6894 (Option 3 attribution: list 6894 wins ties). Sources are additive — no double-counting.</div>
 
 <div class="section">May 2026 FINAL — Month Closed</div>
 <div class="pace-grid">
