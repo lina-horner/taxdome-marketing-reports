@@ -26,11 +26,17 @@
 body{margin:0;background:var(--color-background-primary);color:var(--color-text-primary);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
 .page{max-width:1080px;margin:0 auto;padding:32px 24px 56px}
 h1{font-size:24px;font-weight:600;margin:0 0 4px}
-.pagesub{font-size:13px;color:var(--color-text-secondary);margin:0 0 24px;line-height:1.6}
+.pagesub{font-size:13px;color:var(--color-text-secondary);margin:0 0 18px;line-height:1.6}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.sec{margin:0 0 1.75rem}
-.sec h3{font-size:16px;font-weight:500;margin:0 0 3px}
-.subnote{font-size:12px;color:var(--color-text-tertiary);margin:0 0 10px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--color-text-secondary);margin:0 0 6px}
+.legend span{display:flex;align-items:center;gap:5px}
+.dot{width:9px;height:9px;border-radius:2px;display:inline-block}
+.team{border-top:1px solid var(--color-border-tertiary);padding-top:1.6rem;margin:1.6rem 0 0.5rem}
+.teamname{font-size:19px;font-weight:600;margin:0 0 2px}
+.teamnote{font-size:12px;color:var(--color-text-tertiary);margin:0 0 16px}
+.block{margin:0 0 1.4rem}
+.blocklabel{font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-tertiary);font-weight:500;margin:0 0 11px}
+.subgroup{font-size:13px;color:var(--color-text-secondary);margin:18px 0 9px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
 .card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px}
 .label{font-size:13px;color:var(--color-text-secondary);margin:0 0 4px}
@@ -42,67 +48,37 @@ h1{font-size:24px;font-weight:600;margin:0 0 4px}
 .watch{background:var(--color-background-warning);color:var(--color-text-warning)}
 .na{background:var(--color-background-primary);color:var(--color-text-tertiary);border:0.5px solid var(--color-border-tertiary)}
 .cnote{font-size:11px;color:var(--color-text-tertiary);margin-top:6px}
-.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--color-text-secondary);margin:0 0 1.75rem}
-.legend span{display:flex;align-items:center;gap:5px}
-.dot{width:9px;height:9px;border-radius:2px;display:inline-block}
+.proj{margin:0 0 11px}
+.projhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 5px}
+.projname{font-size:13px;color:var(--color-text-primary)}
+.projmeta{font-size:11px;color:var(--color-text-secondary);white-space:nowrap}
+.track{height:6px;background:var(--color-border-tertiary);border-radius:6px;overflow:hidden}
+.fill{height:100%;border-radius:6px}
+.perfnote{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px;font-size:13px;color:var(--color-text-secondary);line-height:1.6}
 </style>
 </head>
 <body>
 <div class="page">
-<h2 class="sr-only">May 2026 marketing dashboard showing key metrics by team with month-over-month and year-over-year change.</h2>
+<h2 class="sr-only">May 2026 marketing dashboard organized by team, each with key metrics and project progress.</h2>
 <h1>May 2026 Marketing Dashboard</h1>
-<p class="pagesub">MoM compares to April 2026. YoY compares to May 2025. Website is US only. Paid campaigns are sourced from Performance and were created by Product Marketing. Content email is per-campaign editorial quality, separate from Performance operational sends.</p>
-
+<p class="pagesub">Each team shows key metrics followed by project progress. MoM compares to April 2026, YoY compares to May 2025. Website is US only. Paid campaigns were created by Product Marketing and are implemented and reported by Performance as the source of record.</p>
 <div class="legend">
 <span><span class="dot" style="background:var(--color-text-success)"></span>Favorable</span>
 <span><span class="dot" style="background:var(--color-text-warning)"></span>Watch</span>
 <span><span class="dot" style="background:var(--color-text-danger)"></span>Unfavorable</span>
 <span><span class="dot" style="background:var(--color-border-secondary)"></span>No comparison or expected</span>
 </div>
-
-<div class="sec">
-<h3>Community</h3>
-<div class="subnote">MoM vs April, YoY vs May 2025</div>
-<div class="grid">
-<div class="card"><div class="label">Total members</div><div class="val">9,095</div><div class="chips"><span class="chip up">MoM +7.6%</span><span class="chip up">YoY +140.7%</span></div></div>
-<div class="card"><div class="label">Monthly active users</div><div class="val">2,781</div><div class="chips"><span class="chip up">MoM +36.9%</span><span class="chip up">YoY +17.3%</span></div></div>
-<div class="card"><div class="label">MAU rate</div><div class="val">31%</div><div class="chips"><span class="chip up">MoM +29.2%</span><span class="chip na">YoY -50.8%</span></div><div class="cnote">YoY drop is growth dilution</div></div>
-<div class="card"><div class="label">Member contribution</div><div class="val">80%</div><div class="chips"><span class="chip up">MoM +3.9%</span><span class="chip up">YoY +9.6%</span></div></div>
-<div class="card"><div class="label">Comments per post</div><div class="val">6</div><div class="chips"><span class="chip up">MoM +20.0%</span><span class="chip na">YoY flat</span></div></div>
-<div class="card"><div class="label">Total posts</div><div class="val">225</div><div class="chips"><span class="chip up">MoM +3.7%</span><span class="chip na">YoY -17.9%</span></div></div>
-<div class="card"><div class="label">New members</div><div class="val">643</div><div class="chips"><span class="chip up">MoM +162.4%</span><span class="chip na">YoY -25.2%</span></div><div class="cnote">Smaller base in '25</div></div>
-</div>
+<div class="legend">
+<span><span class="dot" style="background:#3b6d11"></span>Bar complete or launched</span>
+<span><span class="dot" style="background:#378add"></span>Bar in progress</span>
 </div>
 
-<div class="sec">
-<h3>Partnerships</h3>
-<div class="subnote">MoM vs April (YoY not tracked for this team)</div>
-<div class="grid">
-<div class="card"><div class="label">New customers</div><div class="val">10</div><div class="chips"><span class="chip up">MoM +233%</span></div></div>
-<div class="card"><div class="label">New ARR</div><div class="val">$13,200</div><div class="chips"><span class="chip up">MoM +371%</span></div></div>
-<div class="card"><div class="label">Avg deal value</div><div class="val">$1,320</div><div class="chips"><span class="chip up">MoM +41%</span></div></div>
-<div class="card"><div class="label">New leads</div><div class="val">161</div><div class="chips"><span class="chip up">MoM +496%</span></div></div>
-<div class="card"><div class="label">Events completed</div><div class="val">7</div><div class="chips"><span class="chip up">MoM +600%</span></div></div>
-<div class="card"><div class="label">SQLs</div><div class="val">45</div><div class="chips"><span class="chip up">MoM +45%</span></div></div>
-</div>
-</div>
-
-<div class="sec">
-<h3>Website (US)</h3>
-<div class="subnote">YoY vs May 2025. MoM omitted: April was not US-split and tax season inflates April</div>
-<div class="grid">
-<div class="card"><div class="label">Demos</div><div class="val">364</div><div class="chips"><span class="chip up">YoY +8.7%</span></div></div>
-<div class="card"><div class="label">Leads</div><div class="val">1,028</div><div class="chips"><span class="chip na">YoY -5.2%</span></div><div class="cnote">May '25 had a campaign push</div></div>
-<div class="card"><div class="label">New users</div><div class="val">36,555</div><div class="chips"><span class="chip up">YoY +11.1%</span></div></div>
-<div class="card"><div class="label">Returning users</div><div class="val">17,840</div><div class="chips"><span class="chip watch">YoY -11.1%</span></div></div>
-<div class="card"><div class="label">Avg session</div><div class="val">3:09</div><div class="chips"><span class="chip up">YoY +10.5%</span></div></div>
-<div class="card"><div class="label">Pricing page CR to demo</div><div class="val">3.18%</div><div class="chips"><span class="chip up">YoY +167%</span></div></div>
-</div>
-</div>
-
-<div class="sec">
-<h3>Performance: AI visibility</h3>
-<div class="subnote">MoM, end April to end May snapshots</div>
+<div class="team">
+<div class="teamname">Performance</div>
+<div class="teamnote">AI visibility is the headline. Email here is operational, recipient-level sends</div>
+<div class="block">
+<div class="blocklabel">Key metrics</div>
+<div class="subgroup">AI visibility (MoM, end April to end May)</div>
 <div class="grid">
 <div class="card"><div class="label">ChatGPT</div><div class="val">#1</div><div class="chips"><span class="chip up">27% SoV</span><span class="chip up">MoM cites +126%</span></div></div>
 <div class="card"><div class="label">Google AI Overviews</div><div class="val">#1</div><div class="chips"><span class="chip up">30% SoV</span><span class="chip up">MoM +4pp SoV</span></div></div>
@@ -110,22 +86,14 @@ h1{font-size:24px;font-weight:600;margin:0 0 4px}
 <div class="card"><div class="label">Perplexity</div><div class="val">#3</div><div class="chips"><span class="chip up">20% SoV</span><span class="chip watch">MoM cites -46%</span></div><div class="cnote">Cloudflare block fixed, recovering</div></div>
 <div class="card"><div class="label">SEO visibility (US)</div><div class="val">63%</div><div class="chips"><span class="chip up">MoM +6pp</span></div><div class="cnote">Organic search visibility</div></div>
 </div>
-</div>
-
-<div class="sec">
-<h3>Performance: Email (operational)</h3>
-<div class="subnote">Recipient-level sends and deliverability. MoM vs April, YoY vs May 2025</div>
+<div class="subgroup">Email (operational)</div>
 <div class="grid">
 <div class="card"><div class="label">Open rate</div><div class="val">33.3%</div><div class="chips"><span class="chip na">MoM flat</span><span class="chip up">YoY +12%</span></div></div>
 <div class="card"><div class="label">Click rate</div><div class="val">2.88%</div><div class="chips"><span class="chip watch">MoM -21%</span><span class="chip na">YoY -3%</span></div><div class="cnote">Sends up 135% MoM</div></div>
 <div class="card"><div class="label">Unsubscribe rate</div><div class="val">0.82%</div><div class="chips"><span class="chip bad">MoM +95%</span><span class="chip bad">YoY +105%</span></div><div class="cnote">Tied to May send ramp</div></div>
 <div class="card"><div class="label">Sends</div><div class="val">84,246</div><div class="chips"><span class="chip na">MoM +135%</span><span class="chip na">YoY -47%</span></div><div class="cnote">Ramped for seminars and launches</div></div>
 </div>
-</div>
-
-<div class="sec">
-<h3>Performance: Social</h3>
-<div class="subnote">MoM vs April, YoY vs May 2025</div>
+<div class="subgroup">Social</div>
 <div class="grid">
 <div class="card"><div class="label">Social-influenced leads</div><div class="val">32</div><div class="chips"><span class="chip up">MoM +60%</span><span class="chip up">YoY +357%</span></div></div>
 <div class="card"><div class="label">LinkedIn audience</div><div class="val">11,936</div><div class="chips"><span class="chip up">MoM +1.5%</span><span class="chip up">YoY +55.7%</span></div></div>
@@ -133,10 +101,25 @@ h1{font-size:24px;font-weight:600;margin:0 0 4px}
 <div class="card"><div class="label">Facebook audience</div><div class="val">3,719</div><div class="chips"><span class="chip up">MoM +1.1%</span><span class="chip up">YoY +15.5%</span></div></div>
 </div>
 </div>
+<div class="block">
+<div class="blocklabel">Project progress</div>
+<div class="perfnote">Performance runs as ongoing optimization rather than fixed-scope projects: Reddit and listicle citation building, Perplexity recovery monitoring after the Cloudflare fix, and the FileCabinet and Meta engagement campaigns launching in June.</div>
+</div>
+</div>
 
-<div class="sec">
-<h3>Paid campaigns</h3>
-<div class="subnote">Created by Product Marketing, implemented and reported by Performance. Actuals as of June 2, several still filling. Not MoM or YoY</div>
+<div class="team">
+<div class="teamname">Product Marketing</div>
+<div class="teamnote">Paid campaigns were built by PMM and are reported by Performance. Paid actuals as of June 2, several still filling</div>
+<div class="block">
+<div class="blocklabel">Key metrics</div>
+<div class="subgroup">Product Marketing owned</div>
+<div class="grid">
+<div class="card"><div class="label">Nurture chain Open to SQL</div><div class="val">1.6%</div><div class="chips"><span class="chip up">vs Jan +167%</span></div><div class="cnote">New nurture chain</div></div>
+<div class="card"><div class="label">Homepage product tour</div><div class="val">7 customers</div><div class="chips"><span class="chip up">35 leads</span><span class="chip up">20% conv</span></div><div class="cnote">Passive homepage asset</div></div>
+<div class="card"><div class="label">Webinar registrants</div><div class="val">957</div><div class="chips"><span class="chip up">+28% over min</span></div><div class="cnote">Target 750 to 1,000, in band</div></div>
+<div class="card"><div class="label">Sales enablement build</div><div class="val">6 / 11</div><div class="chips"><span class="chip up">55% done</span></div><div class="cnote">Confident Choice toolkit</div></div>
+</div>
+<div class="subgroup">Paid campaigns</div>
 <div class="grid">
 <div class="card"><div class="label">All paid (total)</div><div class="val">92 SQL</div><div class="chips"><span class="chip up">240 leads</span><span class="chip up">$25.1K ARR</span></div><div class="cnote">$22.5K spend, $571K pipeline, 4 customers</div></div>
 <div class="card"><div class="label">Search ads</div><div class="val">13 SQL</div><div class="chips"><span class="chip up">4 customers</span><span class="chip up">$7,700 ARR</span></div><div class="cnote">$5,837 spend, CPL 1.8x plan</div></div>
@@ -147,25 +130,112 @@ h1{font-size:24px;font-weight:600;margin:0 0 4px}
 <div class="card"><div class="label">CCH Axcess competitor</div><div class="val">5 SQL</div><div class="chips"><span class="chip na">10 leads</span><span class="chip na">$800 ARR</span></div><div class="cnote">$548 of $5K plan, just launched, 38% ICP</div></div>
 </div>
 </div>
+<div class="block">
+<div class="blocklabel">Project progress</div>
+<div class="subgroup" style="color:var(--color-text-tertiary);font-size:12px">Approximate, from PMM milestone trackers</div>
+<div class="proj"><div class="projhead"><span class="projname">Kiosk Mode</span><span class="projmeta">Launched May 26 &middot; 100%</span></div><div class="track"><div class="fill" style="width:100%;background:#3b6d11"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">FileCabinet migration relaunch</span><span class="projmeta">In review &middot; 85%</span></div><div class="track"><div class="fill" style="width:85%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">TaxDome Payments launch</span><span class="projmeta">Final prep &middot; 75%</span></div><div class="track"><div class="fill" style="width:75%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Client testimonial video</span><span class="projmeta">In progress &middot; 50%</span></div><div class="track"><div class="fill" style="width:50%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Juno business returns</span><span class="projmeta">Wave 2 live &middot; 40%</span></div><div class="track"><div class="fill" style="width:40%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Client app trial promo</span><span class="projmeta">In progress &middot; 25%</span></div><div class="track"><div class="fill" style="width:25%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Summer Update release and webinar</span><span class="projmeta">In prep &middot; 20%</span></div><div class="track"><div class="fill" style="width:20%;background:#378add"></div></div></div>
+</div>
+</div>
 
-<div class="sec">
-<h3>Product Marketing</h3>
-<div class="subnote">PMM-owned results. The campaigns it built appear under Paid campaigns. Not MoM or YoY</div>
+<div class="team">
+<div class="teamname">Website</div>
+<div class="teamnote">US only. YoY vs May 2025. MoM omitted because April was not US-split and tax season inflates April</div>
+<div class="block">
+<div class="blocklabel">Key metrics</div>
 <div class="grid">
-<div class="card"><div class="label">Nurture chain Open to SQL</div><div class="val">1.6%</div><div class="chips"><span class="chip up">vs Jan +167%</span></div><div class="cnote">New nurture chain</div></div>
-<div class="card"><div class="label">Homepage product tour</div><div class="val">7 customers</div><div class="chips"><span class="chip up">35 leads</span><span class="chip up">20% conv</span></div><div class="cnote">Passive homepage asset</div></div>
-<div class="card"><div class="label">Webinar registrants</div><div class="val">957</div><div class="chips"><span class="chip up">+28% over min</span></div><div class="cnote">Target 750 to 1,000, in band</div></div>
-<div class="card"><div class="label">Sales enablement build</div><div class="val">6 / 11</div><div class="chips"><span class="chip up">55% done</span></div><div class="cnote">Confident Choice toolkit</div></div>
+<div class="card"><div class="label">Demos</div><div class="val">364</div><div class="chips"><span class="chip up">YoY +8.7%</span></div></div>
+<div class="card"><div class="label">Leads</div><div class="val">1,028</div><div class="chips"><span class="chip na">YoY -5.2%</span></div><div class="cnote">May '25 had a campaign push</div></div>
+<div class="card"><div class="label">New users</div><div class="val">36,555</div><div class="chips"><span class="chip up">YoY +11.1%</span></div></div>
+<div class="card"><div class="label">Returning users</div><div class="val">17,840</div><div class="chips"><span class="chip watch">YoY -11.1%</span></div></div>
+<div class="card"><div class="label">Avg session</div><div class="val">3:09</div><div class="chips"><span class="chip up">YoY +10.5%</span></div></div>
+<div class="card"><div class="label">Pricing page CR to demo</div><div class="val">3.18%</div><div class="chips"><span class="chip up">YoY +167%</span></div></div>
+</div>
+</div>
+<div class="block">
+<div class="blocklabel">Project progress</div>
+<div class="proj"><div class="projhead"><span class="projname">Firm Directory (Finder)</span><span class="projmeta">Launched &middot; 100%</span></div><div class="track"><div class="fill" style="width:100%;background:#3b6d11"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Client App Trial page</span><span class="projmeta">Launched &middot; 100%</span></div><div class="track"><div class="fill" style="width:100%;background:#3b6d11"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Terms pages migration (200+)</span><span class="projmeta">Done &middot; 100%</span></div><div class="track"><div class="fill" style="width:100%;background:#3b6d11"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Client experience page</span><span class="projmeta">In review &middot; 90%</span></div><div class="track"><div class="fill" style="width:90%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Gift page</span><span class="projmeta">In progress &middot; 75%</span></div><div class="track"><div class="fill" style="width:75%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">SEO company info page</span><span class="projmeta">In dev &middot; 70%</span></div><div class="track"><div class="fill" style="width:70%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Spring Update (customers) page</span><span class="projmeta">In design &middot; 60%</span></div><div class="track"><div class="fill" style="width:60%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Glossary redesign</span><span class="projmeta">In progress &middot; 20%</span></div><div class="track"><div class="fill" style="width:20%;background:#378add"></div></div></div>
 </div>
 </div>
 
-<div class="sec">
-<h3>Content</h3>
-<div class="subnote">Email campaign quality, per-campaign averages of content emails. MoM vs April, YoY vs May 2025. Distinct from Performance operational sends</div>
+<div class="team">
+<div class="teamname">Community</div>
+<div class="teamnote">MoM vs April, YoY vs May 2025</div>
+<div class="block">
+<div class="blocklabel">Key metrics</div>
+<div class="grid">
+<div class="card"><div class="label">Total members</div><div class="val">9,095</div><div class="chips"><span class="chip up">MoM +7.6%</span><span class="chip up">YoY +140.7%</span></div></div>
+<div class="card"><div class="label">Monthly active users</div><div class="val">2,781</div><div class="chips"><span class="chip up">MoM +36.9%</span><span class="chip up">YoY +17.3%</span></div></div>
+<div class="card"><div class="label">MAU rate</div><div class="val">31%</div><div class="chips"><span class="chip up">MoM +29.2%</span><span class="chip na">YoY -50.8%</span></div><div class="cnote">YoY drop is growth dilution</div></div>
+<div class="card"><div class="label">Member contribution</div><div class="val">80%</div><div class="chips"><span class="chip up">MoM +3.9%</span><span class="chip up">YoY +9.6%</span></div></div>
+<div class="card"><div class="label">Comments per post</div><div class="val">6</div><div class="chips"><span class="chip up">MoM +20.0%</span><span class="chip na">YoY flat</span></div></div>
+<div class="card"><div class="label">Total posts</div><div class="val">225</div><div class="chips"><span class="chip up">MoM +3.7%</span><span class="chip na">YoY -17.9%</span></div></div>
+<div class="card"><div class="label">New members</div><div class="val">643</div><div class="chips"><span class="chip up">MoM +162.4%</span><span class="chip na">YoY -25.2%</span></div><div class="cnote">Smaller base in '25</div></div>
+</div>
+</div>
+<div class="block">
+<div class="blocklabel">Project progress</div>
+<div class="proj"><div class="projhead"><span class="projname">Community Button</span><span class="projmeta">Launched &middot; 100%</span></div><div class="track"><div class="fill" style="width:100%;background:#3b6d11"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Community Office Hours</span><span class="projmeta">Launched, running &middot; 100%</span></div><div class="track"><div class="fill" style="width:100%;background:#3b6d11"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Community growth (annual goal)</span><span class="projmeta">On track &middot; 70%</span></div><div class="track"><div class="fill" style="width:70%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Ambassador Program</span><span class="projmeta">10 onboarded &middot; 25%</span></div><div class="track"><div class="fill" style="width:25%;background:#378add"></div></div></div>
+</div>
+</div>
+
+<div class="team">
+<div class="teamname">Partnerships</div>
+<div class="teamnote">MoM vs April. YoY not tracked for this team</div>
+<div class="block">
+<div class="blocklabel">Key metrics</div>
+<div class="grid">
+<div class="card"><div class="label">New customers</div><div class="val">10</div><div class="chips"><span class="chip up">MoM +233%</span></div></div>
+<div class="card"><div class="label">New ARR</div><div class="val">$13,200</div><div class="chips"><span class="chip up">MoM +371%</span></div></div>
+<div class="card"><div class="label">Avg deal value</div><div class="val">$1,320</div><div class="chips"><span class="chip up">MoM +41%</span></div></div>
+<div class="card"><div class="label">New leads</div><div class="val">161</div><div class="chips"><span class="chip up">MoM +496%</span></div></div>
+<div class="card"><div class="label">Events completed</div><div class="val">7</div><div class="chips"><span class="chip up">MoM +600%</span></div></div>
+<div class="card"><div class="label">SQLs</div><div class="val">45</div><div class="chips"><span class="chip up">MoM +45%</span></div></div>
+</div>
+</div>
+<div class="block">
+<div class="blocklabel">Project progress</div>
+<div class="proj"><div class="projhead"><span class="projname">Strategic Plan v2</span><span class="projmeta">Pending approval &middot; 90%</span></div><div class="track"><div class="fill" style="width:90%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Q2 Event Calendar</span><span class="projmeta">In progress &middot; 70%</span></div><div class="track"><div class="fill" style="width:70%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Partner nurturing campaigns</span><span class="projmeta">In progress &middot; 70%</span></div><div class="track"><div class="fill" style="width:70%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Partnership agreements</span><span class="projmeta">In progress &middot; 70%</span></div><div class="track"><div class="fill" style="width:70%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Co-marketing activities</span><span class="projmeta">In progress &middot; 30%</span></div><div class="track"><div class="fill" style="width:30%;background:#378add"></div></div></div>
+</div>
+</div>
+
+<div class="team">
+<div class="teamname">Content</div>
+<div class="teamnote">Email campaign quality, per-campaign averages. Distinct from Performance operational sends. MoM vs April, YoY vs May 2025</div>
+<div class="block">
+<div class="blocklabel">Key metrics</div>
 <div class="grid">
 <div class="card"><div class="label">Avg open rate</div><div class="val">36.5%</div><div class="chips"><span class="chip up">MoM +30%</span><span class="chip up">YoY +2.1pp</span></div></div>
 <div class="card"><div class="label">Avg click rate</div><div class="val">12.2%</div><div class="chips"><span class="chip up">MoM +150%</span><span class="chip up">YoY +6.7pp</span></div><div class="cnote">Lifted by high-CTR seminar emails</div></div>
 <div class="card"><div class="label">Email campaigns sent</div><div class="val">26</div><div class="chips"><span class="chip up">YoY +189%</span></div><div class="cnote">9 in May 2025</div></div>
+</div>
+</div>
+<div class="block">
+<div class="blocklabel">Project progress</div>
+<div class="proj"><div class="projhead"><span class="projname">Q2 Accounting Industry Index</span><span class="projmeta">In progress &middot; 40%</span></div><div class="track"><div class="fill" style="width:40%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">Foundation Group case study</span><span class="projmeta">In progress &middot; 20%</span></div><div class="track"><div class="fill" style="width:20%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">AI opportunities build</span><span class="projmeta">In progress &middot; 20%</span></div><div class="track"><div class="fill" style="width:20%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">TaxDome in 1 minute video</span><span class="projmeta">In progress &middot; 20%</span></div><div class="track"><div class="fill" style="width:20%;background:#378add"></div></div></div>
+<div class="proj"><div class="projhead"><span class="projname">CE industry report</span><span class="projmeta">In progress &middot; 10%</span></div><div class="track"><div class="fill" style="width:10%;background:#378add"></div></div></div>
 </div>
 </div>
 
