@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marketing Funnel Performance · May 2026 · US &amp; CA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F5F0;
+    --card:#FFFFFF;
+    --ink:#15130F;
+    --ink-soft:#57534B;
+    --ink-faint:#8A8578;
+    --line:#E4DFD5;
+    --line-strong:#D6D0C4;
+    --accent:#4B33C7;
+    --accent-soft:#ECE8FB;
+    --up:#2F7D52;
+    --up-soft:#E4F0E9;
+    --down:#B4402F;
+    --down-soft:#F4E5E1;
+    --track:#EFEBE2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    padding:40px 24px 56px;
+  }
+  .wrap{max-width:980px;margin:0 auto;}
+  .num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;}
+
+  /* Masthead */
+  .eyebrow{
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin-bottom:14px;
+  }
+  .masthead{border-bottom:1px solid var(--line-strong);padding-bottom:22px;margin-bottom:30px;}
+  h1{
+    font-family:"Fraunces",Georgia,serif;font-weight:600;
+    font-size:clamp(30px,5vw,46px);line-height:1.04;letter-spacing:-.01em;
+    margin-bottom:10px;
+  }
+  .sub{font-size:15px;color:var(--ink-soft);font-weight:500;}
+  .sub .dot{color:var(--ink-faint);margin:0 8px;}
+
+  /* Stat cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:34px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:20px 20px 18px;box-shadow:0 1px 2px rgba(20,16,10,.03);
+    display:flex;flex-direction:column;min-height:158px;
+  }
+  .card .label{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;}
+  .card .big{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:40px;line-height:1;margin:14px 0 4px;}
+  .card .big small{font-size:18px;color:var(--ink-soft);font-weight:500;}
+  .card .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:12px;}
+  .pill{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;padding:3px 8px;border-radius:6px;letter-spacing:.01em;}
+  .pill.up{background:var(--up-soft);color:var(--up);}
+  .pill.down{background:var(--down-soft);color:var(--down);}
+  .pill.plan{background:var(--accent-soft);color:var(--accent);}
+  .card .note{font-size:12.5px;color:var(--ink-soft);margin-top:10px;line-height:1.35;}
+
+  /* Table */
+  .panel-title{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:19px;margin-bottom:14px;letter-spacing:-.01em;}
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card);}
+  table{border-collapse:collapse;width:100%;min-width:680px;}
+  thead th{
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);
+    font-weight:600;text-align:right;padding:15px 16px 12px;border-bottom:1px solid var(--line-strong);
+    white-space:nowrap;
+  }
+  thead th.l{text-align:left;}
+  tbody td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:right;font-size:14px;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr.acv td{background:#FBFAF6;}
+  .stage{text-align:left;font-weight:600;font-size:14.5px;color:var(--ink);white-space:nowrap;}
+  .stage span{display:block;font-weight:400;font-size:11.5px;color:var(--ink-faint);letter-spacing:.02em;}
+  td.plan-orig{color:var(--ink-faint);}
+  td.plan-v3{color:var(--ink-soft);}
+  td.actual{font-weight:600;color:var(--ink);}
+
+  /* vs plan bar cell */
+  .vs{min-width:150px;}
+  .bar{display:flex;align-items:center;gap:10px;justify-content:flex-end;}
+  .track{position:relative;flex:1;max-width:96px;height:8px;background:var(--track);border-radius:99px;overflow:hidden;}
+  .fill{position:absolute;left:0;top:0;height:100%;border-radius:99px;}
+  .fill.below{background:var(--accent);}
+  .fill.at{background:var(--up);}
+  .vs .pct{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:13px;width:42px;text-align:right;}
+  .vs .pct.below{color:var(--accent);}
+  .vs .pct.at{color:var(--up);}
+
+  .delta{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:13px;white-space:nowrap;}
+  .delta.up{color:var(--up);}
+  .delta.down{color:var(--down);}
+  .delta.flat{color:var(--ink-faint);}
+  .delta .arw{font-size:11px;}
+  .star{color:var(--ink-faint);font-size:11px;vertical-align:super;}
+
+  /* Read */
+  .read{margin-top:34px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:24px 26px;}
+  .read h2{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:18px;margin-bottom:14px;}
+  .read p{font-size:14.5px;color:var(--ink-soft);margin-bottom:12px;}
+  .read p:last-child{margin-bottom:0;}
+  .read strong{color:var(--ink);font-weight:600;}
+
+  /* Footer */
+  footer{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-faint);line-height:1.6;}
+  footer .conf{color:var(--down);font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:10.5px;}
+
+  @media(max-width:720px){
+    .cards{grid-template-columns:1fr;}
+    body{padding:28px 16px 44px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">TaxDome Marketing</div>
+    <h1>Marketing Funnel Performance</h1>
+    <div class="sub">May 2026 <span class="dot">/</span> United States &amp; Canada <span class="dot">/</span> against Original Plan and Marketing Funnel Plan V3</div>
+  </header>
+
+  <div class="panel-title">Funnel against plan</div>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="l">Stage</th>
+          <th>Original plan</th>
+          <th>Plan V3</th>
+          <th>Actual</th>
+          <th>vs Plan V3</th>
+          <th>MoM</th>
+          <th>YoY</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="stage">Leads</td>
+          <td class="plan-orig num">2,427</td>
+          <td class="plan-v3 num">1,311</td>
+          <td class="actual num">861</td>
+          <td class="vs"><div class="bar"><div class="track"><div class="fill below" style="width:66%"></div></div><div class="pct below">66%</div></div></td>
+          <td><span class="delta down"><span class="arw">&#9660;</span> 19%</span></td>
+          <td><span class="delta up"><span class="arw">&#9650;</span> 17%</span></td>
+        </tr>
+        <tr>
+          <td class="stage">MQL-low</td>
+          <td class="plan-orig num">1,456</td>
+          <td class="plan-v3 num">969</td>
+          <td class="actual num">893</td>
+          <td class="vs"><div class="bar"><div class="track"><div class="fill below" style="width:92%"></div></div><div class="pct below">92%</div></div></td>
+          <td><span class="delta up"><span class="arw">&#9650;</span> 15%</span></td>
+          <td><span class="delta up"><span class="arw">&#9650;</span> 182%<span class="star">&#9733;</span></span></td>
+        </tr>
+        <tr>
+          <td class="stage">MQL</td>
+          <td class="plan-orig num">1,165</td>
+          <td class="plan-v3 num">751</td>
+          <td class="actual num">792</td>
+          <td class="vs"><div class="bar"><div class="track"><div class="fill at" style="width:100%"></div></div><div class="pct at">105%</div></div></td>
+          <td><span class="delta up"><span class="arw">&#9650;</span> 21%</span></td>
+          <td><span class="delta up"><span class="arw">&#9650;</span> 47%</span></td>
+        </tr>
+        <tr>
+          <td class="stage">SQL <span>Demos booked</span></td>
+          <td class="plan-orig num">583</td>
+          <td class="plan-v3 num">454</td>
+          <td class="actual num">538</td>
+          <td class="vs"><div class="bar"><div class="track"><div class="fill at" style="width:100%"></div></div><div class="pct at">119%</div></div></td>
+          <td><span class="delta up"><span class="arw">&#9650;</span> 35%</span></td>
+          <td><span class="delta up"><span class="arw">&#9650;</span> 28%</span></td>
+        </tr>
+        <tr class="acv">
+          <td class="stage">ACV <span>Blended new logo</span></td>
+          <td class="plan-orig num">$2,620</td>
+          <td class="plan-v3 num">$2,960</td>
+          <td class="actual num">$2,535</td>
+          <td class="vs"><div class="bar"><div class="track"><div class="fill below" style="width:86%"></div></div><div class="pct below">86%</div></div></td>
+          <td><span class="delta up"><span class="arw">&#9650;</span> 24%</span></td>
+          <td><span class="delta flat">n/a</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section class="read">
+    <h2>What the data says</h2>
+    <p>The gap to plan is widest at the top and closes as you move down. <strong>Conversion is running ahead of plan even though lead volume sits below it</strong>, so the constraint is intake, not the funnel itself.</p>
+    <p>SQL is the strongest signal. At <strong>119 percent of Plan V3 and accelerating on both a monthly and annual basis</strong>, it points to customer output above target once the normal close lag clears.</p>
+    <p>ACV recovered 24 percent month over month off the tax season low but remains below the prior baseline. <strong>Volume is ahead of plan, value is behind it</strong>, so deal value and mix are the lever to manage next.</p>
+  </section>
+
+  <footer>
+    <span class="conf">Internal &middot; Confidential</span><br>
+    Basis: company level, US and Canada. Funnel actuals reconcile to the US and CA reporting dashboards. Year over year is computed on a channel independent basis because the channel field is not backfilled for 2025.<br>
+    <span class="star">&#9733;</span> MQL-low year over year is directional only. The low intent stage was still being adopted through 2025, so the comparison overstates true growth.<br>
+    Prepared June 2026.
+  </footer>
+
+</div>
+</body>
+</html>
