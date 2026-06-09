@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaxDome Paid Media Dashboard</title>
+<style>
+  :root{
+    --bg:#0d1117;
+    --panel:#161b22;
+    --panel-2:#1c2330;
+    --border:#232a33;
+    --text:#e6edf3;
+    --muted:#8b949e;
+    --faint:#5c6571;
+    --meta:#4c8dff;
+    --google:#f2a93b;
+    --linkedin:#2bb5a8;
+    --good:#3fb950;
+    --warn:#d29922;
+    --bad:#f85149;
+    --track:#222c3a;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-feature-settings:"tnum" 1;
+    line-height:1.45;
+    padding:32px 20px 64px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;}
+  .eyebrow{
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;margin:0 0 8px;
+  }
+  h1{font-size:30px;font-weight:700;margin:0 0 6px;letter-spacing:-.01em;}
+  .sub{color:var(--muted);font-size:14px;margin:0;}
+  .scope{
+    display:inline-block;margin-top:14px;font-size:12px;color:var(--muted);
+    border:1px solid var(--border);border-radius:999px;padding:4px 12px;
+  }
+  section{margin-top:34px;}
+  .label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;margin:0 0 14px;}
+
+  /* KPI cards */
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 16px;}
+  .kpi .v{font-size:26px;font-weight:700;letter-spacing:-.02em;}
+  .kpi .k{font-size:12px;color:var(--muted);margin-top:6px;}
+  .kpi .note{font-size:11px;color:var(--faint);margin-top:2px;}
+
+  /* channel cards */
+  .channels{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .ch{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px;}
+  .ch h3{margin:0;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .ch .spend{font-size:24px;font-weight:700;margin:12px 0 2px;}
+  .ch .share{font-size:12px;color:var(--muted);}
+  .bar{height:6px;border-radius:4px;background:var(--track);margin:10px 0 14px;overflow:hidden;}
+  .bar > span{display:block;height:100%;border-radius:4px;}
+  .stat-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-top:1px solid var(--border);}
+  .stat-row:first-of-type{border-top:none;}
+  .stat-row .sv{font-weight:600;}
+  .pill{font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;font-weight:600;}
+  .pill.live{background:rgba(63,185,80,.14);color:var(--good);}
+  .pill.paused{background:rgba(210,153,34,.16);color:var(--warn);}
+
+  /* table */
+  .tbl-wrap{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{padding:12px 14px;text-align:right;white-space:nowrap;}
+  th:first-child,td:first-child{text-align:left;white-space:normal;}
+  thead th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);background:var(--panel-2);}
+  tbody tr{border-bottom:1px solid var(--border);}
+  tbody tr:last-child{border-bottom:none;}
+  tbody tr:hover{background:var(--panel-2);}
+  .camp{font-weight:600;}
+  .chan-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);margin-top:3px;}
+  tfoot td{font-weight:700;border-top:2px solid var(--border);background:var(--panel-2);}
+  .tnum{font-variant-numeric:tabular-nums;}
+  .good{color:var(--good);} .warn{color:var(--warn);} .bad{color:var(--bad);}
+
+  /* cpl chart */
+  .cpl-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;}
+  .cpl-row{display:grid;grid-template-columns:190px 1fr 64px;align-items:center;gap:12px;margin:9px 0;}
+  .cpl-name{font-size:12.5px;color:var(--text);}
+  .cpl-name small{color:var(--faint);}
+  .cpl-track{height:18px;background:var(--track);border-radius:5px;overflow:hidden;}
+  .cpl-fill{height:100%;border-radius:5px;}
+  .cpl-val{font-size:12.5px;font-weight:600;text-align:right;}
+  .cpl-legend{font-size:12px;color:var(--muted);margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;}
+  .leg{display:inline-flex;align-items:center;gap:7px;}
+  .leg .swatch{width:11px;height:11px;border-radius:3px;display:inline-block;}
+
+  /* callouts */
+  .calls{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .call{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--faint);border-radius:10px;padding:14px 16px;}
+  .call.win{border-left-color:var(--good);}
+  .call.watch{border-left-color:var(--warn);}
+  .call.info{border-left-color:var(--meta);}
+  .call h4{margin:0 0 4px;font-size:13px;font-weight:700;}
+  .call p{margin:0;font-size:13px;color:var(--muted);}
+
+  .notes{margin-top:30px;font-size:12px;color:var(--faint);}
+  .notes p{margin:6px 0;}
+  .notes b{color:var(--muted);font-weight:600;}
+
+  @media (max-width:880px){
+    .kpis{grid-template-columns:repeat(2,1fr);}
+    .channels{grid-template-columns:1fr;}
+    .calls{grid-template-columns:1fr;}
+    .cpl-row{grid-template-columns:130px 1fr 56px;}
+    .tbl-wrap{overflow-x:auto;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Paid Media Performance</p>
+    <h1>TaxDome Paid Media</h1>
+    <p class="sub">June 1 to 7, 2026, month to date. Eight active campaigns across three channels.</p>
+    <span class="scope">US and Canada only. International markets excluded.</span>
+  </header>
+
+  <section>
+    <p class="label">Totals</p>
+    <div class="kpis">
+      <div class="kpi"><div class="v">$8,954.87</div><div class="k">Total spend</div><div class="note">across 3 channels</div></div>
+      <div class="kpi"><div class="v">201,854</div><div class="k">Impressions</div><div class="note">&nbsp;</div></div>
+      <div class="kpi"><div class="v">3,274</div><div class="k">Clicks</div><div class="note">1.62% blended CTR</div></div>
+      <div class="kpi"><div class="v">111</div><div class="k">Results</div><div class="note">leads and conversions</div></div>
+      <div class="kpi"><div class="v">$78.09</div><div class="k">Blended CPL</div><div class="note">lead-gen channels</div></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">By channel</p>
+    <div class="channels">
+
+      <div class="ch">
+        <h3><span class="dot" style="background:var(--meta)"></span>Meta</h3>
+        <div class="spend">$7,145.84</div>
+        <div class="share">79.8% of spend &middot; 6 campaigns</div>
+        <div class="bar"><span style="width:79.8%;background:var(--meta)"></span></div>
+        <div class="stat-row"><span>Impressions</span><span class="sv">195,167</span></div>
+        <div class="stat-row"><span>Clicks</span><span class="sv">3,095</span></div>
+        <div class="stat-row"><span>CTR</span><span class="sv">1.59%</span></div>
+        <div class="stat-row"><span>Leads</span><span class="sv">92</span></div>
+        <div class="stat-row"><span>CPL</span><span class="sv">$77.67</span></div>
+        <div class="stat-row"><span>Status</span><span class="pill live">Live</span></div>
+      </div>
+
+      <div class="ch">
+        <h3><span class="dot" style="background:var(--google)"></span>Google Ads</h3>
+        <div class="spend">$1,522.64</div>
+        <div class="share">17.0% of spend &middot; 1 campaign</div>
+        <div class="bar"><span style="width:17%;background:var(--google)"></span></div>
+        <div class="stat-row"><span>Impressions</span><span class="sv">3,588</span></div>
+        <div class="stat-row"><span>Clicks</span><span class="sv">165</span></div>
+        <div class="stat-row"><span>CTR</span><span class="sv">4.60%</span></div>
+        <div class="stat-row"><span>Conversions</span><span class="sv">19</span></div>
+        <div class="stat-row"><span>CPL</span><span class="sv">$80.14</span></div>
+        <div class="stat-row"><span>Status</span><span class="pill live">Live</span></div>
+      </div>
+
+      <div class="ch">
+        <h3><span class="dot" style="background:var(--linkedin)"></span>LinkedIn</h3>
+        <div class="spend">$286.39</div>
+        <div class="share">3.2% of spend &middot; 1 campaign</div>
+        <div class="bar"><span style="width:3.2%;background:var(--linkedin)"></span></div>
+        <div class="stat-row"><span>Impressions</span><span class="sv">3,099</span></div>
+        <div class="stat-row"><span>Clicks</span><span class="sv">14</span></div>
+        <div class="stat-row"><span>CTR</span><span class="sv">0.45%</span></div>
+        <div class="stat-row"><span>Objective</span><span class="sv">Brand awareness</span></div>
+        <div class="stat-row"><span>CPL</span><span class="sv">n/a</span></div>
+        <div class="stat-row"><span>Status</span><span class="pill paused">Paused</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Campaigns</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th>Spend</th>
+            <th>Impr.</th>
+            <th>Clicks</th>
+            <th>CTR</th>
+            <th>CPC</th>
+            <th>Results</th>
+            <th>CPL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="camp">Accounting Industry Index</div><div class="chan-tag"><span class="dot" style="background:var(--meta)"></span>Meta</div></td>
+            <td class="tnum">$2,039.69</td><td class="tnum">38,891</td><td class="tnum">286</td><td class="tnum">0.74%</td><td class="tnum">$7.13</td><td class="tnum">25</td><td class="tnum">$81.59</td>
+          </tr>
+          <tr>
+            <td><div class="camp">Competitor search</div><div class="chan-tag"><span class="dot" style="background:var(--google)"></span>Google &middot; conquesting</div></td>
+            <td class="tnum">$1,522.64</td><td class="tnum">3,588</td><td class="tnum">165</td><td class="tnum">4.60%</td><td class="tnum">$9.23</td><td class="tnum">19</td><td class="tnum">$80.14</td>
+          </tr>
+          <tr>
+            <td><div class="camp">Delivery</div><div class="chan-tag"><span class="dot" style="background:var(--meta)"></span>Meta</div></td>
+            <td class="tnum">$1,225.07</td><td class="tnum">19,791</td><td class="tnum">537</td><td class="tnum">2.71%</td><td class="tnum">$2.28</td><td class="tnum">23</td><td class="tnum good">$53.26</td>
+          </tr>
+          <tr>
+            <td><div class="camp">FileCabinet</div><div class="chan-tag"><span class="dot" style="background:var(--meta)"></span>Meta</div></td>
+            <td class="tnum">$1,174.80</td><td class="tnum">44,058</td><td class="tnum">860</td><td class="tnum">1.95%</td><td class="tnum">$1.37</td><td class="tnum">12</td><td class="tnum">$97.90</td>
+          </tr>
+          <tr>
+            <td><div class="camp">Key Drivers</div><div class="chan-tag"><span class="dot" style="background:var(--meta)"></span>Meta</div></td>
+            <td class="tnum">$1,153.92</td><td class="tnum">32,563</td><td class="tnum">247</td><td class="tnum">0.76%</td><td class="tnum">$4.67</td><td class="tnum">17</td><td class="tnum">$67.88</td>
+          </tr>
+          <tr>
+            <td><div class="camp">CCH Axcess</div><div class="chan-tag"><span class="dot" style="background:var(--meta)"></span>Meta</div></td>
+            <td class="tnum">$1,038.43</td><td class="tnum">41,440</td><td class="tnum">956</td><td class="tnum">2.31%</td><td class="tnum">$1.09</td><td class="tnum">9</td><td class="tnum bad">$115.38</td>
+          </tr>
+          <tr>
+            <td><div class="camp">Onvio</div><div class="chan-tag"><span class="dot" style="background:var(--meta)"></span>Meta</div></td>
+            <td class="tnum">$513.93</td><td class="tnum">18,424</td><td class="tnum">209</td><td class="tnum">1.13%</td><td class="tnum">$2.46</td><td class="tnum">6</td><td class="tnum">$85.66</td>
+          </tr>
+          <tr>
+            <td><div class="camp">LinkedIn Social video</div><div class="chan-tag"><span class="dot" style="background:var(--linkedin)"></span>LinkedIn &middot; brand, paused</div></td>
+            <td class="tnum">$286.39</td><td class="tnum">3,099</td><td class="tnum">14</td><td class="tnum">0.45%</td><td class="tnum">$20.46</td><td class="tnum">n/a</td><td class="tnum">n/a</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total</td>
+            <td class="tnum">$8,954.87</td><td class="tnum">201,854</td><td class="tnum">3,274</td><td class="tnum">1.62%</td><td class="tnum">$2.74</td><td class="tnum">111</td><td class="tnum">$78.09</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Cost per lead by campaign</p>
+    <div class="cpl-card">
+      <div class="cpl-row">
+        <div class="cpl-name">Delivery <small>Meta</small></div>
+        <div class="cpl-track"><div class="cpl-fill" style="width:44.4%;background:var(--good)"></div></div>
+        <div class="cpl-val good">$53.26</div>
+      </div>
+      <div class="cpl-row">
+        <div class="cpl-name">Key Drivers <small>Meta</small></div>
+        <div class="cpl-track"><div class="cpl-fill" style="width:56.6%;background:var(--meta)"></div></div>
+        <div class="cpl-val">$67.88</div>
+      </div>
+      <div class="cpl-row">
+        <div class="cpl-name">Competitor search <small>Google</small></div>
+        <div class="cpl-track"><div class="cpl-fill" style="width:66.8%;background:var(--google)"></div></div>
+        <div class="cpl-val">$80.14</div>
+      </div>
+      <div class="cpl-row">
+        <div class="cpl-name">Accounting Index <small>Meta</small></div>
+        <div class="cpl-track"><div class="cpl-fill" style="width:68%;background:var(--meta)"></div></div>
+        <div class="cpl-val">$81.59</div>
+      </div>
+      <div class="cpl-row">
+        <div class="cpl-name">Onvio <small>Meta</small></div>
+        <div class="cpl-track"><div class="cpl-fill" style="width:71.4%;background:var(--meta)"></div></div>
+        <div class="cpl-val">$85.66</div>
+      </div>
+      <div class="cpl-row">
+        <div class="cpl-name">FileCabinet <small>Meta</small></div>
+        <div class="cpl-track"><div class="cpl-fill" style="width:81.6%;background:var(--meta)"></div></div>
+        <div class="cpl-val">$97.90</div>
+      </div>
+      <div class="cpl-row">
+        <div class="cpl-name">CCH Axcess <small>Meta</small></div>
+        <div class="cpl-track"><div class="cpl-fill" style="width:96.2%;background:var(--bad)"></div></div>
+        <div class="cpl-val bad">$115.38</div>
+      </div>
+      <div class="cpl-legend">
+        <span class="leg"><span class="swatch" style="background:var(--good)"></span>Most efficient</span>
+        <span class="leg"><span class="swatch" style="background:var(--bad)"></span>Needs attention</span>
+        <span class="leg">Blended lead-gen CPL: <b style="color:var(--text)">&nbsp;$78.09</b></span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">What stands out</p>
+    <div class="calls">
+      <div class="call win">
+        <h4>Efficiency winner: Delivery</h4>
+        <p>$53.26 per lead at a 2.71% CTR. The strongest cost per lead in the account this week and the clearest candidate to scale.</p>
+      </div>
+      <div class="call watch">
+        <h4>Needs attention: CCH Axcess</h4>
+        <p>956 clicks but only 9 leads, a $115.38 CPL. High click volume with weak conversion points to a landing page or offer leak, not a targeting problem.</p>
+      </div>
+      <div class="call info">
+        <h4>Google is conquesting competitors</h4>
+        <p>The lone Google campaign targets competitor search terms and pulls a 4.60% CTR at a CPL in line with Meta. Room to broaden once tracking is solid.</p>
+      </div>
+      <div class="call">
+        <h4>LinkedIn is brand, and paused</h4>
+        <p>14 clicks on 3,099 impressions is normal for a video brand play, not a lead motion. It is currently paused, so it is not feeding pipeline right now.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="notes">
+    <p><b>Window and scope.</b> June 1 to 7, 2026, month to date. US and Canada only. International markets are excluded.</p>
+    <p><b>Result definitions differ by channel.</b> Meta results are platform pixel leads. Google results are conversions. LinkedIn is a brand awareness objective with no lead goal, so it is excluded from results and CPL.</p>
+    <p><b>Blended CPL</b> is calculated across the lead-gen channels only, Meta and Google. It excludes LinkedIn spend.</p>
+    <p><b>Source.</b> Figures are platform reported. HubSpot currently captures about 63% of paid contacts, with an attribution fix in progress, so platform totals run ahead of what is credited in the CRM.</p>
+  </div>
+
+</div>
+</body>
+</html>
