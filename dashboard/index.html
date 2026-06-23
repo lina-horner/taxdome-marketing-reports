@@ -513,10 +513,10 @@
         </thead>
         <tbody>
           <tr><td>Leads</td>     <td style="color:var(--muted);">~1,100</td> <td>892</td>  <td>4,781</td> <td><b style="color:var(--danger);">18.7%</b></td> <td><b style="color:var(--danger);">26% of pace</b></td> <td style="color:var(--muted);">2,948</td></tr>
-          <tr><td>MQLs-low</td>  <td style="color:var(--muted);">-</td>      <td>-</td>    <td>2,869</td> <td><b style="color:var(--muted);">-</b></td>      <td><b style="color:var(--muted);">No data</b></td>     <td style="color:var(--muted);">1,769</td></tr>
+          <tr><td>MQLs-low</td>  <td style="color:var(--muted);">—</td>      <td>—</td>    <td>2,869</td> <td><b style="color:var(--muted);">—</b></td>      <td><b style="color:var(--muted);">No data</b></td>     <td style="color:var(--muted);">1,769</td></tr>
           <tr><td>MQLs</td>      <td style="color:var(--muted);">~1,000</td> <td>891</td>  <td>2,295</td> <td><b style="color:var(--danger);">38.8%</b></td> <td><b style="color:var(--danger);">53% of pace</b></td> <td style="color:var(--muted);">1,415</td></tr>
           <tr><td>SQLs</td>      <td style="color:var(--muted);">~650</td>   <td>413</td>  <td>1,148</td> <td><b style="color:var(--danger);">36.0%</b></td> <td><b style="color:var(--danger);">49% of pace</b></td> <td style="color:var(--muted);">708</td></tr>
-          <tr><td>Customers</td> <td style="color:var(--muted);">-</td>      <td style="color:var(--muted);">-</td> <td>459</td> <td style="color:var(--muted);">-</td> <td style="color:var(--muted);">-</td> <td style="color:var(--muted);">283</td></tr>
+          <tr><td>Customers</td> <td style="color:var(--muted);">—</td>      <td style="color:var(--muted);">—</td> <td>459</td> <td style="color:var(--muted);">—</td> <td style="color:var(--muted);">—</td> <td style="color:var(--muted);">283</td></tr>
         </tbody>
       </table>
       <div style="font-size: 11.5px; color: var(--muted); font-style: italic; margin-top: 12px; line-height: 1.5;">
@@ -623,12 +623,12 @@
   <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 14px;">Recent Campaign Reports</div>
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
     <a href="../campaigns/linkedin-brand-awareness/2026-W20.html" style="display: block; padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--text); transition: background 0.15s, transform 0.15s;">
-      <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">LinkedIn Brand Awareness — Week 20</div>
-      <div style="font-size: 12px; color: var(--muted);">May 6-12, 2026 · 353K impressions, 292.8K views, 58% ICP match, +119% WoW</div>
+      <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">LinkedIn Brand Awareness &mdash; Week 20</div>
+      <div style="font-size: 12px; color: var(--muted);">May 6-12, 2026 &middot; 353K impressions, 292.8K views, 58% ICP match, +119% WoW</div>
     </a>
     <a href="../campaigns/linkedin-brand-awareness/2026-W19.html" style="display: block; padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--text); transition: background 0.15s, transform 0.15s;">
-      <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">LinkedIn Brand Awareness — Week 19</div>
-      <div style="font-size: 12px; color: var(--muted);">Apr 28 – May 4, 2026 · 161K impressions, 128.9K views, 75% ICP match, +29% WoW</div>
+      <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">LinkedIn Brand Awareness &mdash; Week 19</div>
+      <div style="font-size: 12px; color: var(--muted);">Apr 28 – May 4, 2026 &middot; 161K impressions, 128.9K views, 75% ICP match, +29% WoW</div>
     </a>
   </div>
   <div style="margin-top: 14px; font-size: 12px;">
@@ -639,6 +639,10 @@
 </div>
 
 <script>
+/* =====================================================================
+   TaxDome VP Marketing Dashboard — placeholder data
+   ===================================================================== */
+
 const COLORS = {
   primary: '#4C6EF5',
   success: '#2F9E44',
@@ -665,6 +669,12 @@ function statusColor(cls) {
   }
 }
 
+/* ---------- KPI CARDS ----------
+   status meaning:
+   - live:    real HubSpot data, use green/orange/red based on target
+   - review:  placeholder data; flagged "Under review"
+   - pending: pre-launch or pending denominator decision
+*/
 const kpis = [
   {
     name: 'MARKETING LEADS', value: 184, target: 4781, suffix: '',
@@ -799,39 +809,94 @@ function hexToRgba(hex, alpha) {
   return `rgba(${r},${g},${b},${alpha})`;
 }
 
+/* ---------- CHART 1: Marketing Lead Volume by Week ---------- */
 function renderLeadsChart() {
+  // Live HubSpot data — companies in list 6894 (Total leads: marketing source company new)
+  // where createdate falls in the week, classified by marketing_icp__nonicp_enriched.
+  // 7-day Tue–Mon buckets, most recent week = Apr 21-27. Aligns with RevOps "Total Leads MoM".
   const weeks   = ['W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May','W21 May','W22 May','W23 Jun','W24 Jun','W25 Jun','W26 Jun'];
   const icp     = [  112,    104,     100,      98,      56,     62,      70,       71,       86,       94,      72,      52,      64,      89,      90,      39   ];
   const nonIcp  = [  353,    303,     265,     302,     215,    275,     200,      131,      150,      138,     113,     114,     133,     130,     152,      96   ];
   const noValue = [    0,      0,       0,       3,       1,      0,      35,       36,       50,       33,       0,       0,      45,      56,      24,      49   ];
   const total   = icp.map((v, i) => v + nonIcp[i] + noValue[i]);
   const icpPct  = total.map((t, i) => t > 0 ? Math.round(icp[i] / t * 100) : 0);
-  const goal    = 1195;
+  const goal    = 1195; // June weekly target = 4,781 / 4 (approx)
+
+  // 4-week moving average over total
   const ma = total.map((_, i) => {
     const start = Math.max(0, i - 3);
     const slice = total.slice(start, i + 1);
     return Math.round(slice.reduce((a,b) => a+b, 0) / slice.length);
   });
+
   const traces = [
-    { type: 'bar', name: 'ICP', x: weeks, y: icp, marker: { color: COLORS.primary, line: { width: 0 } }, text: icpPct.map(p => `${p}%`), textposition: 'inside', insidetextanchor: 'middle', textfont: { size: 10, color: '#FFFFFF', family: 'Inter, sans-serif' }, hovertemplate: '<b>%{x}</b><br>ICP: %{y}<extra></extra>' },
-    { type: 'bar', name: 'Non-ICP', x: weeks, y: nonIcp, marker: { color: '#ADB5BD', line: { width: 0 } }, hovertemplate: '<b>%{x}</b><br>Non-ICP: %{y}<extra></extra>' },
-    { type: 'bar', name: 'No Value', x: weeks, y: noValue, marker: { color: '#DEE2E6', line: { width: 0 } }, text: total.map(t => t.toLocaleString()), textposition: 'outside', textfont: { size: 11, color: getComputedStyle(document.body).getPropertyValue('--text'), family: 'Inter, sans-serif' }, hovertemplate: '<b>%{x}</b><br>No Value: %{y}<extra></extra>' },
-    { type: 'scatter', mode: 'lines+markers', name: '4-wk Moving Avg', x: weeks, y: ma, line: { color: COLORS.primary, width: 3, shape: 'spline' }, marker: { size: 6, color: COLORS.primary }, hovertemplate: '<b>%{x}</b><br>4wk MA: %{y}<extra></extra>' }
+    {
+      type: 'bar', name: 'ICP', x: weeks, y: icp,
+      marker: { color: COLORS.primary, line: { width: 0 } },
+      text: icpPct.map(p => `${p}%`), textposition: 'inside', insidetextanchor: 'middle',
+      textfont: { size: 10, color: '#FFFFFF', family: 'Inter, sans-serif' },
+      hovertemplate: '<b>%{x}</b><br>ICP: %{y}<extra></extra>'
+    },
+    {
+      type: 'bar', name: 'Non-ICP', x: weeks, y: nonIcp,
+      marker: { color: '#ADB5BD', line: { width: 0 } },
+      hovertemplate: '<b>%{x}</b><br>Non-ICP: %{y}<extra></extra>'
+    },
+    {
+      type: 'bar', name: 'No Value', x: weeks, y: noValue,
+      marker: { color: '#DEE2E6', line: { width: 0 } },
+      text: total.map(t => t.toLocaleString()), textposition: 'outside',
+      textfont: { size: 11, color: getComputedStyle(document.body).getPropertyValue('--text'), family: 'Inter, sans-serif' },
+      hovertemplate: '<b>%{x}</b><br>No Value: %{y}<extra></extra>'
+    },
+    {
+      type: 'scatter', mode: 'lines+markers', name: '4-wk Moving Avg',
+      x: weeks, y: ma,
+      line: { color: COLORS.primary, width: 3, shape: 'spline' },
+      marker: { size: 6, color: COLORS.primary },
+      hovertemplate: '<b>%{x}</b><br>4wk MA: %{y}<extra></extra>'
+    }
   ];
+
   const layout = {
-    height: 380, margin: { l: 50, r: 20, t: 10, b: 50 },
-    paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    height: 380,
+    margin: { l: 50, r: 20, t: 10, b: 50 },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
     font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') },
-    barmode: 'stack', xaxis: { tickfont: { size: 11 }, showgrid: false },
+    barmode: 'stack',
+    xaxis: { tickfont: { size: 11 }, showgrid: false },
     yaxis: { gridcolor: 'rgba(128,128,128,0.15)', title: { text: 'Marketing Leads', font: { size: 12 } }, range: [0, 560] },
-    shapes: [{ type: 'line', xref: 'paper', x0: 0, x1: 1, y0: goal, y1: goal, line: { color: COLORS.muted, width: 2, dash: 'dash' } }],
-    annotations: [{ xref: 'paper', x: 0.99, y: goal, yshift: 10, text: `<b>June Target: ${goal}/wk</b>`, showarrow: false, xanchor: 'right', font: { size: 11, color: COLORS.muted } }],
-    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center' }, bargap: 0.35
+    shapes: [
+      {
+        type: 'line', xref: 'paper', x0: 0, x1: 1,
+        y0: goal, y1: goal,
+        line: { color: COLORS.muted, width: 2, dash: 'dash' }
+      }
+    ],
+    annotations: [
+      {
+        xref: 'paper', x: 0.99, y: goal, yshift: 10,
+        text: `<b>June Target: ${goal}/wk</b>`,
+        showarrow: false, xanchor: 'right',
+        font: { size: 11, color: COLORS.muted }
+      }
+    ],
+    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center' },
+    bargap: 0.35
   };
+
   Plotly.newPlot('chartLeads', traces, layout, { displayModeBar: false, responsive: true });
 }
 
+/* ---------- CHART 2: Leads by Channel — WoW + YoY ---------- */
 function renderChannelsChart() {
+  // Channel breakdown: companies attributed via leadgen_channel_original2 (W19 Apr 28 - May 4).
+  // Individual channels pulled from list 9736 (US/CA). Total row uses new methodology
+  // (list 6894, createdate). this: W18 2026 (Apr 21-27) · prior: W17 2026 (Apr 14-20)
+  // · yoy: Apr 21-27 2025. Note: leadgen_channel_original2 was barely populated in
+  // 2025 (190 of 200 YoY records have no channel set), so individual-channel YoY
+  // is unreliable and flagged as "no data".
   const channelData = [
     { channel: 'Organic Search', this: 86, prior: 88,  yoy: 0, yoyNoData: true },
     { channel: 'Direct Traffic', this: 49, prior: 105, yoy: 0, yoyNoData: true },
@@ -842,50 +907,140 @@ function renderChannelsChart() {
     { channel: 'Paid Social',    this: 2,  prior: 0,   yoy: 0, yoyNoData: true },
     { channel: 'Referral_other', this: 1,  prior: 2,   yoy: 0, yoyNoData: true }
   ];
+  // Top-line row: list 6894 createdate in the week (new methodology, all markets).
+  // YoY not directly comparable due to methodology change.
   const totalRow = { channel: 'Total Leads', this: 265, prior: 279, yoy: 0, yoyNoData: true, isTotal: true };
+
+  // Sort channels by this week's volume ascending, then append Total at the end
+  // so it renders at the TOP of the horizontal chart.
   channelData.sort((a, b) => a.this - b.this);
   const data = [...channelData, totalRow];
+
   const channels = data.map(d => d.isTotal ? '<b>Total Leads</b>' : d.channel);
   const thisVals = data.map(d => d.this);
   const priorVals = data.map(d => d.prior);
   const yoyVals  = data.map(d => d.yoy);
   const totalIdx = data.length - 1;
-  const fmtPct = (a, b) => { if (b === 0 && a === 0) return '—'; if (b === 0) return '+new'; const pct = Math.round((a - b) / b * 100); return (pct >= 0 ? '+' : '') + pct + '%'; };
-  const pctColor = (a, b) => { if (b === 0 && a === 0) return COLORS.muted; if (b === 0) return COLORS.success; return a >= b ? COLORS.success : COLORS.danger; };
+
+  const fmtPct = (a, b) => {
+    if (b === 0 && a === 0) return '—';
+    if (b === 0) return '+new';
+    const pct = Math.round((a - b) / b * 100);
+    return (pct >= 0 ? '+' : '') + pct + '%';
+  };
+  const pctColor = (a, b) => {
+    if (b === 0 && a === 0) return COLORS.muted;
+    if (b === 0) return COLORS.success;
+    return a >= b ? COLORS.success : COLORS.danger;
+  };
+
+  const thisColor  = '#1864AB';   // dark blue
+  const priorColor = '#74C0FC';   // light blue
+  const yoyColor   = 'rgba(173,181,189,0.55)';
+
   const traces = [
-    { type: 'bar', orientation: 'h', name: 'This week (W20)', x: thisVals, y: channels, marker: { color: '#1864AB', line: { width: 0 } }, hovertemplate: '%{x} leads<extra></extra>' },
-    { type: 'bar', orientation: 'h', name: 'Prior week (W19)', x: priorVals, y: channels, marker: { color: '#74C0FC', line: { width: 0 } }, hovertemplate: '%{x} leads<extra></extra>' },
-    { type: 'bar', orientation: 'h', name: 'Same week 2025', x: yoyVals, y: channels, marker: { color: 'rgba(173,181,189,0.55)', line: { color: '#868E96', width: 1 } }, hovertemplate: '%{x} leads<extra></extra>' }
+    {
+      type: 'bar', orientation: 'h', name: 'This week (W20)',
+      x: thisVals, y: channels,
+      marker: { color: thisColor, line: { width: 0 } },
+      hovertemplate: '%{x} leads<extra></extra>'
+    },
+    {
+      type: 'bar', orientation: 'h', name: 'Prior week (W19)',
+      x: priorVals, y: channels,
+      marker: { color: priorColor, line: { width: 0 } },
+      hovertemplate: '%{x} leads<extra></extra>'
+    },
+    {
+      type: 'bar', orientation: 'h', name: 'Same week 2025',
+      x: yoyVals, y: channels,
+      marker: { color: yoyColor, line: { color: '#868E96', width: 1 } },
+      hovertemplate: '%{x} leads<extra></extra>'
+    }
   ];
+
+  // WoW + YoY delta annotations — two stacked per row
   const maxVal = Math.max(...thisVals, ...priorVals, ...yoyVals);
   const annotations = [];
   data.forEach((d, i) => {
-    const wow = fmtPct(d.this, d.prior); const wowCol = pctColor(d.this, d.prior);
+    const wow    = fmtPct(d.this, d.prior);
+    const wowCol = pctColor(d.this, d.prior);
     const yoyTxt = d.yoyNoData ? 'YoY: no data' : `${fmtPct(d.this, d.yoy)} YoY`;
     const yoyCol = d.yoyNoData ? COLORS.muted : pctColor(d.this, d.yoy);
+    // Reference the y-axis category via its rendered label so HTML in the
+    // Total row ('<b>Total Leads</b>') matches.
     const yCat = channels[i];
-    annotations.push({ x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y', xanchor: 'left', yanchor: 'middle', yshift: 8, text: `<b>${wow} WoW</b>`, showarrow: false, font: { size: d.isTotal ? 13 : 12, family: 'Inter, sans-serif', color: wowCol } });
-    annotations.push({ x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y', xanchor: 'left', yanchor: 'middle', yshift: -8, text: yoyTxt, showarrow: false, font: { size: d.isTotal ? 11 : 10, family: 'Inter, sans-serif', color: yoyCol } });
+    annotations.push({
+      x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y',
+      xanchor: 'left', yanchor: 'middle', yshift: 8,
+      text: `<b>${wow} WoW</b>`,
+      showarrow: false,
+      font: { size: d.isTotal ? 13 : 12, family: 'Inter, sans-serif', color: wowCol }
+    });
+    annotations.push({
+      x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y',
+      xanchor: 'left', yanchor: 'middle', yshift: -8,
+      text: yoyTxt,
+      showarrow: false,
+      font: { size: d.isTotal ? 11 : 10, family: 'Inter, sans-serif', color: yoyCol }
+    });
   });
+
+  // Visual separation between Total row (top) and channel breakdown below.
+  // Categorical y-axis treats indices as numeric positions; Total sits at totalIdx.
   const shapes = [
-    { type: 'rect', xref: 'paper', x0: 0, x1: 1, yref: 'y', y0: totalIdx - 0.5, y1: totalIdx + 0.5, fillcolor: 'rgba(76,110,245,0.07)', line: { width: 0 }, layer: 'below' },
-    { type: 'line', xref: 'paper', x0: 0, x1: 1, yref: 'y', y0: totalIdx - 0.5, y1: totalIdx - 0.5, line: { color: 'rgba(108,117,125,0.55)', width: 2 } }
+    {
+      // subtle background tint behind the Total row
+      type: 'rect',
+      xref: 'paper', x0: 0, x1: 1,
+      yref: 'y',
+      y0: totalIdx - 0.5, y1: totalIdx + 0.5,
+      fillcolor: 'rgba(76,110,245,0.07)',
+      line: { width: 0 },
+      layer: 'below'
+    },
+    {
+      // thicker divider line between Total and channels
+      type: 'line',
+      xref: 'paper', x0: 0, x1: 1,
+      yref: 'y',
+      y0: totalIdx - 0.5, y1: totalIdx - 0.5,
+      line: { color: 'rgba(108,117,125,0.55)', width: 2 }
+    }
   ];
+
   const layout = {
-    height: 470, margin: { l: 130, r: 170, t: 10, b: 50 },
-    paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    height: 470,
+    margin: { l: 130, r: 170, t: 10, b: 50 },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
     font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') },
-    barmode: 'group', hovermode: 'y unified',
-    hoverlabel: { bgcolor: '#1A1A2E', bordercolor: 'transparent', font: { color: '#FFFFFF', size: 13, family: 'Inter, sans-serif' }, align: 'left' },
-    xaxis: { gridcolor: 'rgba(128,128,128,0.15)', title: { text: 'Lead count', font: { size: 12 } }, range: [0, maxVal * 1.45] },
+    barmode: 'group',
+    hovermode: 'y unified',
+    hoverlabel: {
+      bgcolor: '#1A1A2E',
+      bordercolor: 'transparent',
+      font: { color: '#FFFFFF', size: 13, family: 'Inter, sans-serif' },
+      align: 'left'
+    },
+    xaxis: {
+      gridcolor: 'rgba(128,128,128,0.15)',
+      title: { text: 'Lead count', font: { size: 12 } },
+      range: [0, maxVal * 1.45]
+    },
     yaxis: { tickfont: { size: 12 } },
     legend: { orientation: 'h', y: -0.14, x: 0.5, xanchor: 'center', font: { size: 11 } },
-    bargap: 0.28, bargroupgap: 0.05, shapes, annotations
+    bargap: 0.28, bargroupgap: 0.05,
+    shapes,
+    annotations
   };
+
   Plotly.newPlot('chartChannels', traces, layout, { displayModeBar: false, responsive: true });
 }
 
+/* ---------- CHART 3: OKR Progress ---------- */
 function renderOKRChart() {
+  // pace = 69/91 of Q2 (today is day 69 — Jun 9)
   const paceFrac = 83 / 91;
   const krs = [
     { name: 'ICP % of classified leads', actual: 29, target: 35,    label: '29% / 35% · W26 ICP%: Leads 28.9% (39/135), MQL 32.6% (46/141), SQL 31.2% (29/93) · below target', status: 'live', forceColor: COLORS.danger },
@@ -899,11 +1054,22 @@ function renderOKRChart() {
     { name: 'Directory visitors',           actual: 0,    target: 1,    label: 'Not yet launched',                      status: 'not-launched' },
     { name: 'Directory conversion',         actual: 0,    target: 1,    label: 'Not yet launched',                      status: 'not-launched' }
   ];
+
+  // Render from top of chart to bottom in the same order given
   const reversed = [...krs].reverse();
   const names    = reversed.map(k => k.name);
+  // Raw progress used for pace/color decisions (can exceed 100% when target met).
+  // Statuses that don't have meaningful progress yet render at 0.
   const inactiveStatuses = new Set(['not-launched', 'pending', 'aligning']);
-  const rawProgress = reversed.map(k => { if (inactiveStatuses.has(k.status)) return 0; return Math.round((k.actual / k.target) * 100); });
+  const rawProgress = reversed.map(k => {
+    if (inactiveStatuses.has(k.status)) return 0;
+    return Math.round((k.actual / k.target) * 100);
+  });
+  // Displayed progress is capped at 100% so the bar doesn't overflow the chart.
   const progress = rawProgress.map(p => Math.min(p, 100));
+  // Pace-based color: green if on or ahead of pace, orange if within 5pp,
+  // red if more than 5pp below pace. Gray for inactive statuses.
+  // `forceColor` on a KR overrides the pace calculation (e.g. back-loaded targets).
   const pacePct = Math.round(paceFrac * 100);
   const colors  = reversed.map((k, i) => {
     if (k.forceColor) return k.forceColor;
@@ -913,34 +1079,100 @@ function renderOKRChart() {
     if (gap >= -5)  return COLORS.warning;
     return COLORS.danger;
   });
-  const labels = reversed.map((k, i) => {
+  const labels   = reversed.map((k, i) => {
     if (k.status === 'not-launched') return 'Not yet launched';
     if (k.status === 'pending')      return k.label;
     if (k.status === 'aligning')     return k.label;
     return `${progress[i]}%  ·  ${k.label}`;
   });
-  const bgTrace = { type: 'bar', orientation: 'h', x: names.map(_ => 100), y: names, marker: { color: 'rgba(128,128,128,0.08)', line: { width: 0 } }, hoverinfo: 'skip', showlegend: false, name: '' };
-  const fgTrace = { type: 'bar', orientation: 'h', x: progress, y: names, marker: { color: colors, line: { width: 0 } }, text: labels, textposition: 'outside', textfont: { size: 11, color: getComputedStyle(document.body).getPropertyValue('--text') }, hovertemplate: '<b>%{y}</b><br>%{x}% of target<extra></extra>', showlegend: false, name: '' };
+
+  // Background "100%" bars
+  const bgTrace = {
+    type: 'bar', orientation: 'h',
+    x: names.map(_ => 100),
+    y: names,
+    marker: { color: 'rgba(128,128,128,0.08)', line: { width: 0 } },
+    hoverinfo: 'skip',
+    showlegend: false,
+    name: ''
+  };
+  // Actual progress bars
+  const fgTrace = {
+    type: 'bar', orientation: 'h',
+    x: progress, y: names,
+    marker: { color: colors, line: { width: 0 } },
+    text: labels, textposition: 'outside',
+    textfont: { size: 11, color: getComputedStyle(document.body).getPropertyValue('--text') },
+    hovertemplate: '<b>%{y}</b><br>%{x}% of target<extra></extra>',
+    showlegend: false,
+    name: ''
+  };
+
   const layout = {
-    height: 420, margin: { l: 260, r: 120, t: 20, b: 40 },
-    paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    height: 420,
+    margin: { l: 260, r: 120, t: 20, b: 40 },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
     font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') },
     barmode: 'overlay',
-    xaxis: { range: [0, 115], showgrid: false, ticksuffix: '%', tickvals: [0, 25, 50, 75, 100], title: { text: 'Progress to target', font: { size: 12 } } },
+    xaxis: {
+      range: [0, 115],
+      showgrid: false,
+      ticksuffix: '%',
+      tickvals: [0, 25, 50, 75, 100],
+      title: { text: 'Progress to target', font: { size: 12 } }
+    },
     yaxis: { tickfont: { size: 12 }, automargin: false },
-    shapes: [{ type: 'line', x0: Math.round(paceFrac * 100), x1: Math.round(paceFrac * 100), yref: 'paper', y0: 0, y1: 1, line: { color: COLORS.primary, width: 2, dash: 'dot' } }],
-    annotations: [{ x: Math.round(paceFrac * 100), y: 1.04, yref: 'paper', text: `<b>Q2 pace: ${Math.round(paceFrac * 100)}%</b>`, showarrow: false, xanchor: 'center', font: { size: 11, color: COLORS.primary } }],
+    shapes: [{
+      type: 'line',
+      x0: Math.round(paceFrac * 100), x1: Math.round(paceFrac * 100),
+      yref: 'paper', y0: 0, y1: 1,
+      line: { color: COLORS.primary, width: 2, dash: 'dot' }
+    }],
+    annotations: [{
+      x: Math.round(paceFrac * 100), y: 1.04, yref: 'paper',
+      text: `<b>Q2 pace: ${Math.round(paceFrac * 100)}%</b>`,
+      showarrow: false, xanchor: 'center',
+      font: { size: 11, color: COLORS.primary }
+    }],
     bargap: 0.35
   };
+
   Plotly.newPlot('chartOKR', [bgTrace, fgTrace], layout, { displayModeBar: false, responsive: true });
 }
 
+/* ---------- ATTENTION CARDS ---------- */
 const attention = [
-  { status: 'red', title: 'Lead & MQL Volume Down 30–35% WoW', icon: '↓', body: 'W26 Leads: 184 vs W25 266 (−30.8% WoW). W26 MQLs: 164 vs W25 251 (−34.7% WoW). Both metrics pulled back after strong W25. YoY context is positive: Leads +12.9% (163 YoY), MQLs +28.1% (128 YoY). ICP Leads: 39 vs 90 (−56.7%); ICP MQLs: 46 vs 96 (−52.1%). Non-ICP also down — broad-based volume decline, not ICP-specific.' },
-  { status: 'red', title: 'ICP Share Drop ~8 pp Across Funnel', icon: '↓', body: 'W26 ICP share fell sharply across all stages: Lead ICP 28.9% (W25: 37.2%, −8.3 pp), MQL ICP 32.6% (W25: 40.8%, −8.2 pp), SQL ICP 31.2% (W25: 39.3%, −8.1 pp). All three below 35% target. Volume decline disproportionately hit ICP segment this week — likely week-to-week noise, monitor W27 for trend reversal.' },
-  { status: 'red', title: 'Q2 Funnel Significantly Behind Pace', icon: '!', body: 'With 91% of Q2 elapsed (day 83/91), all funnel stages are far behind pace. Leads: 3,226 / 8,299 (38.9% vs 91% pace). MQLs: 2,690 / 3,983 (67.5% vs 91% pace). SQLs: 1,590 / 2,390 (66.5% vs 91% pace). Leads deficit is the most severe — at 43% of pace. Q2 targets now unachievable without extraordinary final week.' },
-  { status: 'green', title: 'ACV Solid — $3,689 Above $3,000 Target', icon: '✓', body: 'W26 Avg ACV $3,689 (50 deals, $184,447 total) — 23% above $3,000 target. YoY: $184,447 vs $151,087 (+22.1%). Both Sales Inbound and International pipelines included this week. 50 deals is a healthy count (vs W24 44 deals, W25 had large-deal concentration). Consistent above-target ACV signal.' },
-  { status: 'green', title: 'TD Payments +0.8 pp to 37.4%', icon: '↑', body: '+87 net activations this week (2,195 → 2,282 of 6,095 eligible US accounts). Rate: 36.6% → 37.4%, now 7.4 pp above OKR target of 30%. 12.6 pp below 50% stretch. Denominator updated to 6,095 (was 6,005 — reflects eligible base growth). Steady incremental progress week-over-week.' }
+  {
+    status: 'red',
+    title: 'Lead & MQL Volume Down 30–35% WoW',
+    icon: '↓',
+    body: 'W26 Leads: 184 vs W25 266 (−30.8% WoW). W26 MQLs: 164 vs W25 251 (−34.7% WoW). Both metrics pulled back after strong W25. YoY context is positive: Leads +12.9% (163 YoY), MQLs +28.1% (128 YoY). ICP Leads: 39 vs 90 (−56.7%); ICP MQLs: 46 vs 96 (−52.1%). Non-ICP also down — broad-based volume decline, not ICP-specific.'
+  },
+  {
+    status: 'red',
+    title: 'ICP Share Drop ~8 pp Across Funnel',
+    icon: '↓',
+    body: 'W26 ICP share fell sharply across all stages: Lead ICP 28.9% (W25: 37.2%, −8.3 pp), MQL ICP 32.6% (W25: 40.8%, −8.2 pp), SQL ICP 31.2% (W25: 39.3%, −8.1 pp). All three below 35% target. Volume decline disproportionately hit ICP segment this week — likely week-to-week noise, monitor W27 for trend reversal.'
+  },
+  {
+    status: 'red',
+    title: 'Q2 Funnel Significantly Behind Pace',
+    icon: '!',
+    body: 'With 91% of Q2 elapsed (day 83/91), all funnel stages are far behind pace. Leads: 3,226 / 8,299 (38.9% vs 91% pace). MQLs: 2,690 / 3,983 (67.5% vs 91% pace). SQLs: 1,590 / 2,390 (66.5% vs 91% pace). Leads deficit is the most severe — at 43% of pace. Q2 targets now unachievable without extraordinary final week.'
+  },
+  {
+    status: 'green',
+    title: 'ACV Solid — $3,689 Above $3,000 Target',
+    icon: '✓',
+    body: 'W26 Avg ACV $3,689 (50 deals, $184,447 total) — 23% above $3,000 target. YoY: $184,447 vs $151,087 (+22.1%). Both Sales Inbound and International pipelines included this week. 50 deals is a healthy count (vs W24 44 deals, W25 had large-deal concentration). Consistent above-target ACV signal.'
+  },
+  {
+    status: 'green',
+    title: 'TD Payments +0.8 pp to 37.4%',
+    icon: '↑',
+    body: '+87 net activations this week (2,195 → 2,282 of 6,095 eligible US accounts). Rate: 36.6% → 37.4%, now 7.4 pp above OKR target of 30%. 12.6 pp below 50% stretch. Denominator updated to 6,095 (was 6,005 — reflects eligible base growth). Steady incremental progress week-over-week.'
+  }
 ];
 
 function renderAttention() {
@@ -949,56 +1181,224 @@ function renderAttention() {
   attention.forEach(a => {
     const card = document.createElement('div');
     card.className = `attn-card ${a.status}`;
-    card.innerHTML = `<div class="attn-icon ${a.status}">${a.icon}</div><div><div class="attn-title ${a.status}">${a.title}</div><div class="attn-body">${a.body}</div></div>`;
+    card.innerHTML = `
+      <div class="attn-icon ${a.status}">${a.icon}</div>
+      <div>
+        <div class="attn-title ${a.status}">${a.title}</div>
+        <div class="attn-body">${a.body}</div>
+      </div>
+    `;
     row.appendChild(card);
   });
 }
 
+/* ---------- LEADS TAB: Online vs Offline monthly ---------- */
+function renderOnlineOfflineChart() {
+  // Jan–Mar 2026: live HubSpot online totals + offline totals from user. Offline
+  // ICP/Non-ICP split estimated at 32% ICP (quarter-level proxy) until verified
+  // with RevOps. April 2026: partial through Apr 21; all four segments are
+  // verified values so totals match the OKR chart's "Classified leads (Q2 total)".
+  const months      = ['Jan 2026', 'Feb 2026', 'Mar 2026', 'Apr 2026*'];
+  const onlineIcp   = [ 479,         482,         538,         257       ];
+  const onlineNicp  = [ 1033,        854,         1210,        559       ];
+  const offlineIcp  = [ 459,         873,         841,         366       ];
+  const offlineNicp = [ 976,         1856,        1786,        36        ];
+  const monthTotal  = onlineIcp.map((_, i) => onlineIcp[i] + onlineNicp[i] + offlineIcp[i] + offlineNicp[i]);
+
+  const traces = [
+    { type: 'bar', name: 'Online — ICP',    x: months, y: onlineIcp,  marker: { color: '#1864AB' }, hovertemplate: '<b>%{x}</b><br>Online ICP: %{y}<extra></extra>' },
+    { type: 'bar', name: 'Online — Non-ICP',x: months, y: onlineNicp, marker: { color: '#74C0FC' }, hovertemplate: '<b>%{x}</b><br>Online Non-ICP: %{y}<extra></extra>' },
+    { type: 'bar', name: 'Offline — ICP',   x: months, y: offlineIcp, marker: { color: '#495057' }, hovertemplate: '<b>%{x}</b><br>Offline ICP: %{y}<extra></extra>' },
+    { type: 'bar', name: 'Offline — Non-ICP',x: months, y: offlineNicp,marker: { color: '#ADB5BD' }, hovertemplate: '<b>%{x}</b><br>Offline Non-ICP: %{y}<extra></extra>' }
+  ];
+
+  const layout = {
+    height: 420,
+    margin: { l: 60, r: 20, t: 10, b: 80 },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') },
+    barmode: 'stack',
+    xaxis: { tickfont: { size: 12 }, showgrid: false },
+    yaxis: { gridcolor: 'rgba(128,128,128,0.15)', title: { text: 'Marketing Leads', font: { size: 12 } } },
+    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center', font: { size: 11 } },
+    bargap: 0.35,
+    annotations: monthTotal.map((t, i) => ({
+      x: months[i], y: t, yshift: 14, text: `<b>${t.toLocaleString()}</b>`,
+      showarrow: false, font: { size: 12, color: getComputedStyle(document.body).getPropertyValue('--text') }
+    }))
+  };
+
+  Plotly.newPlot('chartOnlineOffline', traces, layout, { displayModeBar: false, responsive: true });
+}
+
+/* ---------- LEADS TAB: 12-month online trend ---------- */
+function renderLeadsTrendChart() {
+  // Live HubSpot data — monthly companies created where icp__nonicp IN ('ICP','Non-ICP')
+  // AND hs_analytics_source != OFFLINE. May 2025 → Apr 2026 (Apr partial through Apr 20).
+  const months = ['May 2025','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan 2026','Feb','Mar','Apr*'];
+  const icp    = [  369,      398, 391, 363, 448, 448, 409, 496, 479,       482,   538, 257  ];
+  const nicp   = [  574,      521, 660, 791, 703, 817,1050,1150,1033,       854,  1210, 559  ];
+  const total  = icp.map((v, i) => v + nicp[i]);
+
+  // 3-month trailing moving average on total
+  const ma3 = total.map((_, i) => {
+    const s = Math.max(0, i - 2);
+    const slice = total.slice(s, i + 1);
+    return Math.round(slice.reduce((a,b) => a+b, 0) / slice.length);
+  });
+
+  const traces = [
+    {
+      type: 'bar', name: 'ICP', x: months, y: icp,
+      marker: { color: COLORS.primary }, hovertemplate: '<b>%{x}</b><br>ICP: %{y}<extra></extra>'
+    },
+    {
+      type: 'bar', name: 'Non-ICP', x: months, y: nicp,
+      marker: { color: '#ADB5BD' },
+      text: total.map(t => t.toLocaleString()), textposition: 'outside',
+      textfont: { size: 11, color: getComputedStyle(document.body).getPropertyValue('--text') },
+      hovertemplate: '<b>%{x}</b><br>Non-ICP: %{y}<extra></extra>'
+    },
+    {
+      type: 'scatter', mode: 'lines+markers', name: '3-month MA (total)',
+      x: months, y: ma3,
+      line: { color: COLORS.warning, width: 3, shape: 'spline' },
+      marker: { size: 6, color: COLORS.warning },
+      hovertemplate: '<b>%{x}</b><br>3mo MA: %{y}<extra></extra>'
+    }
+  ];
+
+  const layout = {
+    height: 420,
+    margin: { l: 60, r: 20, t: 10, b: 60 },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') },
+    barmode: 'stack',
+    xaxis: { tickfont: { size: 11 }, showgrid: false },
+    yaxis: { gridcolor: 'rgba(128,128,128,0.15)', title: { text: 'Online Marketing Leads', font: { size: 12 } } },
+    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center', font: { size: 11 } },
+    bargap: 0.25
+  };
+
+  Plotly.newPlot('chartLeadsTrend', traces, layout, { displayModeBar: false, responsive: true });
+}
+
+/* ---------- MQL TAB ---------- */
 function renderMQLKPIs() {
+  // Live HubSpot — list 6894 + hs_v2_date_entered_marketingqualifiedlead + lifecyclestage HAS_PROPERTY.
+  // W26 (Jun 16-22): 164 total (46 ICP / 95 Non-ICP / 23 No Value). W25 prior (Jun 9-15): 251.
+  // Jun MTD (Jun 1-22, list 6894): 891 total (326 ICP / 481 Non-ICP / 84 No Value).
   const cards = [
-    { name: 'Total MQL — This Week', value: 164, suffix: '', compare: 'Prior wk (W25): 251 &nbsp;·&nbsp; <b style="color:var(--danger)">−34.7% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--success)">YoY: +28.1% ↑ (128)</span>', foot: 'List 6894 · hs_v2_date_entered_marketingqualifiedlead in W26 (Jun 16–22) · ICP 46 / Non-ICP 95 / No Value 23', cls: 'red' },
-    { name: 'ICP Share of MQL', value: 33, suffix: '%', compare: 'Prior wk: 41% &nbsp;·&nbsp; <b style="color:var(--danger)">−8 pp WoW ↓</b> &nbsp;·&nbsp; below 35% target', foot: '46 ICP / 141 classified (32.6%) this week · target 35% — below target', cls: 'red' },
-    { name: 'Jun MTD MQL', value: 891, suffix: '', compare: 'Jun target: 2,295 &nbsp;·&nbsp; <span class="pct">38.8%</span> achieved · pace 73% &nbsp;·&nbsp; <b style="color:var(--danger)">53% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>', foot: 'List 6894 · entered MQL Jun 1–22 · ICP 326 / Non-ICP 481 / No Value 84', cls: 'red' }
+    {
+      name: 'Total MQL — This Week', value: 164, suffix: '',
+      compare: 'Prior wk (W25): 251 &nbsp;·&nbsp; <b style="color:var(--danger)">−34.7% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--success)">YoY: +28.1% ↑ (128)</span>',
+      foot: 'List 6894 · hs_v2_date_entered_marketingqualifiedlead in W26 (Jun 16–22) · ICP 46 / Non-ICP 95 / No Value 23',
+      cls: 'red'
+    },
+    {
+      name: 'ICP Share of MQL', value: 33, suffix: '%',
+      compare: 'Prior wk: 41% &nbsp;·&nbsp; <b style="color:var(--danger)">−8 pp WoW ↓</b> &nbsp;·&nbsp; below 35% target',
+      foot: '46 ICP / 141 classified (32.6%) this week · target 35% — below target',
+      cls: 'red'
+    },
+    {
+      name: 'Jun MTD MQL', value: 891, suffix: '',
+      compare: 'Jun target: 2,295 &nbsp;·&nbsp; <span class="pct">38.8%</span> achieved · pace 73% &nbsp;·&nbsp; <b style="color:var(--danger)">53% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
+      foot: 'List 6894 · entered MQL Jun 1–22 · ICP 326 / Non-ICP 481 / No Value 84',
+      cls: 'red'
+    }
   ];
   const row = document.getElementById('mqlKpiRow');
   row.innerHTML = '';
   cards.forEach(c => {
     const el = document.createElement('div');
     el.className = `kpi-card ${c.cls}`;
-    el.innerHTML = `<div class="kpi-name">${c.name}</div><div class="kpi-value">${c.value.toLocaleString()}${c.suffix}</div><div class="kpi-compare ${c.cls}">${c.compare}</div><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">${c.foot}</div><div><span class="badge live">Live — HubSpot</span></div>`;
+    el.innerHTML = `
+      <div class="kpi-name">${c.name}</div>
+      <div class="kpi-value">${c.value.toLocaleString()}${c.suffix}</div>
+      <div class="kpi-compare ${c.cls}">${c.compare}</div>
+      <div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">${c.foot}</div>
+      <div><span class="badge live">Live — HubSpot</span></div>
+    `;
     row.appendChild(el);
   });
 }
 
 function renderMQLWeeklyChart() {
+  // Live data — list 6894 + hs_v2_date_entered_marketingqualifiedlead + lifecyclestage HAS_PROPERTY.
   const weeks   = ['W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May','W21 May','W22 May','W23 Jun','W24 Jun','W25 Jun','W26 Jun'];
   const icp     = [   72,     72,     68,      69,      48,      47,      78,       68,       90,      101,      92,      76,      63,      95,      96,      46   ];
   const nonIcp  = [  151,    148,    135,     146,     101,     118,     134,      115,      140,      128,     118,      97,     111,     120,     139,      95   ];
   const noValue = [    1,      5,      0,       1,       1,       0,       8,        8,        7,       15,       0,       0,      24,      45,      16,      23   ];
   const total   = icp.map((v, i) => v + nonIcp[i] + noValue[i]);
   const icpPct  = total.map((t, i) => t > 0 ? Math.round(icp[i] / t * 100) : 0);
-  const goal    = 574;
-  const ma4 = total.map((_, i) => { const s = Math.max(0, i - 3); const slice = total.slice(s, i + 1); return Math.round(slice.reduce((a,b) => a+b, 0) / slice.length); });
+  const goal    = 574; // June weekly target = 2,295 / 4 (approx)
+  const ma4 = total.map((_, i) => {
+    const s = Math.max(0, i - 3);
+    const slice = total.slice(s, i + 1);
+    return Math.round(slice.reduce((a,b) => a+b, 0) / slice.length);
+  });
   const traces = [
-    { type: 'bar', name: 'ICP', x: weeks, y: icp, marker: { color: COLORS.primary, line: { width: 0 } }, text: icpPct.map(p => `${p}%`), textposition: 'inside', insidetextanchor: 'middle', textfont: { size: 10, color: '#FFFFFF', family: 'Inter, sans-serif' }, hovertemplate: '<b>%{x}</b><br>ICP: %{y}<extra></extra>' },
-    { type: 'bar', name: 'Non-ICP', x: weeks, y: nonIcp, marker: { color: '#ADB5BD', line: { width: 0 } }, hovertemplate: '<b>%{x}</b><br>Non-ICP: %{y}<extra></extra>' },
-    { type: 'bar', name: 'No Value', x: weeks, y: noValue, marker: { color: '#DEE2E6', line: { width: 0 } }, text: total.map(t => t.toLocaleString()), textposition: 'outside', textfont: { size: 11, color: getComputedStyle(document.body).getPropertyValue('--text') }, hovertemplate: '<b>%{x}</b><br>No Value: %{y}<extra></extra>' },
-    { type: 'scatter', mode: 'lines+markers', name: '4-wk Moving Avg', x: weeks, y: ma4, line: { color: COLORS.warning, width: 3, shape: 'spline' }, marker: { size: 6, color: COLORS.warning }, hovertemplate: '<b>%{x}</b><br>4wk MA: %{y}<extra></extra>' }
+    {
+      type: 'bar', name: 'ICP', x: weeks, y: icp,
+      marker: { color: COLORS.primary, line: { width: 0 } },
+      text: icpPct.map(p => `${p}%`), textposition: 'inside', insidetextanchor: 'middle',
+      textfont: { size: 10, color: '#FFFFFF', family: 'Inter, sans-serif' },
+      hovertemplate: '<b>%{x}</b><br>ICP: %{y}<extra></extra>'
+    },
+    {
+      type: 'bar', name: 'Non-ICP', x: weeks, y: nonIcp,
+      marker: { color: '#ADB5BD', line: { width: 0 } },
+      hovertemplate: '<b>%{x}</b><br>Non-ICP: %{y}<extra></extra>'
+    },
+    {
+      type: 'bar', name: 'No Value', x: weeks, y: noValue,
+      marker: { color: '#DEE2E6', line: { width: 0 } },
+      text: total.map(t => t.toLocaleString()), textposition: 'outside',
+      textfont: { size: 11, color: getComputedStyle(document.body).getPropertyValue('--text') },
+      hovertemplate: '<b>%{x}</b><br>No Value: %{y}<extra></extra>'
+    },
+    {
+      type: 'scatter', mode: 'lines+markers', name: '4-wk Moving Avg',
+      x: weeks, y: ma4,
+      line: { color: COLORS.warning, width: 3, shape: 'spline' },
+      marker: { size: 6, color: COLORS.warning },
+      hovertemplate: '<b>%{x}</b><br>4wk MA: %{y}<extra></extra>'
+    }
   ];
   const layout = {
-    height: 400, margin: { l: 50, r: 20, t: 10, b: 50 },
-    paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    height: 400,
+    margin: { l: 50, r: 20, t: 10, b: 50 },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
     font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') },
-    barmode: 'stack', xaxis: { tickfont: { size: 11 }, showgrid: false },
+    barmode: 'stack',
+    xaxis: { tickfont: { size: 11 }, showgrid: false },
     yaxis: { gridcolor: 'rgba(128,128,128,0.15)', title: { text: 'MQL Volume', font: { size: 12 } }, range: [0, 290] },
-    shapes: [{ type: 'line', xref: 'paper', x0: 0, x1: 1, y0: goal, y1: goal, line: { color: COLORS.muted, width: 2, dash: 'dash' } }],
-    annotations: [{ xref: 'paper', x: 0.99, y: goal, yshift: 10, text: `<b>June Target: ${goal}/wk</b>`, showarrow: false, xanchor: 'right', font: { size: 11, color: COLORS.muted } }],
-    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center' }, bargap: 0.35
+    shapes: [{
+      type: 'line', xref: 'paper', x0: 0, x1: 1,
+      y0: goal, y1: goal,
+      line: { color: COLORS.muted, width: 2, dash: 'dash' }
+    }],
+    annotations: [{
+      xref: 'paper', x: 0.99, y: goal, yshift: 10,
+      text: `<b>June Target: ${goal}/wk</b>`,
+      showarrow: false, xanchor: 'right',
+      font: { size: 11, color: COLORS.muted }
+    }],
+    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center' },
+    bargap: 0.35
   };
   Plotly.newPlot('chartMQLWeekly', traces, layout, { displayModeBar: false, responsive: true });
 }
 
 function renderMQLChannelsChart() {
+  // Live HubSpot — list 9736 entering MQL by leadgen_channel_original2.
+  // this: W20 2026 (May 6-12) · prior: W19 2026 (Apr 29 - May 5) · yoy: methodology change.
+  // Note: leadgen_channel_original2 was barely populated in 2025 — individual-channel
+  // YoY is unreliable, only Total YoY shown.
   const channelData = [
     { channel: 'Organic Search', this: 94, prior: 93, yoy: 0, yoyNoData: true },
     { channel: 'Direct Traffic', this: 36, prior: 54, yoy: 0, yoyNoData: true },
@@ -1010,46 +1410,116 @@ function renderMQLChannelsChart() {
   const totalRow = { channel: 'Total MQL', this: 244, prior: 235, yoy: 0, yoyNoData: true, isTotal: true };
   channelData.sort((a, b) => a.this - b.this);
   const data = [...channelData, totalRow];
+
   const channels = data.map(d => d.isTotal ? '<b>Total MQL</b>' : d.channel);
-  const thisVals = data.map(d => d.this); const priorVals = data.map(d => d.prior); const yoyVals = data.map(d => d.yoy); const totalIdx = data.length - 1;
-  const fmtPct = (a, b) => { if (b === 0 && a === 0) return '—'; if (b === 0) return '+new'; const pct = Math.round((a - b) / b * 100); return (pct >= 0 ? '+' : '') + pct + '%'; };
-  const pctColor = (a, b) => { if (b === 0 && a === 0) return COLORS.muted; if (b === 0) return COLORS.success; return a >= b ? COLORS.success : COLORS.danger; };
+  const thisVals = data.map(d => d.this);
+  const priorVals = data.map(d => d.prior);
+  const yoyVals  = data.map(d => d.yoy);
+  const totalIdx = data.length - 1;
+
+  const fmtPct = (a, b) => {
+    if (b === 0 && a === 0) return '—';
+    if (b === 0) return '+new';
+    const pct = Math.round((a - b) / b * 100);
+    return (pct >= 0 ? '+' : '') + pct + '%';
+  };
+  const pctColor = (a, b) => {
+    if (b === 0 && a === 0) return COLORS.muted;
+    if (b === 0) return COLORS.success;
+    return a >= b ? COLORS.success : COLORS.danger;
+  };
+
   const traces = [
-    { type: 'bar', orientation: 'h', name: 'This week (W20)', x: thisVals, y: channels, marker: { color: '#1864AB', line: { width: 0 } }, hovertemplate: '%{x} MQLs<extra></extra>' },
-    { type: 'bar', orientation: 'h', name: 'Prior week (W19)', x: priorVals, y: channels, marker: { color: '#74C0FC', line: { width: 0 } }, hovertemplate: '%{x} MQLs<extra></extra>' },
-    { type: 'bar', orientation: 'h', name: 'Same week 2025', x: yoyVals, y: channels, marker: { color: 'rgba(173,181,189,0.55)', line: { color: '#868E96', width: 1 } }, hovertemplate: '%{x} MQLs<extra></extra>' }
+    { type: 'bar', orientation: 'h', name: 'This week (W20)',
+      x: thisVals, y: channels, marker: { color: '#1864AB', line: { width: 0 } },
+      hovertemplate: '%{x} MQLs<extra></extra>' },
+    { type: 'bar', orientation: 'h', name: 'Prior week (W19)',
+      x: priorVals, y: channels, marker: { color: '#74C0FC', line: { width: 0 } },
+      hovertemplate: '%{x} MQLs<extra></extra>' },
+    { type: 'bar', orientation: 'h', name: 'Same week 2025',
+      x: yoyVals, y: channels, marker: { color: 'rgba(173,181,189,0.55)', line: { color: '#868E96', width: 1 } },
+      hovertemplate: '%{x} MQLs<extra></extra>' }
   ];
+
   const maxVal = Math.max(...thisVals, ...priorVals, ...yoyVals);
   const annotations = [];
   data.forEach((d, i) => {
-    const wow = fmtPct(d.this, d.prior); const wowCol = pctColor(d.this, d.prior);
-    const yoyTxt = d.yoyNoData ? 'YoY: no data' : `${fmtPct(d.this, d.yoy)} YoY`; const yoyCol = d.yoyNoData ? COLORS.muted : pctColor(d.this, d.yoy); const yCat = channels[i];
-    annotations.push({ x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y', xanchor: 'left', yanchor: 'middle', yshift: 8, text: `<b>${wow} WoW</b>`, showarrow: false, font: { size: d.isTotal ? 13 : 12, family: 'Inter, sans-serif', color: wowCol } });
-    annotations.push({ x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y', xanchor: 'left', yanchor: 'middle', yshift: -8, text: yoyTxt, showarrow: false, font: { size: d.isTotal ? 11 : 10, family: 'Inter, sans-serif', color: yoyCol } });
+    const wow    = fmtPct(d.this, d.prior);
+    const wowCol = pctColor(d.this, d.prior);
+    const yoyTxt = d.yoyNoData ? 'YoY: no data' : `${fmtPct(d.this, d.yoy)} YoY`;
+    const yoyCol = d.yoyNoData ? COLORS.muted : pctColor(d.this, d.yoy);
+    const yCat = channels[i];
+    annotations.push({
+      x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y',
+      xanchor: 'left', yanchor: 'middle', yshift: 8,
+      text: `<b>${wow} WoW</b>`, showarrow: false,
+      font: { size: d.isTotal ? 13 : 12, family: 'Inter, sans-serif', color: wowCol }
+    });
+    annotations.push({
+      x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y',
+      xanchor: 'left', yanchor: 'middle', yshift: -8,
+      text: yoyTxt, showarrow: false,
+      font: { size: d.isTotal ? 11 : 10, family: 'Inter, sans-serif', color: yoyCol }
+    });
   });
+
   const shapes = [
-    { type: 'rect', xref: 'paper', x0: 0, x1: 1, yref: 'y', y0: totalIdx - 0.5, y1: totalIdx + 0.5, fillcolor: 'rgba(76,110,245,0.07)', line: { width: 0 }, layer: 'below' },
-    { type: 'line', xref: 'paper', x0: 0, x1: 1, yref: 'y', y0: totalIdx - 0.5, y1: totalIdx - 0.5, line: { color: 'rgba(108,117,125,0.55)', width: 2 } }
+    { type: 'rect', xref: 'paper', x0: 0, x1: 1, yref: 'y',
+      y0: totalIdx - 0.5, y1: totalIdx + 0.5,
+      fillcolor: 'rgba(76,110,245,0.07)', line: { width: 0 }, layer: 'below' },
+    { type: 'line', xref: 'paper', x0: 0, x1: 1, yref: 'y',
+      y0: totalIdx - 0.5, y1: totalIdx - 0.5,
+      line: { color: 'rgba(108,117,125,0.55)', width: 2 } }
   ];
+
   const layout = {
-    height: 440, margin: { l: 130, r: 170, t: 10, b: 50 },
-    paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    height: 440,
+    margin: { l: 130, r: 170, t: 10, b: 50 },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
     font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') },
-    barmode: 'group', hovermode: 'y unified',
-    hoverlabel: { bgcolor: '#1A1A2E', bordercolor: 'transparent', font: { color: '#FFFFFF', size: 13, family: 'Inter, sans-serif' }, align: 'left' },
+    barmode: 'group',
+    hovermode: 'y unified',
+    hoverlabel: {
+      bgcolor: '#1A1A2E',
+      bordercolor: 'transparent',
+      font: { color: '#FFFFFF', size: 13, family: 'Inter, sans-serif' },
+      align: 'left'
+    },
     xaxis: { gridcolor: 'rgba(128,128,128,0.15)', title: { text: 'MQL count', font: { size: 12 } }, range: [0, maxVal * 1.45] },
     yaxis: { tickfont: { size: 12 } },
     legend: { orientation: 'h', y: -0.14, x: 0.5, xanchor: 'center', font: { size: 11 } },
-    bargap: 0.28, bargroupgap: 0.05, shapes, annotations
+    bargap: 0.28, bargroupgap: 0.05,
+    shapes, annotations
   };
   Plotly.newPlot('chartMQLChannels', traces, layout, { displayModeBar: false, responsive: true });
 }
 
+/* ---------- LEADS TAB ---------- */
 function renderLeadsKPIs() {
+  // W26 (Jun 16-22): list 6894 = 184 total.
+  // ICP 39 / Non-ICP 96 / No Value 49. ICP% of classified = 28.9%.
+  // W25 (Jun 9-15): 266 total (ICP 90 / Non-ICP 152 / No Value 24).
+  // Jun MTD (Jun 1-22, list 6894): 892 total.
   const cards = [
-    { name: 'MARKETING LEADS — This Week', value: 184, suffix: '', compare: 'Prior wk (W25): 266 &nbsp;·&nbsp; <b style="color:var(--danger)">−30.8% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--success)">YoY: +12.9% ↑ (163)</span>', foot: 'List 6894 · createdate in W26 (Jun 16–22) · ICP 39 / Non-ICP 96 / No Value 49', cls: 'red' },
-    { name: 'ICP Share of Leads', value: 29, suffix: '%', compare: 'Prior wk: 37% &nbsp;·&nbsp; <b style="color:var(--danger)">−8 pp WoW ↓</b> &nbsp;·&nbsp; below 35% target', foot: '39 ICP / 135 classified (28.9%) this week · 49 No Value excluded from share · target 35% — below target', cls: 'red' },
-    { name: 'Jun MTD Marketing Leads', value: 892, suffix: '', compare: 'Jun target: 4,781 &nbsp;·&nbsp; <span class="pct">18.7%</span> achieved · pace 73% &nbsp;·&nbsp; <b style="color:var(--danger)">26% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>', foot: 'List 6894 · createdate Jun 1–22 · ICP 279 / Non-ICP 474 / No Value 139', cls: 'red' }
+    {
+      name: 'MARKETING LEADS — This Week', value: 184, suffix: '',
+      compare: 'Prior wk (W25): 266 &nbsp;·&nbsp; <b style="color:var(--danger)">−30.8% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--success)">YoY: +12.9% ↑ (163)</span>',
+      foot: 'List 6894 · createdate in W26 (Jun 16–22) · ICP 39 / Non-ICP 96 / No Value 49',
+      cls: 'red'
+    },
+    {
+      name: 'ICP Share of Leads', value: 29, suffix: '%',
+      compare: 'Prior wk: 37% &nbsp;·&nbsp; <b style="color:var(--danger)">−8 pp WoW ↓</b> &nbsp;·&nbsp; below 35% target',
+      foot: '39 ICP / 135 classified (28.9%) this week · 49 No Value excluded from share · target 35% — below target',
+      cls: 'red'
+    },
+    {
+      name: 'Jun MTD Marketing Leads', value: 892, suffix: '',
+      compare: 'Jun target: 4,781 &nbsp;·&nbsp; <span class="pct">18.7%</span> achieved · pace 73% &nbsp;·&nbsp; <b style="color:var(--danger)">26% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
+      foot: 'List 6894 · createdate Jun 1–22 · ICP 279 / Non-ICP 474 / No Value 139',
+      cls: 'red'
+    }
   ];
   const row = document.getElementById('leadsKpiRow');
   if (!row) return;
@@ -1057,16 +1527,43 @@ function renderLeadsKPIs() {
   cards.forEach(c => {
     const el = document.createElement('div');
     el.className = `kpi-card ${c.cls}`;
-    el.innerHTML = `<div class="kpi-name">${c.name}</div><div class="kpi-value">${typeof c.value === 'number' ? c.value.toLocaleString() : c.value}${c.suffix}</div><div class="kpi-compare ${c.cls}">${c.compare}</div><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">${c.foot}</div><div><span class="badge live">Live — HubSpot</span></div>`;
+    el.innerHTML = `
+      <div class="kpi-name">${c.name}</div>
+      <div class="kpi-value">${typeof c.value === 'number' ? c.value.toLocaleString() : c.value}${c.suffix}</div>
+      <div class="kpi-compare ${c.cls}">${c.compare}</div>
+      <div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">${c.foot}</div>
+      <div><span class="badge live">Live — HubSpot</span></div>
+    `;
     row.appendChild(el);
   });
 }
 
+/* ---------- SQL TAB ---------- */
 function renderSQLKPIs() {
+  // Live HubSpot — list 6894 + hs_v2_date_entered_opportunity + n1_1_demo_registered_date HAS_PROPERTY.
+  // RevOps definition = "Companies Demo Booked". Pipeline filter (Sales Inbound + Sales International)
+  // is approximated — pipeline-level filtering on associated deals is not directly queryable via API.
+  // W26 (Jun 16-22): 101 total (29 ICP / 64 Non-ICP / 8 No Value). W25 prior (Jun 9-15): 107.
+  // Jun MTD (Jun 1-22, list 6894): 413 total (158 ICP / 247 Non-ICP / 8 No Value).
   const cards = [
-    { name: 'Weekly SQL — This Week', value: 101, suffix: '', compare: 'Prior wk (W25): 107 &nbsp;·&nbsp; <b style="color:var(--danger)">−5.6% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--danger)">YoY: −3.8% ↓ (105)</span>', foot: 'List 6894 · entered Opportunity W26 (Jun 16–22) + demo registered · ICP 29 / Non-ICP 64 / No Value 8', cls: 'orange' },
-    { name: 'ICP Share of SQL', value: 31, suffix: '%', compare: 'Prior wk: 39% &nbsp;·&nbsp; <b style="color:var(--danger)">−8 pp WoW ↓</b> &nbsp;·&nbsp; below 35% target', foot: '29 ICP / 93 classified (31.2%) this week · target 35% — below target', cls: 'red' },
-    { name: 'Jun MTD SQL', value: 413, suffix: '', compare: 'Jun target: 1,148 &nbsp;·&nbsp; <span class="pct">36.0%</span> achieved · pace 73% &nbsp;·&nbsp; <b style="color:var(--danger)">49% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>', foot: 'List 6894 · Jun 1–22 ICP 158 / Non-ICP 247 / No Value 8', cls: 'red' }
+    {
+      name: 'Weekly SQL — This Week', value: 101, suffix: '',
+      compare: 'Prior wk (W25): 107 &nbsp;·&nbsp; <b style="color:var(--danger)">−5.6% WoW ↓</b> &nbsp;·&nbsp; <span style="color:var(--danger)">YoY: −3.8% ↓ (105)</span>',
+      foot: 'List 6894 · entered Opportunity W26 (Jun 16–22) + demo registered · ICP 29 / Non-ICP 64 / No Value 8',
+      cls: 'orange'
+    },
+    {
+      name: 'ICP Share of SQL', value: 31, suffix: '%',
+      compare: 'Prior wk: 39% &nbsp;·&nbsp; <b style="color:var(--danger)">−8 pp WoW ↓</b> &nbsp;·&nbsp; below 35% target',
+      foot: '29 ICP / 93 classified (31.2%) this week · target 35% — below target',
+      cls: 'red'
+    },
+    {
+      name: 'Jun MTD SQL', value: 413, suffix: '',
+      compare: 'Jun target: 1,148 &nbsp;·&nbsp; <span class="pct">36.0%</span> achieved · pace 73% &nbsp;·&nbsp; <b style="color:var(--danger)">49% of pace</b> &nbsp;·&nbsp; <span style="color:var(--muted)">YoY: N/A</span>',
+      foot: 'List 6894 · Jun 1–22 ICP 158 / Non-ICP 247 / No Value 8',
+      cls: 'red'
+    }
   ];
   const row = document.getElementById('sqlKpiRow');
   if (!row) return;
@@ -1074,40 +1571,91 @@ function renderSQLKPIs() {
   cards.forEach(c => {
     const el = document.createElement('div');
     el.className = `kpi-card ${c.cls}`;
-    el.innerHTML = `<div class="kpi-name">${c.name}</div><div class="kpi-value">${typeof c.value === 'number' ? c.value.toLocaleString() : c.value}${c.suffix}</div><div class="kpi-compare ${c.cls}">${c.compare}</div><div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">${c.foot}</div><div><span class="badge live">Live — HubSpot</span></div>`;
+    el.innerHTML = `
+      <div class="kpi-name">${c.name}</div>
+      <div class="kpi-value">${typeof c.value === 'number' ? c.value.toLocaleString() : c.value}${c.suffix}</div>
+      <div class="kpi-compare ${c.cls}">${c.compare}</div>
+      <div style="font-size:10px; margin-top:4px; color:var(--muted); font-weight:400; font-style:italic;">${c.foot}</div>
+      <div><span class="badge live">Live — HubSpot</span></div>
+    `;
     row.appendChild(el);
   });
 }
 
 function renderSQLWeeklyChart() {
+  // Live data — list 6894 + hs_v2_date_entered_opportunity + n1_1_demo_registered_date HAS_PROPERTY.
+  // RevOps "Companies Demo Booked" definition. Pipeline filter (Sales Inbound + International) approximated.
   const weeks   = ['W11 Mar','W12 Mar','W13 Mar','W14 Mar','W15 Mar/Apr','W16 Apr','W17 Apr','W18 Apr','W19 Apr/May','W20 May','W21 May','W22 May','W23 Jun','W24 Jun','W25 Jun','W26 Jun'];
   const icp     = [   34,     38,     35,      43,      23,      30,      51,       50,       55,       68,      57,      51,      41,      49,      42,      29   ];
   const nonIcp  = [   85,     67,     76,      85,      62,      72,      80,       89,       89,       89,      82,      79,      66,      60,      65,      64   ];
   const noValue = [    0,      0,      0,       1,       0,       0,       1,        6,        4,        6,       0,       0,      12,      16,       0,       8   ];
   const total   = icp.map((v, i) => v + nonIcp[i] + noValue[i]);
   const icpPct  = total.map((t, i) => t > 0 ? Math.round(icp[i] / t * 100) : 0);
-  const goal    = 287;
-  const ma4 = total.map((_, i) => { const s = Math.max(0, i - 3); const slice = total.slice(s, i + 1); return Math.round(slice.reduce((a,b) => a+b, 0) / slice.length); });
+  const goal    = 287; // June weekly target = 1,148 / 4 (approx)
+  const ma4 = total.map((_, i) => {
+    const s = Math.max(0, i - 3);
+    const slice = total.slice(s, i + 1);
+    return Math.round(slice.reduce((a,b) => a+b, 0) / slice.length);
+  });
   const traces = [
-    { type: 'bar', name: 'ICP', x: weeks, y: icp, marker: { color: COLORS.primary, line: { width: 0 } }, text: icpPct.map(p => `${p}%`), textposition: 'inside', insidetextanchor: 'middle', textfont: { size: 10, color: '#FFFFFF', family: 'Inter, sans-serif' }, hovertemplate: '<b>%{x}</b><br>ICP: %{y}<extra></extra>' },
-    { type: 'bar', name: 'Non-ICP', x: weeks, y: nonIcp, marker: { color: '#ADB5BD', line: { width: 0 } }, hovertemplate: '<b>%{x}</b><br>Non-ICP: %{y}<extra></extra>' },
-    { type: 'bar', name: 'No Value', x: weeks, y: noValue, marker: { color: '#DEE2E6', line: { width: 0 } }, text: total.map(t => t.toLocaleString()), textposition: 'outside', textfont: { size: 11, color: getComputedStyle(document.body).getPropertyValue('--text') }, hovertemplate: '<b>%{x}</b><br>No Value: %{y}<extra></extra>' },
-    { type: 'scatter', mode: 'lines+markers', name: '4-wk Moving Avg', x: weeks, y: ma4, line: { color: COLORS.warning, width: 3, shape: 'spline' }, marker: { size: 6, color: COLORS.warning }, hovertemplate: '<b>%{x}</b><br>4wk MA: %{y}<extra></extra>' }
+    {
+      type: 'bar', name: 'ICP', x: weeks, y: icp,
+      marker: { color: COLORS.primary, line: { width: 0 } },
+      text: icpPct.map(p => `${p}%`), textposition: 'inside', insidetextanchor: 'middle',
+      textfont: { size: 10, color: '#FFFFFF', family: 'Inter, sans-serif' },
+      hovertemplate: '<b>%{x}</b><br>ICP: %{y}<extra></extra>'
+    },
+    {
+      type: 'bar', name: 'Non-ICP', x: weeks, y: nonIcp,
+      marker: { color: '#ADB5BD', line: { width: 0 } },
+      hovertemplate: '<b>%{x}</b><br>Non-ICP: %{y}<extra></extra>'
+    },
+    {
+      type: 'bar', name: 'No Value', x: weeks, y: noValue,
+      marker: { color: '#DEE2E6', line: { width: 0 } },
+      text: total.map(t => t.toLocaleString()), textposition: 'outside',
+      textfont: { size: 11, color: getComputedStyle(document.body).getPropertyValue('--text') },
+      hovertemplate: '<b>%{x}</b><br>No Value: %{y}<extra></extra>'
+    },
+    {
+      type: 'scatter', mode: 'lines+markers', name: '4-wk Moving Avg',
+      x: weeks, y: ma4,
+      line: { color: COLORS.warning, width: 3, shape: 'spline' },
+      marker: { size: 6, color: COLORS.warning },
+      hovertemplate: '<b>%{x}</b><br>4wk MA: %{y}<extra></extra>'
+    }
   ];
   const layout = {
-    height: 400, margin: { l: 50, r: 20, t: 10, b: 50 },
-    paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    height: 400,
+    margin: { l: 50, r: 20, t: 10, b: 50 },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
     font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') },
-    barmode: 'stack', xaxis: { tickfont: { size: 11 }, showgrid: false },
+    barmode: 'stack',
+    xaxis: { tickfont: { size: 11 }, showgrid: false },
     yaxis: { gridcolor: 'rgba(128,128,128,0.15)', title: { text: 'SQL (Demo Booked)', font: { size: 12 } }, range: [0, 175] },
-    shapes: [{ type: 'line', xref: 'paper', x0: 0, x1: 1, y0: goal, y1: goal, line: { color: COLORS.muted, width: 2, dash: 'dash' } }],
-    annotations: [{ xref: 'paper', x: 0.99, y: goal, yshift: 10, text: `<b>June Target: ${goal}/wk</b>`, showarrow: false, xanchor: 'right', font: { size: 11, color: COLORS.muted } }],
-    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center' }, bargap: 0.35
+    shapes: [{
+      type: 'line', xref: 'paper', x0: 0, x1: 1,
+      y0: goal, y1: goal,
+      line: { color: COLORS.muted, width: 2, dash: 'dash' }
+    }],
+    annotations: [{
+      xref: 'paper', x: 0.99, y: goal, yshift: 10,
+      text: `<b>June Target: ${goal}/wk</b>`,
+      showarrow: false, xanchor: 'right',
+      font: { size: 11, color: COLORS.muted }
+    }],
+    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center' },
+    bargap: 0.35
   };
   Plotly.newPlot('chartSQLWeekly', traces, layout, { displayModeBar: false, responsive: true });
 }
 
 function renderSQLChannelsChart() {
+  // Live HubSpot — list 9736 entering SQL by leadgen_channel_original2.
+  // this: W20 2026 (May 6-12) · prior: W19 2026 (Apr 29 - May 5) · yoy: methodology change.
+  // leadgen_channel_original2 was barely populated in 2025 — individual-channel YoY
+  // is unreliable; only Total YoY shown.
   const channelData = [
     { channel: 'Organic Search', this: 79, prior: 63, yoy: 0, yoyNoData: true },
     { channel: 'Direct Traffic', this: 23, prior: 26, yoy: 0, yoyNoData: true },
@@ -1120,41 +1668,92 @@ function renderSQLChannelsChart() {
   const totalRow = { channel: 'Total SQL', this: 163, prior: 143, yoy: 0, yoyNoData: true, isTotal: true };
   channelData.sort((a, b) => a.this - b.this);
   const data = [...channelData, totalRow];
+
   const channels = data.map(d => d.isTotal ? '<b>Total SQL</b>' : d.channel);
-  const thisVals = data.map(d => d.this); const priorVals = data.map(d => d.prior); const yoyVals = data.map(d => d.yoy); const totalIdx = data.length - 1;
-  const fmtPct = (a, b) => { if (b === 0 && a === 0) return '—'; if (b === 0) return '+new'; const pct = Math.round((a - b) / b * 100); return (pct >= 0 ? '+' : '') + pct + '%'; };
-  const pctColor = (a, b) => { if (b === 0 && a === 0) return COLORS.muted; if (b === 0) return COLORS.success; return a >= b ? COLORS.success : COLORS.danger; };
+  const thisVals = data.map(d => d.this);
+  const priorVals = data.map(d => d.prior);
+  const yoyVals  = data.map(d => d.yoy);
+  const totalIdx = data.length - 1;
+
+  const fmtPct = (a, b) => {
+    if (b === 0 && a === 0) return '—';
+    if (b === 0) return '+new';
+    const pct = Math.round((a - b) / b * 100);
+    return (pct >= 0 ? '+' : '') + pct + '%';
+  };
+  const pctColor = (a, b) => {
+    if (b === 0 && a === 0) return COLORS.muted;
+    if (b === 0) return COLORS.success;
+    return a >= b ? COLORS.success : COLORS.danger;
+  };
+
   const traces = [
-    { type: 'bar', orientation: 'h', name: 'This week (W20)', x: thisVals, y: channels, marker: { color: '#1864AB', line: { width: 0 } }, hovertemplate: '%{x} SQLs<extra></extra>' },
-    { type: 'bar', orientation: 'h', name: 'Prior week (W19)', x: priorVals, y: channels, marker: { color: '#74C0FC', line: { width: 0 } }, hovertemplate: '%{x} SQLs<extra></extra>' },
-    { type: 'bar', orientation: 'h', name: 'Same week 2025', x: yoyVals, y: channels, marker: { color: 'rgba(173,181,189,0.55)', line: { color: '#868E96', width: 1 } }, hovertemplate: '%{x} SQLs<extra></extra>' }
+    { type: 'bar', orientation: 'h', name: 'This week (W20)',
+      x: thisVals, y: channels, marker: { color: '#1864AB', line: { width: 0 } },
+      hovertemplate: '%{x} SQLs<extra></extra>' },
+    { type: 'bar', orientation: 'h', name: 'Prior week (W19)',
+      x: priorVals, y: channels, marker: { color: '#74C0FC', line: { width: 0 } },
+      hovertemplate: '%{x} SQLs<extra></extra>' },
+    { type: 'bar', orientation: 'h', name: 'Same week 2025',
+      x: yoyVals, y: channels, marker: { color: 'rgba(173,181,189,0.55)', line: { color: '#868E96', width: 1 } },
+      hovertemplate: '%{x} SQLs<extra></extra>' }
   ];
+
   const maxVal = Math.max(...thisVals, ...priorVals, ...yoyVals);
   const annotations = [];
   data.forEach((d, i) => {
-    const wow = fmtPct(d.this, d.prior); const wowCol = pctColor(d.this, d.prior);
-    const yoyTxt = d.yoyNoData ? 'YoY: no data' : `${fmtPct(d.this, d.yoy)} YoY`; const yoyCol = d.yoyNoData ? COLORS.muted : pctColor(d.this, d.yoy); const yCat = channels[i];
-    annotations.push({ x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y', xanchor: 'left', yanchor: 'middle', yshift: 8, text: `<b>${wow} WoW</b>`, showarrow: false, font: { size: d.isTotal ? 13 : 12, family: 'Inter, sans-serif', color: wowCol } });
-    annotations.push({ x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y', xanchor: 'left', yanchor: 'middle', yshift: -8, text: yoyTxt, showarrow: false, font: { size: d.isTotal ? 11 : 10, family: 'Inter, sans-serif', color: yoyCol } });
+    const wow    = fmtPct(d.this, d.prior);
+    const wowCol = pctColor(d.this, d.prior);
+    const yoyTxt = d.yoyNoData ? 'YoY: no data' : `${fmtPct(d.this, d.yoy)} YoY`;
+    const yoyCol = d.yoyNoData ? COLORS.muted : pctColor(d.this, d.yoy);
+    const yCat = channels[i];
+    annotations.push({
+      x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y',
+      xanchor: 'left', yanchor: 'middle', yshift: 8,
+      text: `<b>${wow} WoW</b>`, showarrow: false,
+      font: { size: d.isTotal ? 13 : 12, family: 'Inter, sans-serif', color: wowCol }
+    });
+    annotations.push({
+      x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y',
+      xanchor: 'left', yanchor: 'middle', yshift: -8,
+      text: yoyTxt, showarrow: false,
+      font: { size: d.isTotal ? 11 : 10, family: 'Inter, sans-serif', color: yoyCol }
+    });
   });
+
   const shapes = [
-    { type: 'rect', xref: 'paper', x0: 0, x1: 1, yref: 'y', y0: totalIdx - 0.5, y1: totalIdx + 0.5, fillcolor: 'rgba(76,110,245,0.07)', line: { width: 0 }, layer: 'below' },
-    { type: 'line', xref: 'paper', x0: 0, x1: 1, yref: 'y', y0: totalIdx - 0.5, y1: totalIdx - 0.5, line: { color: 'rgba(108,117,125,0.55)', width: 2 } }
+    { type: 'rect', xref: 'paper', x0: 0, x1: 1, yref: 'y',
+      y0: totalIdx - 0.5, y1: totalIdx + 0.5,
+      fillcolor: 'rgba(76,110,245,0.07)', line: { width: 0 }, layer: 'below' },
+    { type: 'line', xref: 'paper', x0: 0, x1: 1, yref: 'y',
+      y0: totalIdx - 0.5, y1: totalIdx - 0.5,
+      line: { color: 'rgba(108,117,125,0.55)', width: 2 } }
   ];
+
   const layout = {
-    height: 460, margin: { l: 130, r: 170, t: 10, b: 50 },
-    paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+    height: 460,
+    margin: { l: 130, r: 170, t: 10, b: 50 },
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
     font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') },
-    barmode: 'group', hovermode: 'y unified',
-    hoverlabel: { bgcolor: '#1A1A2E', bordercolor: 'transparent', font: { color: '#FFFFFF', size: 13, family: 'Inter, sans-serif' }, align: 'left' },
+    barmode: 'group',
+    hovermode: 'y unified',
+    hoverlabel: {
+      bgcolor: '#1A1A2E',
+      bordercolor: 'transparent',
+      font: { color: '#FFFFFF', size: 13, family: 'Inter, sans-serif' },
+      align: 'left'
+    },
     xaxis: { gridcolor: 'rgba(128,128,128,0.15)', title: { text: 'SQL count', font: { size: 12 } }, range: [0, maxVal * 1.45] },
     yaxis: { tickfont: { size: 12 } },
     legend: { orientation: 'h', y: -0.14, x: 0.5, xanchor: 'center', font: { size: 11 } },
-    bargap: 0.28, bargroupgap: 0.05, shapes, annotations
+    bargap: 0.28, bargroupgap: 0.05,
+    shapes, annotations
   };
   Plotly.newPlot('chartSQLChannels', traces, layout, { displayModeBar: false, responsive: true });
 }
 
+/* ---------- TAB SWITCHING ---------- */
 let leadsTabInitialized = false;
 let mqlsTabInitialized = false;
 let sqlsTabInitialized = false;
@@ -1170,28 +1769,54 @@ function initTabs() {
       document.querySelectorAll('.tab-content').forEach(s => {
         s.classList.toggle('active', s.id === `tab-${tab}`);
       });
+      // Render charts lazily on first reveal — Plotly needs the container
+      // to have measurable width/height, which it doesn't while display:none.
+      // The Funnel tab is tables-only, no Plotly setup needed.
       if (tab === 'leads' && !leadsTabInitialized) {
-        renderLeadsKPIs(); renderLeadsChart(); renderChannelsChart(); leadsTabInitialized = true;
+        renderLeadsKPIs();
+        renderLeadsChart();
+        renderChannelsChart();
+        leadsTabInitialized = true;
       } else if (tab === 'leads') {
-        ['chartLeads','chartChannels'].forEach(id => { const el = document.getElementById(id); if (el) Plotly.Plots.resize(el); });
+        ['chartLeads','chartChannels'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) Plotly.Plots.resize(el);
+        });
       } else if (tab === 'mqls' && !mqlsTabInitialized) {
-        renderMQLKPIs(); renderMQLWeeklyChart(); renderMQLChannelsChart(); mqlsTabInitialized = true;
+        renderMQLKPIs();
+        renderMQLWeeklyChart();
+        renderMQLChannelsChart();
+        mqlsTabInitialized = true;
       } else if (tab === 'mqls') {
-        ['chartMQLWeekly','chartMQLChannels'].forEach(id => { const el = document.getElementById(id); if (el) Plotly.Plots.resize(el); });
+        ['chartMQLWeekly','chartMQLChannels'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) Plotly.Plots.resize(el);
+        });
       } else if (tab === 'sqls' && !sqlsTabInitialized) {
-        renderSQLKPIs(); renderSQLWeeklyChart(); renderSQLChannelsChart(); sqlsTabInitialized = true;
+        renderSQLKPIs();
+        renderSQLWeeklyChart();
+        renderSQLChannelsChart();
+        sqlsTabInitialized = true;
       } else if (tab === 'sqls') {
-        ['chartSQLWeekly','chartSQLChannels'].forEach(id => { const el = document.getElementById(id); if (el) Plotly.Plots.resize(el); });
+        ['chartSQLWeekly','chartSQLChannels'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) Plotly.Plots.resize(el);
+        });
       } else if (tab === 'overview') {
-        const okr = document.getElementById('chartOKR'); if (okr) Plotly.Plots.resize(okr);
+        const okr = document.getElementById('chartOKR');
+        if (okr) Plotly.Plots.resize(okr);
       }
     });
   });
 }
 
+/* ---------- THEME TOGGLE ---------- */
 function initTheme() {
   const btn = document.getElementById('themeBtn');
-  const updateLabel = () => { const isDark = document.documentElement.getAttribute('data-theme') === 'dark'; btn.textContent = isDark ? 'Toggle light mode' : 'Toggle dark mode'; };
+  const updateLabel = () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    btn.textContent = isDark ? 'Toggle light mode' : 'Toggle dark mode';
+  };
   updateLabel();
   btn.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
@@ -1199,22 +1824,45 @@ function initTheme() {
     if (next) document.documentElement.setAttribute('data-theme', next);
     else document.documentElement.removeAttribute('data-theme');
     updateLabel();
+    // Re-render charts to pick up new text color
     renderAll();
   });
 }
 
+/* ---------- INIT ---------- */
 function renderAll() {
-  renderKPIs(); renderOKRChart(); renderAttention();
-  if (leadsTabInitialized) { renderLeadsKPIs(); renderLeadsChart(); renderChannelsChart(); }
-  if (mqlsTabInitialized) { renderMQLKPIs(); renderMQLWeeklyChart(); renderMQLChannelsChart(); }
-  if (sqlsTabInitialized) { renderSQLKPIs(); renderSQLWeeklyChart(); renderSQLChannelsChart(); }
+  renderKPIs();
+  renderOKRChart();
+  renderAttention();
+  // The Leads / MQL / SQL tabs are lazy-rendered on first reveal because their
+  // containers start at display:none and Plotly can't measure them. Once a tab
+  // has been visited, re-render its charts on theme toggle so colors stay in sync.
+  if (leadsTabInitialized) {
+    renderLeadsKPIs();
+    renderLeadsChart();
+    renderChannelsChart();
+  }
+  if (mqlsTabInitialized) {
+    renderMQLKPIs();
+    renderMQLWeeklyChart();
+    renderMQLChannelsChart();
+  }
+  if (sqlsTabInitialized) {
+    renderSQLKPIs();
+    renderSQLWeeklyChart();
+    renderSQLChannelsChart();
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initTheme(); initTabs(); renderAll();
+  initTheme();
+  initTabs();
+  renderAll();
   window.addEventListener('resize', () => {
     ['chartOKR','chartLeads','chartChannels','chartMQLWeekly','chartMQLChannels','chartSQLWeekly','chartSQLChannels'].forEach(id => {
       const el = document.getElementById(id);
+      // Only resize if the element's parent tab is currently visible (else
+      // Plotly will collapse the chart to zero on the hidden tab).
       if (el && el.offsetParent !== null) Plotly.Plots.resize(el);
     });
   });
