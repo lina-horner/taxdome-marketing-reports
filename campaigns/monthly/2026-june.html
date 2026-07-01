@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marketing Metrics — June 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --white:#ffffff;
+    --slate-950:#0F1A2A;
+    --slate-800:#202020;
+    --slate-700:#404C5E;
+    --slate-500:#67768B;
+    --slate-400:#697991;
+    --slate-300:#B0BAC9;
+    --slate-200:#E2E8F0;
+    --slate-100:#F1F5F9;
+    --slate-50:#F8FAFC;
+    --blue-700:#004A94;
+    --blue-600:#1976D3;
+    --blue-500:#2851F5;
+    --blue-100:#F2F9FF;
+    --green-700:#1E9B5B;
+    --green-600:#24C875;
+    --green-25:#EAFCEE;
+    --red-600:#FF5759;
+    --red-100:#FFD9D1;
+    --amber:#E8A33D;
+    --amber-soft:#FFF3C4;
+    --shadow-sm:0 2px 4px rgba(71,85,105,0.10);
+    --shadow-md:0 4px 12px rgba(71,85,105,0.14);
+    --radius-lg:12px;
+    --radius-xl:16px;
+    --font-body:'Source Sans Pro',-apple-system,system-ui,sans-serif;
+    --font-ui:'Inter',-apple-system,system-ui,sans-serif;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  body{
+    font-family:var(--font-body);
+    background:var(--slate-50);
+    color:var(--slate-800);
+    -webkit-font-smoothing:antialiased;
+    padding:40px 24px 64px;
+  }
+
+  .wrap{max-width:1080px;margin:0 auto;}
+
+  .head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+    padding-bottom:24px;
+    border-bottom:1px solid var(--slate-200);
+    margin-bottom:32px;
+  }
+  .head-left h1{
+    font-weight:700;
+    font-size:30px;
+    letter-spacing:-0.01em;
+    color:var(--slate-950);
+    line-height:1.1;
+  }
+  .head-left .sub{
+    font-family:var(--font-ui);
+    font-size:13px;
+    color:var(--slate-500);
+    margin-top:6px;
+  }
+  .period-pill{
+    font-family:var(--font-ui);
+    font-size:12px;
+    font-weight:600;
+    color:var(--blue-700);
+    background:var(--blue-100);
+    padding:7px 14px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+
+  .section-label{
+    font-family:var(--font-ui);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--slate-400);
+    margin:0 0 14px 2px;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:16px;
+  }
+  .grid-2{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:32px;
+  }
+
+  .card{
+    background:var(--white);
+    border:1px solid var(--slate-200);
+    border-radius:var(--radius-xl);
+    padding:22px 22px 20px;
+    box-shadow:var(--shadow-sm);
+    transition:box-shadow .18s ease, transform .18s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;
+    width:4px;height:100%;
+    background:var(--slate-200);
+  }
+  .card.good::before{background:var(--green-600);}
+  .card.watch::before{background:var(--amber);}
+
+  .card .label{
+    font-family:var(--font-ui);
+    font-size:12px;
+    font-weight:600;
+    color:var(--slate-500);
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-bottom:14px;
+  }
+  .card .value{
+    font-weight:700;
+    font-size:38px;
+    line-height:1;
+    color:var(--slate-950);
+    letter-spacing:-0.02em;
+  }
+  .card .value .unit{
+    font-size:20px;
+    font-weight:600;
+    color:var(--slate-400);
+    margin-left:2px;
+  }
+  .card .meta{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:14px;
+    flex-wrap:wrap;
+  }
+  .tag{
+    font-family:var(--font-ui);
+    font-size:12px;
+    font-weight:600;
+    padding:4px 10px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+  }
+  .tag.up{color:var(--green-700);background:var(--green-25);}
+  .tag.down{color:var(--red-600);background:var(--red-100);}
+  .tag.flat{color:var(--slate-500);background:var(--slate-100);}
+  .tag.target-hit{color:var(--green-700);background:var(--green-25);}
+  .tag.target-miss{color:var(--amber);background:var(--amber-soft);}
+  .meta .note{
+    font-family:var(--font-ui);
+    font-size:12px;
+    color:var(--slate-400);
+  }
+
+  .commentary{
+    background:var(--white);
+    border:1px solid var(--slate-200);
+    border-left:3px solid var(--blue-500);
+    border-radius:var(--radius-lg);
+    padding:16px 20px;
+    font-size:15px;
+    line-height:1.5;
+    color:var(--slate-700);
+    margin-bottom:36px;
+  }
+  .commentary strong{color:var(--slate-950);font-weight:700;}
+
+  .banner{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--green-25);
+    border:1px solid #C4EED6;
+    border-radius:var(--radius-lg);
+    padding:14px 18px;
+    margin-bottom:32px;
+    font-size:15px;
+    color:var(--green-700);
+    font-weight:600;
+  }
+  .banner .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--green-600);
+    flex-shrink:0;
+    box-shadow:0 0 0 4px rgba(36,200,117,0.18);
+  }
+
+  .foot{
+    margin-top:8px;
+    padding-top:20px;
+    border-top:1px solid var(--slate-200);
+    font-family:var(--font-ui);
+    font-size:12px;
+    color:var(--slate-400);
+    line-height:1.6;
+  }
+  .foot a{color:var(--blue-600);text-decoration:none;}
+  .foot a:hover{text-decoration:underline;}
+
+  @media(max-width:820px){
+    .grid,.grid-2{grid-template-columns:1fr;}
+    .head-left h1{font-size:24px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <div class="head-left">
+      <h1>Marketing &mdash; Key Metrics</h1>
+      <div class="sub">Monthly CRO snapshot &middot; high-level view</div>
+    </div>
+    <div class="period-pill">June 2026 &middot; Month closed</div>
+  </div>
+
+  <div class="banner">
+    <span class="dot"></span>
+    Quality month &mdash; qualified pipeline over-delivered; lead volume the one stage under target during the paid pause.
+  </div>
+
+  <p class="section-label">Qualified Pipeline</p>
+  <div class="grid">
+    <div class="card watch">
+      <div class="label">Leads</div>
+      <div class="value">1,191</div>
+      <div class="meta">
+        <span class="tag target-miss">79% of target</span>
+        <span class="tag up">&#9650; +72% YoY</span>
+      </div>
+    </div>
+    <div class="card good">
+      <div class="label">MQLs</div>
+      <div class="value">1,160</div>
+      <div class="meta">
+        <span class="tag target-hit">127% of target</span>
+        <span class="tag up">&#9650; +22% YoY</span>
+      </div>
+    </div>
+    <div class="card good">
+      <div class="label">SQLs</div>
+      <div class="value">798</div>
+      <div class="meta">
+        <span class="tag target-hit">140% of target</span>
+        <span class="tag up">&#9650; +27% YoY</span>
+      </div>
+    </div>
+  </div>
+  <div class="commentary">
+    Both qualified stages cleared target comfortably. <strong>Lead volume was the single miss</strong>, and it lines up with the June 20&ndash;26 pause on all paid channels while we completed the funnel-definition work. Paid is back on, so July&rsquo;s focus is rebuilding top-of-funnel volume.
+  </div>
+
+  <p class="section-label">ICP Quality</p>
+  <div class="grid-2">
+    <div class="card">
+      <div class="label">ICP Share of Leads</div>
+      <div class="value">29<span class="unit">%</span></div>
+      <div class="meta">
+        <span class="tag flat">1pp under target</span>
+        <span class="tag flat">&mdash; flat YoY</span>
+      </div>
+    </div>
+    <div class="card good">
+      <div class="label">ICP Share of MQLs</div>
+      <div class="value">31<span class="unit">%</span></div>
+      <div class="meta">
+        <span class="tag target-hit">Above 30% target</span>
+        <span class="tag up">&#9650; +8pp YoY</span>
+      </div>
+    </div>
+    <div class="card good">
+      <div class="label">ICP Share of SQLs</div>
+      <div class="value">33<span class="unit">%</span></div>
+      <div class="meta">
+        <span class="tag target-hit">Above 30% target</span>
+        <span class="tag down">&#9660; &minus;2pp YoY</span>
+      </div>
+    </div>
+  </div>
+  <div class="commentary">
+    The structural story of the month. <strong>ICP share of MQLs lifted 8 points year over year</strong>, the clearest sign the funnel is pulling better-fit firms, not just more of them. Quality held even as volume dipped.
+  </div>
+
+  <div class="foot">
+    Metrics owned and reported by Mikhail. Source: Performance Marketing ICP Report &mdash; June 2026
+  </div>
+
+</div>
+</body>
+</html>
