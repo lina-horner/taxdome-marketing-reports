@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funnel Pacing Cards — July 2026 MTD</title>
+<style>
+  :root{
+    --panel:#eef3f9;
+    --card:#ffffff;
+    --ink:#1f2d4d;
+    --muted:#61708c;
+    --line:#e4e9f2;
+    --track:#e9edf4;
+    --green:#2e7d52;
+    --green-bg:#e8f4ed;
+    --amber:#b9791a;
+    --amber-bg:#fbf1de;
+    --red:#c0392b;
+    --red-bg:#fbe9e7;
+    --pace:#4a63c0;
+    --navy:#22447e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:#ffffff;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
+  .num{font-variant-numeric:tabular-nums;}
+  .wrap{width:1180px;background:var(--panel);padding:28px 30px 26px;border-radius:14px;}
+
+  .cap{margin-bottom:20px;}
+  .cap h2{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.01em;}
+  .cap p{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.4;}
+  .cap b{color:var(--ink);}
+  .cap .paceword{color:var(--pace);font-weight:700;}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden;box-shadow:0 1px 3px rgba(30,42,68,.05);display:flex;flex-direction:column;}
+  .card .hd{padding:15px 18px 13px;border-top:4px solid var(--navy);}
+  .card.red .hd{border-top-color:var(--red);}
+  .card.amber .hd{border-top-color:var(--amber);}
+  .hd .stage{font-size:16px;font-weight:800;color:var(--ink);}
+  .hd .of{font-size:12px;color:var(--muted);margin-top:2px;}
+  .hd .share{float:right;font-size:12px;font-weight:700;padding:3px 9px;border-radius:20px;}
+  .share.g{background:var(--green-bg);color:var(--green);}
+  .share.r{background:var(--red-bg);color:var(--red);}
+
+  .bars{padding:6px 18px 14px;}
+  .barblock{margin-top:12px;}
+  .barhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;}
+  .barhead .t{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+  .barhead .v{font-size:12px;color:var(--ink);font-weight:600;}
+  .track{position:relative;height:16px;background:var(--track);border-radius:5px;overflow:visible;}
+  .fill{position:absolute;top:0;left:0;height:100%;border-radius:5px;}
+  .fill.green{background:var(--green);}
+  .fill.amber{background:var(--amber);}
+  .fill.red{background:var(--red);}
+  .pace{position:absolute;top:-3px;bottom:-3px;left:22.6%;width:0;border-left:2px dashed var(--pace);}
+  .subv{font-size:11px;color:var(--muted);margin-top:4px;}
+
+  .cmt{margin-top:auto;padding:13px 18px 15px;font-size:12.5px;line-height:1.5;color:var(--ink);background:#fafbfd;border-top:1px solid var(--line);}
+
+  .legend{display:flex;gap:18px;margin-top:16px;font-size:11.5px;color:var(--muted);align-items:center;flex-wrap:wrap;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .dot{width:10px;height:10px;border-radius:3px;display:inline-block;}
+  .dot.g{background:var(--green);} .dot.a{background:var(--amber);} .dot.r{background:var(--red);}
+  .pacekey{width:0;border-left:2px dashed var(--pace);height:12px;display:inline-block;}
+  .foot{margin-top:12px;font-size:11.5px;color:var(--muted);line-height:1.45;}
+  .foot b{color:var(--ink);}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="cap">
+      <h2>Funnel Pacing and ICP Quality — July 2026 MTD (US and Canada)</h2>
+      <p>Day <b>7 of 31</b>, <b>22.6%</b> of month elapsed. Bars show progress to monthly target; the <span class="paceword">dashed line</span> marks month-to-date pace (~23%). ICP share target 30%. Source: Performance Marketing ICP Report. Day-7 run-rate figures are directional.</p>
+    </div>
+
+    <div class="grid">
+
+      <!-- LEADS -->
+      <div class="card red">
+        <div class="hd">
+          <span class="share r">ICP share 19.1%</span>
+          <div class="stage">Leads</div>
+          <div class="of num">157 of 2,260 target</div>
+        </div>
+        <div class="bars">
+          <div class="barblock">
+            <div class="barhead"><span class="t">Total</span><span class="v num">6.9% MTD · 31% RR</span></div>
+            <div class="track"><div class="pace"></div><div class="fill red" style="width:6.9%;"></div></div>
+          </div>
+          <div class="barblock">
+            <div class="barhead"><span class="t">ICP</span><span class="v num">3.9% MTD · 17% RR</span></div>
+            <div class="track"><div class="pace"></div><div class="fill red" style="width:3.9%;"></div></div>
+            <div class="subv num">30 of 772 ICP target · ICP share 19.1% vs 30%</div>
+          </div>
+        </div>
+        <div class="cmt">Volume is the binding constraint. Total and ICP leads are both far behind pace, roughly 4x under the daily rate needed, and ICP share fell to 19%, though 31% of leads are still unclassified. The paid restart is the lever.</div>
+      </div>
+
+      <!-- MQLs -->
+      <div class="card amber">
+        <div class="hd">
+          <span class="share g">ICP share 40.2%</span>
+          <div class="stage">MQLs</div>
+          <div class="of num">189 of 1,221 target</div>
+        </div>
+        <div class="bars">
+          <div class="barblock">
+            <div class="barhead"><span class="t">Total</span><span class="v num">15.5% MTD · 69% RR</span></div>
+            <div class="track"><div class="pace"></div><div class="fill amber" style="width:15.5%;"></div></div>
+          </div>
+          <div class="barblock">
+            <div class="barhead"><span class="t">ICP</span><span class="v num">20.6% MTD · 91% RR</span></div>
+            <div class="track"><div class="pace"></div><div class="fill green" style="width:20.6%;"></div></div>
+            <div class="subv num">76 of 369 ICP target · ICP share 40.2%, +10pp</div>
+          </div>
+        </div>
+        <div class="cmt">Behind on total volume but ICP quality is exceptional. ICP share at 40% is 10 points over target and ICP MQLs project 91% of target on run-rate. Recovery is tied to leads refilling the top.</div>
+      </div>
+
+      <!-- SQLs -->
+      <div class="card amber">
+        <div class="hd">
+          <span class="share g">ICP share 36.7%</span>
+          <div class="stage">SQLs</div>
+          <div class="of num">128 of 744 target</div>
+        </div>
+        <div class="bars">
+          <div class="barblock">
+            <div class="barhead"><span class="t">Total</span><span class="v num">17.2% MTD · 76% RR</span></div>
+            <div class="track"><div class="pace"></div><div class="fill amber" style="width:17.2%;"></div></div>
+          </div>
+          <div class="barblock">
+            <div class="barhead"><span class="t">ICP</span><span class="v num">21.0% MTD · 93% RR</span></div>
+            <div class="track"><div class="pace"></div><div class="fill green" style="width:21.0%;"></div></div>
+            <div class="subv num">47 of 224 ICP target · ICP share 36.7%, +7pp</div>
+          </div>
+        </div>
+        <div class="cmt">Closest to pace and running ahead of last year. ICP share at 37% is 7 points over target and ICP SQLs project 93% of target. Bottom of the funnel is healthy.</div>
+      </div>
+
+    </div>
+
+    <div class="legend">
+      <span><span class="dot g"></span>at or above target quality</span>
+      <span><span class="dot a"></span>behind pace, recoverable</span>
+      <span><span class="dot r"></span>materially behind</span>
+      <span><span class="pacekey"></span>month-to-date pace (~23%)</span>
+    </div>
+    <div class="foot"><b>Read:</b> the gap is volume at the top of the funnel, not quality through it. ICP MQLs and SQLs are near their targets on run-rate while raw lead volume is the binding constraint.</div>
+  </div>
+</body>
+</html>
