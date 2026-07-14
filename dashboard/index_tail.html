@@ -1,0 +1,72 @@
+/* ---------- CHART 2: Leads by Channel — WoW + YoY ---------- */
+function renderChannelsChart() {
+  const channelData = [
+    { channel: 'Organic Search', this: 86, prior: 88,  yoy: 0, yoyNoData: true },
+    { channel: 'Direct Traffic', this: 49, prior: 105, yoy: 0, yoyNoData: true },
+    { channel: 'Other',          this: 11, prior: 4,   yoy: 0, yoyNoData: true },
+    { channel: 'Import',         this: 8,  prior: 14,  yoy: 0, yoyNoData: true },
+    { channel: 'Paid Search',    this: 5,  prior: 2,   yoy: 0, yoyNoData: true },
+    { channel: 'LLM',            this: 2,  prior: 1,   yoy: 0, yoyNoData: true },
+    { channel: 'Paid Social',    this: 2,  prior: 0,   yoy: 0, yoyNoData: true },
+    { channel: 'Referral_other', this: 1,  prior: 2,   yoy: 0, yoyNoData: true }
+  ];
+  const totalRow = { channel: 'Total Leads', this: 265, prior: 279, yoy: 0, yoyNoData: true, isTotal: true };
+  channelData.sort((a, b) => a.this - b.this);
+  const data = [...channelData, totalRow];
+  const channels = data.map(d => d.isTotal ? '<b>Total Leads</b>' : d.channel);
+  const thisVals = data.map(d => d.this);
+  const priorVals = data.map(d => d.prior);
+  const yoyVals  = data.map(d => d.yoy);
+  const totalIdx = data.length - 1;
+  const fmtPct = (a, b) => { if (b === 0 && a === 0) return '—'; if (b === 0) return '+new'; const pct = Math.round((a - b) / b * 100); return (pct >= 0 ? '+' : '') + pct + '%'; };
+  const pctColor = (a, b) => { if (b === 0 && a === 0) return COLORS.muted; if (b === 0) return COLORS.success; return a >= b ? COLORS.success : COLORS.danger; };
+  const thisColor = '#1864AB'; const priorColor = '#74C0FC'; const yoyColor = 'rgba(173,181,189,0.55)';
+  const traces = [
+    { type: 'bar', orientation: 'h', name: 'This week (W20)', x: thisVals, y: channels, marker: { color: thisColor, line: { width: 0 } }, hovertemplate: '%{x} leads<extra></extra>' },
+    { type: 'bar', orientation: 'h', name: 'Prior week (W19)', x: priorVals, y: channels, marker: { color: priorColor, line: { width: 0 } }, hovertemplate: '%{x} leads<extra></extra>' },
+    { type: 'bar', orientation: 'h', name: 'Same week 2025', x: yoyVals, y: channels, marker: { color: yoyColor, line: { color: '#868E96', width: 1 } }, hovertemplate: '%{x} leads<extra></extra>' }
+  ];
+  const maxVal = Math.max(...thisVals, ...priorVals, ...yoyVals);
+  const annotations = [];
+  data.forEach((d, i) => {
+    const wow = fmtPct(d.this, d.prior); const wowCol = pctColor(d.this, d.prior);
+    const yoyTxt = d.yoyNoData ? 'YoY: no data' : `${fmtPct(d.this, d.yoy)} YoY`; const yoyCol = d.yoyNoData ? COLORS.muted : pctColor(d.this, d.yoy);
+    const yCat = channels[i];
+    annotations.push({ x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y', xanchor: 'left', yanchor: 'middle', yshift: 8, text: `<b>${wow} WoW</b>`, showarrow: false, font: { size: d.isTotal ? 13 : 12, family: 'Inter, sans-serif', color: wowCol } });
+    annotations.push({ x: maxVal * 1.04, y: yCat, xref: 'x', yref: 'y', xanchor: 'left', yanchor: 'middle', yshift: -8, text: yoyTxt, showarrow: false, font: { size: d.isTotal ? 11 : 10, family: 'Inter, sans-serif', color: yoyCol } });
+  });
+  const shapes = [
+    { type: 'rect', xref: 'paper', x0: 0, x1: 1, yref: 'y', y0: totalIdx - 0.5, y1: totalIdx + 0.5, fillcolor: 'rgba(76,110,245,0.07)', line: { width: 0 }, layer: 'below' },
+    { type: 'line', xref: 'paper', x0: 0, x1: 1, yref: 'y', y0: totalIdx - 0.5, y1: totalIdx - 0.5, line: { color: 'rgba(108,117,125,0.55)', width: 2 } }
+  ];
+  const layout = { height: 470, margin: { l: 130, r: 170, t: 10, b: 50 }, paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') }, barmode: 'group', hovermode: 'y unified', hoverlabel: { bgcolor: '#1A1A2E', bordercolor: 'transparent', font: { color: '#FFFFFF', size: 13, family: 'Inter, sans-serif' }, align: 'left' }, xaxis: { gridcolor: 'rgba(128,128,128,0.15)', title: { text: 'Lead count', font: { size: 12 } }, range: [0, maxVal * 1.45] }, yaxis: { tickfont: { size: 12 } }, legend: { orientation: 'h', y: -0.14, x: 0.5, xanchor: 'center', font: { size: 11 } }, bargap: 0.28, bargroupgap: 0.05, shapes, annotations };
+  Plotly.newPlot('chartChannels', traces, layout, { displayModeBar: false, responsive: true });
+}
+
+function renderOKRChart() {
+  const paceFrac = 13 / 92;
+  const krs = [
+    { name: 'ICP % of classified leads', actual: 22, target: 35, label: '22% / 35% · W29 ICP%: Leads 21.6% (35/162), MQL 25.5% (41/161), SQL 27.3% (30/110) · below target', status: 'live', forceColor: COLORS.danger },
+    { name: 'Total leads (Q3 QTD)', actual: 347, target: 6694, label: '347 / 6,694 · Jul 1–13 · 5.2% of Q3 target vs 14% pace — early quarter, far below linear pace', status: 'live', forceColor: COLORS.danger },
+    { name: 'MQLs (Q3 QTD)', actual: 338, target: 3213, label: '338 / 3,213 · Jul 1–13 · 10.5% of Q3 target vs 14% pace', status: 'live', forceColor: COLORS.danger },
+    { name: 'SQLs (Q3 QTD)', actual: 198, target: 1928, label: '198 / 1,928 · Jul 1–13 · 10.3% of Q3 target vs 14% pace', status: 'live', forceColor: COLORS.danger },
+    { name: 'Paid MQLs (Q3 total)', actual: 0, target: 425, label: 'Channel breakdown not pulled this cycle — Q3 tracking resumes next week', status: 'pending' },
+    { name: 'Paid SQLs (Q3 total)', actual: 0, target: 165, label: 'Channel breakdown not pulled this cycle — Q3 tracking resumes next week', status: 'pending' },
+    { name: 'Avg ACV (weekly — W29)', actual: 2429, target: 3000, label: '$2,429 / $3,000 W29 · 54 won deals (Inbound + Intl) · $131,172 total · 19% below target', status: 'live', forceColor: COLORS.warning },
+    { name: 'TD Payments activation', actual: 39.1, target: 30, label: '39.1% / 30% OKR · 2,431 of 6,225 eligible US · +0.5 pp WoW · 9.1 pp above OKR target', status: 'live' },
+    { name: 'Directory visitors', actual: 0, target: 1, label: 'Not yet launched', status: 'not-launched' },
+    { name: 'Directory conversion', actual: 0, target: 1, label: 'Not yet launched', status: 'not-launched' }
+  ];
+  const reversed = [...krs].reverse();
+  const names = reversed.map(k => k.name);
+  const inactiveStatuses = new Set(['not-launched', 'pending', 'aligning']);
+  const rawProgress = reversed.map(k => { if (inactiveStatuses.has(k.status)) return 0; return Math.round((k.actual / k.target) * 100); });
+  const progress = rawProgress.map(p => Math.min(p, 100));
+  const pacePct = Math.round(paceFrac * 100);
+  const colors = reversed.map((k, i) => { if (k.forceColor) return k.forceColor; if (inactiveStatuses.has(k.status)) return 'rgba(108,117,125,0.35)'; const gap = rawProgress[i] - pacePct; if (gap >= 0) return COLORS.success; if (gap >= -5) return COLORS.warning; return COLORS.danger; });
+  const labels = reversed.map((k, i) => { if (k.status === 'not-launched') return 'Not yet launched'; if (k.status === 'pending') return k.label; if (k.status === 'aligning') return k.label; return `${progress[i]}%  ·  ${k.label}`; });
+  const bgTrace = { type: 'bar', orientation: 'h', x: names.map(_ => 100), y: names, marker: { color: 'rgba(128,128,128,0.08)', line: { width: 0 } }, hoverinfo: 'skip', showlegend: false, name: '' };
+  const fgTrace = { type: 'bar', orientation: 'h', x: progress, y: names, marker: { color: colors, line: { width: 0 } }, text: labels, textposition: 'outside', textfont: { size: 11, color: getComputedStyle(document.body).getPropertyValue('--text') }, hovertemplate: '<b>%{y}</b><br>%{x}% of target<extra></extra>', showlegend: false, name: '' };
+  const layout = { height: 420, margin: { l: 260, r: 120, t: 20, b: 40 }, paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: { family: 'Inter, sans-serif', color: getComputedStyle(document.body).getPropertyValue('--text') }, barmode: 'overlay', xaxis: { range: [0, 115], showgrid: false, ticksuffix: '%', tickvals: [0, 25, 50, 75, 100], title: { text: 'Progress to target', font: { size: 12 } } }, yaxis: { tickfont: { size: 12 }, automargin: false }, shapes: [{ type: 'line', x0: Math.round(paceFrac * 100), x1: Math.round(paceFrac * 100), yref: 'paper', y0: 0, y1: 1, line: { color: COLORS.primary, width: 2, dash: 'dot' } }], annotations: [{ x: Math.round(paceFrac * 100), y: 1.04, yref: 'paper', text: `<b>Q3 pace: ${Math.round(paceFrac * 100)}%</b>`, showarrow: false, xanchor: 'center', font: { size: 11, color: COLORS.primary } }], bargap: 0.35 };
+  Plotly.newPlot('chartOKR', [bgTrace, fgTrace], layout, { displayModeBar: false, responsive: true });
+}
